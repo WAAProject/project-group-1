@@ -32,27 +32,9 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 // Finding user
-//                .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username = ?")
+                .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username = ?")
                 // Finding roles / authorities of user
-//                .authoritiesByUsernameQuery("SELECT username, authority FROM authorities WHERE username = ?");
-
-                // This populates dummy users, use after .dataSource(dataSource) line
-                .withDefaultSchema()
-                .withUser(
-                        User.withUsername("buyer")
-                                .password("buyer")
-                                .roles("BUYER")
-                )
-                .withUser(
-                        User.withUsername("seller")
-                                .password("seller")
-                                .roles("SELLER")
-                )
-                .withUser(
-                        User.withUsername("admin")
-                                .password("admin")
-                                .roles("ADMIN")
-                );
+                .authoritiesByUsernameQuery("SELECT username, authority FROM authorities WHERE username = ?");
     }
 
     @Bean
