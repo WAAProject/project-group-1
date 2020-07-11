@@ -51,7 +51,24 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/seller/**").hasRole("SELLER")
 //                .antMatchers("/user/**").hasAnyRole("ADMIN", "SELLER", "BUYER")
                 .antMatchers("/", "/static/**").permitAll()
-                .and().formLogin();
+                .and().formLogin()
+                    .loginPage("/login")
+                    .failureUrl("/login?error=true")
+                    .usernameParameter("username")
+                    .passwordParameter("password")
+                    .permitAll()
+                .and()
+                .logout()
+                    .logoutUrl("/logout") //change default /logout url to /perform_logout
+                    .logoutSuccessUrl("/login?logout=true")
+                    .invalidateHttpSession(true)
+                    .clearAuthentication(true)
+                .permitAll()
+                .and()
+                .exceptionHandling()
+                    .accessDeniedPage("/denied");
+        // enabling /logout path for GET request for now
+        http.csrf().disable();
     }
 
         // enable H2 console? Got better solution. Use WebSecurity object's ignoring method.
