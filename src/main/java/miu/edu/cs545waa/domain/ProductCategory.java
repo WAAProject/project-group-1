@@ -1,28 +1,33 @@
 package miu.edu.cs545waa.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class ProductCategory {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Id@GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
+    @NotBlank
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "productCategory")
-    private List<Product> productList=new ArrayList<>();
+    private List<Product> products=new ArrayList<>();
 
-    public ProductCategory(){
-
+    public ProductCategory() {
     }
 
-    public Long getId() {
+    public ProductCategory(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -32,14 +37,6 @@ public class ProductCategory {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Product> getProductList() {
-        return productList;
-    }
-
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
     }
 
     @Override

@@ -13,8 +13,6 @@ public class ProductCategoryServiceImpl implements ProductCategoryService{
     @Autowired
     ProductCategoryRepo productCategoryRepo;
 
-
-
     @Override
     public ProductCategory getCategoryById(Long id) {
         return productCategoryRepo.getOne(id);

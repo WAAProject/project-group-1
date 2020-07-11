@@ -1,5 +1,6 @@
 package miu.edu.cs545waa.domain;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,7 +31,6 @@ public class Product {
     private String imageUrl;
 
     @ManyToOne
-    @JoinColumn(name = "productCategory_id")
     @NotNull(message = "{Product.Category.NotNull}")
     private ProductCategory productCategory;
 
@@ -143,3 +143,4 @@ public class Product {
         this.prodReviewList = prodReviewList;
     }
 }
+

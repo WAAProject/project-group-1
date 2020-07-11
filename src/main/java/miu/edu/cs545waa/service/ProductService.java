@@ -10,6 +10,6 @@ public interface ProductService {
     void save(Product product);
     List<Product>getByCategory(Integer categoryId);
     List<Product>getBySeller(Seller seller);
-    void deleteByProduct(Product product);
+    void deleteProduct(Product product);
     Product findById(Long id);
 }
