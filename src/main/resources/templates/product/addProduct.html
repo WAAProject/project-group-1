@@ -11,8 +11,7 @@
 
 <body>
 
-<!-- Since we are using the class container, the below
-    div will not take complete width of it's parent. -->
+
 <div class="container" style="background: whitesmoke;">
     <p class="h2 pt-2">Add New Product</p>
     <form th:action="{@/seller/addProduct}" th:object="${products}" enctype="multipart/form-data" method="post">

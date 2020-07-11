@@ -8,7 +8,7 @@ import java.util.List;
 public class ProductCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "productCategory")
@@ -18,11 +18,11 @@ public class ProductCategory {
 
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
