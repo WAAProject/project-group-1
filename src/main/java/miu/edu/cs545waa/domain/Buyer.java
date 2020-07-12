@@ -1,9 +1,7 @@
 package miu.edu.cs545waa.domain;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
 @Entity
 //@DiscriminatorValue("buyer")
 public class Buyer extends User {
@@ -14,14 +12,15 @@ public class Buyer extends User {
 
   //  @OneToMany(fetch = FetchType.LAZY)
   //  private List<CartItem> cartItems = new ArrayList<>();
-
     @OneToMany(fetch = FetchType.LAZY)
-    private List<Order> orders = new ArrayList<>();
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     public Buyer() {
     }
 
-    public Buyer(String firstName, String lastName, String email, String password) {
-        super(firstName, lastName, email, password);
+
+    public Buyer(String firstName, String lastName, String email, String password, boolean enabled) {
+        super(firstName, lastName, email, password, enabled);
+
     }
 }

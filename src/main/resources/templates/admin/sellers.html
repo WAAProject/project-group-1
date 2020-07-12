@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+</head>
+<body>
+
+<h2>Seller approve/disable</h2>
+
+<table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="seller : ${sellers}">
+            <td th:text="${seller.firstName}">First Name</td>
+            <td th:text="${seller.lastName}">Last Name</td>
+            <td th:text="${seller.email}">Email</td>
+            <td th:text="${seller.approved} ? 'Decline' : 'Approve'">Action</td>
+        </tr>
+</table>
+</body>
+</html>

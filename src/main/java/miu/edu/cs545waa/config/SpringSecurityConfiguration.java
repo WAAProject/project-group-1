@@ -32,7 +32,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 // Finding user
-                .usersByUsernameQuery("SELECT email, password, 'true' as enabled FROM user WHERE email = ?")
+                .usersByUsernameQuery("SELECT email, password, enabled FROM user WHERE email = ?")
                 // Finding roles / authorities of user
                 .authoritiesByUsernameQuery("SELECT email, UPPER(user_type) FROM user WHERE email = ?");
     }

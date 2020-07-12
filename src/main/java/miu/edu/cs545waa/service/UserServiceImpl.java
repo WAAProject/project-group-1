@@ -1,5 +1,6 @@
 package miu.edu.cs545waa.service;
 
+import miu.edu.cs545waa.domain.Seller;
 import miu.edu.cs545waa.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,11 +23,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAll() {
-        return null;
+        return userRepository.findAll();
     }
+
+//    @Override
+//    public List<Seller> getAllSellers() {
+//        return userRepository.findAll();
+//    }
 
     @Override
     public User save(User user) {
         return userRepository.save(user);
+    }
+
+    public List<User> findByType(String type) {
+        return userRepository.findByType(type);
     }
 }

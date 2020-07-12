@@ -16,8 +16,8 @@ public class Seller extends User{
     private List<Order>orders=new ArrayList<>();
 
     public Seller() {}
-    public Seller(String firstName,String lastName,String email,String password) {
-        super(firstName, lastName, email, password);
+    public Seller(String firstName,String lastName,String email,String password, boolean enabled) {
+        super(firstName, lastName, email, password, enabled);
     }
 
     public List<Product> getProducts() {
