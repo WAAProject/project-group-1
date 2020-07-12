@@ -1,8 +1,5 @@
 package miu.edu.cs545waa.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
