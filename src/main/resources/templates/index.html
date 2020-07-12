@@ -15,32 +15,31 @@
     </div>
         <div class="col-md-9 col-sm-8 col-xs-12" id="background">
             <div class="sidebar-wrapper">
-                <div  class="all-products">
+                <div class="container">
+                    <div class="row" >
                     <div class="col"  th:each="product : ${products}" th:if="${product.enabled==true}">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top" th:src="${product.imageUrl}" th:alt="${product.name}">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${product.name}">Card title</h5>
+                                <a href="#"><p class="card-text" th:text="${product.description}">Description.</p></a>
+                                <p id="price" class="card-text" th:text="${'$'+product.price}">0.0</p>
+                                <a  sec:authorize="hasRole('ROLE_BUYER')" th:value="${product.id}" class="btn btn-primary">Add To Cart</a>
+                            </div>
+                        </div>
                         <div  class="product-box">
                             <div  class="product-item">
                                 <div class="mat-card">
                                     <div  class="product-img">
                                         <a class="product-link" th:href="@{/product/{id}(id=${product.id})}">
-                                            <img alt="" th:src="${upload+product.id}">
+                                            <img alt="here " th:src="@{product.imageUrl}" height="180" width="286"/>
                                         </a>
                                     </div>
-                                    <div class="product-info-wrapper"><span class="category" th:text="${product.category.name}"></span>
-                                        <div class="title-wrap">
-                                            <h4 th:text="${product.name}">Name</h4>
-                                        </div>
-                                        <div class="price-wrap">
-                                            <p th:text="${'$' + product.price}">0.0</p>
-                                            <a sec:authorize="hasRole('ROLE_BUYER')" class="addToCard" th:value="${product.id}">
-                                                <mat-icon class="mat-icon material-icons" role="img">shopping_cart</mat-icon>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+
+                        </div></div>
                     </div>
-                </div>
+                </div></div>
             </div>
         </div>
     </div>

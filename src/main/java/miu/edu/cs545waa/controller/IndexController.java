@@ -22,6 +22,7 @@ public class IndexController {
       List<Product> allproducts=productService.getAll();
       List<ProductCategory> categories=productCategoryService.getAll();
 
+
       model.addAttribute("products", allproducts);
       model.addAttribute("catagories", categories);
         return "index";

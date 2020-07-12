@@ -18,23 +18,14 @@
             </div>
             <div id = "test" class="panel-collapse collapse">
                 <ul class = "list-group">
-                    <li class = "list-group-item">Java</li>
-                    <li class = "list-group-item">PHP</li>
-                    <li class = "list-group-item">C++</li>
-                    <li class =" list-group-item">HTML5</li>
-                    <li class =" list-group-item">jQuery</li>
+                    <ul class="list-unstyled">
+                        <li class="list-group-item list-group-item-dark"><a  th:href="@{/}">Show All</a></li>
+                                     <li class="list-group-item list-group-item-dark" th:each="category : ${catagories}">
+                                    <a th:text="${category.name}" th:href="@{/product(category=${category.id})}"></a>
+                                               </li>
+                                      </ul>
                 </ul>
-                will be replaced by this
-<!--                <div class="cat-list">-->
-<!--                    <ul>-->
-<!--                        <li>what</li>-->
-<!--                        <li>yey</li>-->
-<!--                        <li><a class="noborder" th:href="@{/product}">Show All</a></li>-->
-<!--                        <li th:each="category : ${categories}">-->
-<!--                            <a th:text="${category.name}" th:href="@{/product(category=${category.id})}"></a>-->
-<!--                        </li>-->
-<!--                    </ul>-->
-<!--                </div>-->
+
             </div>
         </div>
     </div>

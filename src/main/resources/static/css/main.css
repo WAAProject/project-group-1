@@ -14,4 +14,23 @@
 #background {
     background-color:#51839e;
 }
+.container{
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 10px 15px!important;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.products {
+    padding-left: 17px;
+    background: #fff;
+    /* border:1px solid #ccc; */
+    float:left;
+    flex: 1 1 100%;
+    box-sizing: border-box;
+    width: 75%;
+}
+#price {
+    font-weight: bold;
+}
 
