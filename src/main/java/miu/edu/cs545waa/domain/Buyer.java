@@ -12,7 +12,7 @@ public class Buyer extends User {
     private List<Seller> following = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY)
-    private List<CartItem> cartItems = new ArrayList<>();
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<Order> orders = new ArrayList<>();

@@ -1,7 +1,7 @@
 package miu.edu.cs545waa.service;
 
 import miu.edu.cs545waa.domain.Product;
-import miu.edu.cs545waa.domain.Review;
+import miu.edu.cs545waa.domain.ProductReview;
 import miu.edu.cs545waa.repository.ProductReviewRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,26 +17,26 @@ public class ProductReviewServiceImpl implements ProductReviewService{
     ProductService productService;
 
     @Override
-    public Review save(Review review) {
-        return productReviewRepo.save(review);
+    public ProductReview save(ProductReview productReview) {
+        return productReviewRepo.save(productReview);
     }
 
     @Override
-    public Review findById(Long id) {
+    public ProductReview findById(Long id) {
         return productReviewRepo.findById(id).get();
     }
 
     @Override
-    public List<Review> getAll() {
+    public List<ProductReview> getAll() {
         return productReviewRepo.findAll();
     }
 
     @Override
-    public Review addReviewToProduct(Review review, Long id) {
+    public ProductReview addReviewToProduct(ProductReview productReview, Long id) {
         Product product=productService.findById(id);
         if(product!=null){
            //need to work after buyer getAuthenticated
-            return review;
+            return productReview;
         }
         else{
             throw new NullPointerException("No product Found!");
