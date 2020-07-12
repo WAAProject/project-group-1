@@ -7,6 +7,9 @@ import javax.persistence.*;
 @DiscriminatorColumn(name="USER_TYPE", discriminatorType = DiscriminatorType.STRING)
 public class User {
 
+    @Column(name = "USER_TYPE", insertable = false, updatable = false)
+    private String type;
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
@@ -20,14 +23,35 @@ public class User {
 
     private String password;
 
+    private boolean enabled;
+
+    private boolean isApproved;
+
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password) {
+    public User(String firstName, String lastName, String email, String password, boolean enabled) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.enabled = enabled;
+    }
+
+    public boolean isApproved() {
+        return isApproved;
+    }
+
+    public void setApproved(boolean approved) {
+        isApproved = approved;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getFirstName() {

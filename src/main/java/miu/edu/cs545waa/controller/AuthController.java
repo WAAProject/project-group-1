@@ -69,10 +69,10 @@ public class AuthController {
         }
 
         if (userType.equalsIgnoreCase("buyer")) {
-            Buyer buyer = new Buyer(user.getFirstName(), user.getLastName(), user.getEmail(), passwordEncoder.encode(user.getPassword()));
+            Buyer buyer = new Buyer(user.getFirstName(), user.getLastName(), user.getEmail(), passwordEncoder.encode(user.getPassword()), true);
             userService.save(buyer);
         } else if (userType.equalsIgnoreCase("seller")){
-            Seller seller = new Seller(user.getFirstName(), user.getLastName(), user.getEmail(), passwordEncoder.encode(user.getPassword()));
+            Seller seller = new Seller(user.getFirstName(), user.getLastName(), user.getEmail(), passwordEncoder.encode(user.getPassword()), true);
             userService.save(seller);
         }
 

@@ -4,10 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class sellerController {
+public class SellerController {
 
     @GetMapping(value = "/sellerIndex")
     public String sellerPage(){
-        return "sellerIndex";
+        return "seller/sellerIndex";
     }
 }
