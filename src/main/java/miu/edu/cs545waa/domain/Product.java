@@ -61,7 +61,6 @@ public class Product {
         this.enabled = true;
         this.productCategory = category;
         this.seller = seller;
-//        this.seller.addProduct(this);
     }
 
     public Seller getSeller() {
@@ -152,4 +151,3 @@ public class Product {
         this.prodProductReviewList = prodProductReviewList;
     }
 }
-
