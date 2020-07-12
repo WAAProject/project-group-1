@@ -7,7 +7,8 @@ import java.util.List;
 
 @Entity
 public class ProductCategory {
-    @Id@GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @NotBlank
@@ -44,3 +45,4 @@ public class ProductCategory {
         return name;
     }
 }
+
