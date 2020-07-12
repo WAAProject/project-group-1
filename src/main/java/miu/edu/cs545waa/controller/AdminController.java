@@ -1,7 +1,9 @@
 package miu.edu.cs545waa.controller;
 
+import miu.edu.cs545waa.domain.ProductReview;
 import miu.edu.cs545waa.domain.Seller;
 import miu.edu.cs545waa.domain.User;
+import miu.edu.cs545waa.service.ProductReviewService;
 import miu.edu.cs545waa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,9 @@ public class AdminController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    ProductReviewService productReviewService;
+
     @GetMapping
     public String getAdminIndex() {
         return "admin/index";
@@ -26,17 +31,26 @@ public class AdminController {
 
     @GetMapping("/accounts")
     public String getAccounts(Model model) {
-        List<User> userList = userService.getAll();
-        System.out.println(userList);
-        model.addAttribute("users", userList);
+        List<User> users = userService.getAll();
+        System.out.println(users);
+        model.addAttribute("users", users);
         return "admin/accounts";
     }
 
     @GetMapping("/sellers")
     public String getSellerAccounts(Model model) {
-        List<User> sellerList = userService.findByType("Seller");
-        System.out.println(sellerList);
-        model.addAttribute("sellers", sellerList);
+        List<User> sellers = userService.findByType("Seller");
+        System.out.println(sellers);
+        model.addAttribute("sellers", sellers);
         return "admin/sellers";
+    }
+
+    @GetMapping("/reviews")
+    public String getReviews(Model model) {
+        List<ProductReview> productReviews = productReviewService.getAll();
+        System.out.println(productReviews);
+        System.out.println(productReviews);
+        model.addAttribute("productReviews", productReviews);
+        return "admin/reviews";
     }
 }
