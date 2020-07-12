@@ -15,13 +15,13 @@
         <div class="col-md-9 col-sm-8 col-xs-12">
             <div class="sidebar-wrapper">
                 <div  class="all-products">
-                    <div class="col"  th:each="product : ${products}" th:if="${product.isEnabled()}">
+                    <div class="col"  th:each="product : ${products}" th:if="${product.enabled==true}">
                         <div  class="product-box">
                             <div  class="product-item">
                                 <div class="mat-card">
                                     <div  class="product-img">
                                         <a class="product-link" th:href="@{/product/{id}(id=${product.id})}">
-                                            <img alt="" th:src="${product.imagePath}">
+                                            <img alt="" th:src="${upload+product.id}">
                                         </a>
                                     </div>
                                     <div class="product-info-wrapper"><span class="category" th:text="${product.category.name}"></span>
