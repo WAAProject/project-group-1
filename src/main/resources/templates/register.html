@@ -5,6 +5,23 @@
     <title>Registration</title>
 </head>
 <body>
+<form th:action="@{/register}" th:object="${user}" method="post">
+    <p><label>First Name: <input type="text" name="firstName" placeholder="First Name"></label></p>
+    <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:errorclass="fieldError">First Name error</p>
+    <p><label>Last Name: <input type="text" name="lastName" placeholder="Last Name"></label></p>
+    <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" th:errorclass="fieldError">Last Name error</p>
+    <p><label>Email: <input type="text" name="email" placeholder="Email"></label></p>
+    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="fieldError">Email error</p>
+    <p><label>Password: <input type="password" name="password" placeholder="Password"></label></p>
+    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:errorclass="fieldError">Password error</p>
+
+    <label for="userType">Choose a user type:</label>
+    <select id="userType" name="userType" required>
+        <option value="buyer">Buyer</option>
+        <option value="seller">Seller</option>
+    </select>
+    <p><input type="submit" value="Register"></p>
+</form>
 
 </body>
 </html>
