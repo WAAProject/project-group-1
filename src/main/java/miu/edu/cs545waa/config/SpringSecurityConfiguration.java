@@ -32,24 +32,22 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 // Finding user
-                .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username = ?")
+                .usersByUsernameQuery("SELECT email, password, 'true' as enabled FROM user WHERE email = ?")
                 // Finding roles / authorities of user
-                .authoritiesByUsernameQuery("SELECT username, authority FROM authorities WHERE username = ?");
+                .authoritiesByUsernameQuery("SELECT email, UPPER(user_type) FROM user WHERE email = ?");
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/buyer/**").hasRole("BUYER")
-                .antMatchers("/seller/**").hasRole("SELLER")
-//                .antMatchers("/user/**").hasAnyRole("ADMIN", "SELLER", "BUYER")
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/buyer/**").hasAuthority("BUYER")
+                .antMatchers("/seller/**").hasAuthority("SELLER")
                 .antMatchers("/", "/static/**").permitAll()
                 .and().formLogin()
                     .loginPage("/login")

@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class payment {
+public class Payment {
     @Id
     @GeneratedValue
     private Long id;
