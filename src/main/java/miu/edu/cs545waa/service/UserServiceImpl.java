@@ -1,7 +1,10 @@
 package miu.edu.cs545waa.service;
 
+import miu.edu.cs545waa.domain.Buyer;
 import miu.edu.cs545waa.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import miu.edu.cs545waa.repository.UserRepository;
 
@@ -28,5 +31,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User user) {
         return userRepository.save(user);
+    }
+
+    @Override
+    public Buyer getAuthenticatedBuyer() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Buyer buyer = (Buyer)this.findByEmail(auth.getName());
+        return buyer;
+    }
+
+    @Override
+    public User getAuthenticatedUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        return this.findByEmail(auth.getName());
     }
 }

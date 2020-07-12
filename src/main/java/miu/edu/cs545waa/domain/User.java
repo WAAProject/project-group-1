@@ -62,6 +62,14 @@ public class User {
         this.password = password;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "User{" +

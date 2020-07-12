@@ -31,6 +31,7 @@ public class Product {
     private String imageUrl;
 
     @ManyToOne
+    @JoinColumn(name = "category_id")
     @NotNull(message = "{Product.Category.NotNull}")
     private ProductCategory productCategory;
 
@@ -134,6 +135,14 @@ public class Product {
 
     public void setProductImage(MultipartFile productImage) {
         this.productImage = productImage;
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
     }
 
     public List<ProductReview> getProdProductReviewList() {
