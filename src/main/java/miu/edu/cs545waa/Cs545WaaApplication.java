@@ -10,4 +10,5 @@ public class Cs545WaaApplication {
         SpringApplication.run(Cs545WaaApplication.class, args);
     }
 
+
 }
