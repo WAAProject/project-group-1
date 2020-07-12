@@ -48,7 +48,7 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="product_id")
-    private List<ProductReview> prodReviewList=new ArrayList<>();
+    private List<ProductReview> prodProductReviewList =new ArrayList<>();
 
     public Product(){}
     public Product(String name, String description, double price,
@@ -136,12 +136,12 @@ public class Product {
         this.productImage = productImage;
     }
 
-    public List<ProductReview> getProdReviewList() {
-        return prodReviewList;
+    public List<ProductReview> getProdProductReviewList() {
+        return prodProductReviewList;
     }
 
-    public void setProdReviewList(List<ProductReview> prodReviewList) {
-        this.prodReviewList = prodReviewList;
+    public void setProdProductReviewList(List<ProductReview> prodProductReviewList) {
+        this.prodProductReviewList = prodProductReviewList;
     }
 }
 

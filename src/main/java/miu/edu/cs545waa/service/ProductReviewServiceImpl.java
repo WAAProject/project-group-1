@@ -1,6 +1,5 @@
 package miu.edu.cs545waa.service;
 
-import miu.edu.cs545waa.domain.Buyer;
 import miu.edu.cs545waa.domain.Product;
 import miu.edu.cs545waa.domain.ProductReview;
 import miu.edu.cs545waa.repository.ProductReviewRepo;
@@ -18,8 +17,8 @@ public class ProductReviewServiceImpl implements ProductReviewService{
     ProductService productService;
 
     @Override
-    public ProductReview save(ProductReview review) {
-        return productReviewRepo.save(review);
+    public ProductReview save(ProductReview productReview) {
+        return productReviewRepo.save(productReview);
     }
 
     @Override
@@ -33,11 +32,11 @@ public class ProductReviewServiceImpl implements ProductReviewService{
     }
 
     @Override
-    public ProductReview addReviewToProduct(ProductReview review, Long id) {
+    public ProductReview addReviewToProduct(ProductReview productReview, Long id) {
         Product product=productService.findById(id);
         if(product!=null){
            //need to work after buyer getAuthenticated
-            return review;
+            return productReview;
         }
         else{
             throw new NullPointerException("No product Found!");

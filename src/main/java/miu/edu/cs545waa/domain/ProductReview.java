@@ -31,7 +31,7 @@ public class ProductReview {
 
     }
 
-    public ProductReview(Buyer buyer,int rating,String comment,boolean active,Date reviewDate) {
+    public ProductReview(Buyer buyer, int rating, String comment, boolean active, Date reviewDate) {
         this.buyer = buyer;
         this.rating = rating;
         this.comment = comment;
