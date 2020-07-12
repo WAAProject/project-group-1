@@ -34,14 +34,15 @@ public class Product {
     @NotNull(message = "{Product.Category.NotNull}")
     private ProductCategory productCategory;
 
-//    @ManyToOne
-//    @JoinColumn(name="seller_id")
-//    private Seller seller;
+    @ManyToOne
+    @JoinColumn(name="seller_id")
+    private Seller seller;
 
     @NotEmpty(message = "{Product.quantity.NotEmpty}")
     private int quantity;
     private boolean enabled = false;
 
+    @Transient
     @JsonIgnore
     private MultipartFile productImage;
 
@@ -59,7 +60,7 @@ public class Product {
         this.quantity = quantity;
         this.enabled = true;
         this.productCategory = category;
-//        this.seller = seller;
+        this.seller = seller;
 //        this.seller.addProduct(this);
     }
 

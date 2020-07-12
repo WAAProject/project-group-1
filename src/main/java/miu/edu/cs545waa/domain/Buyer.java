@@ -1,16 +1,23 @@
 package miu.edu.cs545waa.domain;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@DiscriminatorValue("BUYER")
 public class Buyer extends User {
 
+    @ManyToMany
+    @JoinColumn(name = "owner_id")
+    private List<Seller> following = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<CartItem> cartItems = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Order> orders = new ArrayList<>();
+
     public Buyer() {
-        super();
     }
 
     public Buyer(String firstName, String lastName, String email, String password) {
