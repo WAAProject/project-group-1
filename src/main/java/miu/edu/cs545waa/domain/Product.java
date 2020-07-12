@@ -62,7 +62,14 @@ public class Product {
         this.enabled = true;
         this.productCategory = category;
         this.seller = seller;
-//        this.seller.addProduct(this);
+    }
+
+    public Seller getSeller() {
+        return seller;
+    }
+
+    public void setSeller(Seller seller) {
+        this.seller = seller;
     }
 
     public Long getId() {
@@ -153,4 +160,3 @@ public class Product {
         this.prodProductReviewList = prodProductReviewList;
     }
 }
-
