@@ -1,11 +1,12 @@
 package miu.edu.cs545waa.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Buyer extends User {
+
 
 
     public Buyer() {

@@ -1,11 +1,10 @@
 package miu.edu.cs545waa.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+// Renaming DTYPE column to USER_TYPE
+@DiscriminatorColumn(name="USER_TYPE", discriminatorType = DiscriminatorType.STRING)
 public class User {
 
     @Id
@@ -16,6 +15,7 @@ public class User {
 
     private String lastName;
 
+    @Column(unique = true)
     private String email;
 
     private String password;
@@ -62,5 +62,14 @@ public class User {
         this.password = password;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }
