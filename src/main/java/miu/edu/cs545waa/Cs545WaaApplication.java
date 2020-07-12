@@ -13,11 +13,4 @@ public class Cs545WaaApplication {
         SpringApplication.run(Cs545WaaApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner init(StorageService storageService) {
-        return (args) -> {
-            storageService.deleteAll();
-            storageService.init();
-        };
-    }
 }
