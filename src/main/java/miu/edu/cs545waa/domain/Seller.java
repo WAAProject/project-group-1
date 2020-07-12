@@ -1,12 +1,21 @@
 package miu.edu.cs545waa.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Seller extends User{
+
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Product>products =new ArrayList<>();
+
+    @OneToMany
     private List<Order>orders=new ArrayList<>();
 
+    public Seller() {}
     public Seller(String firstName,String lastName,String email,String password) {
         super(firstName, lastName, email, password);
     }
