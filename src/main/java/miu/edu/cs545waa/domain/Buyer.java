@@ -7,6 +7,7 @@ import java.util.List;
 @Entity
 public class Buyer extends User {
 
+
     public Buyer() {
     }
 
