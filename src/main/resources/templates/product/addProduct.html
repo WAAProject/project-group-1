@@ -12,7 +12,7 @@
 <body>
 
 
-<div class="container" style="background: whitesmoke;">
+<div class="container" style="background: #b1dfbb;">
     <p class="h2 pt-2">Add New Product</p>
     <form th:action="{@/seller/addProduct}" th:object="${products}" enctype="multipart/form-data" method="post">
         <div class="form-group">
@@ -45,7 +45,7 @@
         </div>
         <div class="form-group">
             <label for="quantity">Quantity</label>
-            <input type="number" class="form-control" id="quantity" name="quantity" th:field="*{quantity}" placeholder="Another input">
+            <input type="number" class="form-control" id="quantity" name="quantity" th:field="*{quantity}" placeholder="0">
             <p th:if="${#fields.hasErrors('quantity')}"th:errors="*{quantity}" th:errorclass="fieldError" style="color: red"></p>
         </div>
 
