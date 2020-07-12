@@ -1,23 +1,40 @@
 package miu.edu.cs545waa.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name="Order")
 public class Order {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private Date orderDate;
+
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
+
+    @ManyToOne
     private Buyer buyer;
+
+    @ManyToOne
     private Seller seller;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     private Address BillingAddress;
+
+    @ManyToOne(cascade = CascadeType.ALL)
     private Address ShippingAddress;
+
+    @OneToOne
     private Payment payment;
+
+    @OneToMany
+    @JoinColumn(name = "order_id")
     private List<OrderItem> items = new ArrayList<>();
 
     public long getId() {
