@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface ProductRepo extends CrudRepository<Product,Long> {
+public interface ProductRepo extends JpaRepository<Product,Long> {
 
     List<Product> findProductsBySeller(Seller seller);
 

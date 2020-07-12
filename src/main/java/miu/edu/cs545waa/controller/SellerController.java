@@ -21,7 +21,9 @@ import java.util.List;
 
 @Controller
 @SessionAttributes({"user"})
-public class sellerController {
+
+public class SellerController {
+
 
     @Autowired
     private UserService userService;
@@ -30,8 +32,9 @@ public class sellerController {
 //    private OrderItemService orderItemService;
 
     @GetMapping(value = "/sellerIndex")
-    public String sellerPage() {
-        return "sellerIndex";
+    public String sellerPage(){
+        return "seller/sellerIndex";
+
     }
 
     @RequestMapping(value = "/orders",method = RequestMethod.GET)
