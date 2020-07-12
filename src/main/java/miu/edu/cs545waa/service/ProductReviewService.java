@@ -1,12 +1,12 @@
 package miu.edu.cs545waa.service;
 
-import miu.edu.cs545waa.domain.Review;
+import miu.edu.cs545waa.domain.ProductReview;
 
 import java.util.List;
 
 public interface ProductReviewService {
-    public Review save(Review review);
-    public Review findById(Long id);
-    public List<Review> getAll();
-    public Review addReviewToProduct(Review review, Long id);
+    public ProductReview save(ProductReview productReview);
+    public ProductReview findById(Long id);
+    public List<ProductReview> getAll();
+    public ProductReview addReviewToProduct(ProductReview productReview, Long id);
 }

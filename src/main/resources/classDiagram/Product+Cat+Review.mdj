@@ -271,7 +271,7 @@
 											"top": 230,
 											"width": 171.9580078125,
 											"height": 13,
-											"text": "-review: List<ProductReview>",
+											"text": "-productReview: List<ProductReview>",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1679,7 +1679,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFzPsuRh1ahzWA="
 							},
-							"name": "review",
+							"name": "productReview",
 							"visibility": "private",
 							"type": "List<ProductReview>"
 						}

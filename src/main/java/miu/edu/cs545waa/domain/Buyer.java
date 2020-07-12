@@ -5,14 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+//@DiscriminatorValue("buyer")
 public class Buyer extends User {
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "owner_id")
     private List<Seller> following = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY)
-    private List<CartItem> cartItems = new ArrayList<>();
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY)
     private List<Order> orders = new ArrayList<>();
