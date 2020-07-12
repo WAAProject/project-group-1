@@ -4,13 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 @Entity
 public class Buyer extends User {
+
     @ManyToMany
     @JoinColumn(name = "owner_id")
     private List<Seller> following = new ArrayList<>();
     @OneToMany(fetch = FetchType.LAZY)
     private List<OrderItem> orderItems = new ArrayList<>();
+
     @OneToMany(fetch = FetchType.LAZY)
     private List<Order> orders = new ArrayList<>();
+
+
+
     public Buyer() {
     }
     public Buyer(String firstName, String lastName, String email, String password) {
