@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+//@DiscriminatorValue("buyer")
 public class Buyer extends User {
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "owner_id")
     private List<Seller> following = new ArrayList<>();
 
