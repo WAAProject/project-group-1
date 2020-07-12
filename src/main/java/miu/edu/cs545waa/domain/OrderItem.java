@@ -1,9 +1,12 @@
 package miu.edu.cs545waa.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
-public class CartItem {
+public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,9 +18,9 @@ public class CartItem {
     private int quantity;
     private double totalPrice;
 
-    public CartItem() {}
+    public OrderItem() {}
 
-    public CartItem(Product product, int quantity) {
+    public OrderItem(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
         this.totalPrice = quantity * product.getPrice();
