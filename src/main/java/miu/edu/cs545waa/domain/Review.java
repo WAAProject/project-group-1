@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-public class ProductReview {
+public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -27,18 +27,18 @@ public class ProductReview {
 
     private Date reviewDate;
 
-    public ProductReview(){
+    public Review(){
 
     }
 
-    public ProductReview(Buyer buyer,int rating,String comment,boolean active,Date reviewDate) {
+    public Review(Buyer buyer, int rating, String comment, boolean active, Date reviewDate) {
         this.buyer = buyer;
         this.rating = rating;
         this.comment = comment;
         this.active = active;
         this.reviewDate = reviewDate;
     }
-    public ProductReview(int rating, String comment, Buyer buyer) {
+    public Review(int rating, String comment, Buyer buyer) {
         this.rating = rating;
         this.comment = comment;
         this.buyer = buyer;
