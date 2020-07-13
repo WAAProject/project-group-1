@@ -26,18 +26,19 @@ public class BuyerCartController {
         return "buyer/cartDetails";
     }
 
-    @PostMapping("/")
-    public @ResponseBody
-    CartResponseDTO addCartItem(@RequestBody CartRequestDTO productInfo) {
+    @PostMapping
+    public @ResponseBody CartResponseDTO addCartItem(@RequestBody CartRequestDTO productInfo) {
+        System.out.println(productInfo);
+        System.out.println(productInfo.getProductId());
         Long productId = Long.valueOf(productInfo.getProductId());
         int quantity = Integer.valueOf(productInfo.getQuantity());
 
         return cartService.addItem(productId, quantity);
     }
 
-    @PostMapping("/remove")
-    public String removeItem(@RequestParam Long itemId) {
-        orderItemService.deleteItemById(itemId);
+    @GetMapping("/remove")
+    public String removeItem(@RequestParam Long id) {
+        orderItemService.deleteItemById(id);
         return "redirect:/cart";
     }
 }

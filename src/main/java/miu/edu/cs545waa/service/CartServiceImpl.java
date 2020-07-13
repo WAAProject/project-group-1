@@ -55,6 +55,8 @@ public class CartServiceImpl implements CartService {
             response.setMessage(product.getName() + "has been successfully added to the cart.");
             response.setSize(buyer.getOrderItems().size());
 
+            System.out.println(product);
+
             productService.save(product);
             userService.save(buyer);
             return response;
@@ -85,7 +87,7 @@ public class CartServiceImpl implements CartService {
                 }
             }
         }
-        model.addAttribute("cartItems",cartDTOS);
+        model.addAttribute("itemBySellers",cartDTOS);
         model.addAttribute("grandTotal",0);
         return model;
     }
