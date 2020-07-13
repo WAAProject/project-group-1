@@ -23,7 +23,7 @@ public class Buyer extends User {
     public Buyer() {
     }
 
-    public Buyer(String firstName, String lastName, String email, String password, Boolean enabled) {
+    public Buyer(String firstName, String lastName, String email, String password, boolean enabled) {
         super(firstName, lastName, email, password, enabled);
     }
 
