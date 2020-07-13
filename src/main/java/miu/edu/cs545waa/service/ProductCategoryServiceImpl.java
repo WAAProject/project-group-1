@@ -22,4 +22,9 @@ public class ProductCategoryServiceImpl implements ProductCategoryService{
     public List<ProductCategory> getAll() {
         return (List<ProductCategory>) productCategoryRepo.findAll();
     }
+
+    @Override
+    public ProductCategory save(ProductCategory productCategory) {
+        return productCategoryRepo.save(productCategory);
+    }
 }
