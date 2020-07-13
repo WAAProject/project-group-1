@@ -29,8 +29,6 @@ public class CartServiceImpl implements CartService {
     @Autowired
     UserService userService;
 
-
-
     @Override
     public CartResponseDTO addItem(Long productId, int quantity) {
 
@@ -87,7 +85,7 @@ public class CartServiceImpl implements CartService {
                 }
             }
         }
-        model.addAttribute("cartDTOS",cartDTOS);
+        model.addAttribute("cartItems",cartDTOS);
         model.addAttribute("grandTotal",0);
         return model;
     }
