@@ -151,4 +151,8 @@ public class Product {
     public void setProdProductReviewList(List<ProductReview> prodProductReviewList) {
         this.prodProductReviewList = prodProductReviewList;
     }
+
+    public void addReview(ProductReview productReview) {
+        this.prodProductReviewList.add(productReview);
+    }
 }
