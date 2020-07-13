@@ -46,6 +46,10 @@ public class User {
         isApproved = approved;
     }
 
+    public String getType() {
+        return type;
+    }
+
     public boolean isEnabled() {
         return enabled;
     }
