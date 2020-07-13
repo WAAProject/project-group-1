@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{page_layout/layout}">
 <head>
     <meta charset="UTF-8">
     <title>Admin page</title>
+<!--    <link rel="stylesheet" th:href="@{/css/admin.css}" />-->
 </head>
 <body>
 
 <h2>Admin page</h2>
+
+<div layout:fragment="main-content">
+    <h1>Hello from admin page</h1>
+</div>
+
 </body>
 </html>
