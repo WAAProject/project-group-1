@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decoration="~{page_layout/layout}">
 <head>
     <title>Bootstrap Container Example</title>
 
@@ -11,10 +11,10 @@
 
 <body>
 
-
+<div class="container" layout:fragment="body-content">
 <div class="container" style="background:#b1dfbb;>
     <p class="h2 pt-2">Add Review</p>
-    <form th:action="{@/seller/addProduct}" th:object="${products}" enctype="multipart/form-data" method="post">
+    < th:action="{@/seller/addProduct}" th:object="${products}" enctype="multipart/form-data" method="post">
 
         <div class="form-group">
             <label for="comment">Write your comments</label>
@@ -34,7 +34,8 @@
                 <button type="submit" class="btn btn-primary">Comment</button>
             </div>
         </div>
-    </form>
+        </form>
+</div>
 </div>
 </body>
 </html>

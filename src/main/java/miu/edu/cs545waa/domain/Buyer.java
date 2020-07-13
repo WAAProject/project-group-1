@@ -12,6 +12,8 @@ public class Buyer extends User {
     @JoinColumn(name = "owner_id")
     private List<Seller> following = new ArrayList<>();
 
+  //  @OneToMany(fetch = FetchType.LAZY)
+  //  private List<CartItem> cartItems = new ArrayList<>();
     @OneToMany(fetch = FetchType.LAZY)
     private List<OrderItem> orderItems = new ArrayList<>();
 
