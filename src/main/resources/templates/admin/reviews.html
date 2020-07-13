@@ -11,21 +11,6 @@
 
 <h2>Approve reviews</h2>
 
-<table>
-        <tr>
-            <th>Buyer's Full Name</th>
-            <th>Buyer's Email</th>
-            <th>Review Comment</th>
-            <th>Action</th>
-        </tr>
-        <tr th:each="review : ${productReviews}">
-            <td th:text="${review.buyer.firstName} + ' ' + ${review.buyer.lastName}">Full Name</td>
-            <td th:text="${review.buyer.email}">Email</td>
-            <td th:text="${review.comment}">Comment</td>
-            <td th:text="${review.active} ? 'Decline' : 'Approve'">Action</td>
-        </tr>
-</table>
-
 <div class="table-responsive col-12">
     <table class="table table-hover table-striped table-bordered">
         <thead class="thead-dark">
@@ -33,6 +18,7 @@
             <th scope="col">Buyer's Full Name</th>
             <th scope="col">Buyer's Email</th>
             <th scope="col">Review Comment</th>
+            <th scope="col">Status</th>
             <th scope="col">Action</th>
         </tr>
         </thead>
@@ -41,10 +27,11 @@
             <td th:text="${review.buyer.firstName} + ' ' + ${review.buyer.lastName}">Full Name</td>
             <td th:text="${review.buyer.email}">Email</td>
             <td th:text="${review.comment}">Comment</td>
+            <td th:text="${review.approved}  ? 'Approved' : 'Pending'">Status</td>
             <td>
-                <form th:action="@{/}" method="post">
-                    <button name="" type="button" class="btn btn-primary" th:if="${review.active}">Decline</button>
-                    <button type="button" class="btn btn-secondary" th:unless="${review.active}">Approve</button>
+                <form th:action="@{/admin/reviews/approve/{action}(action=!${review.approved})}" method="post">
+                    <button name="reviewId" th:value="${review.id}" type="submit" class="btn btn-secondary" th:if="${review.approved}">Decline</button>
+                    <button name="reviewId" th:value="${review.id}" type="submit" class=" btn btn-primary" th:unless="${review.approved}">Approve</button>
                 </form>
             </td>
         </tr>
