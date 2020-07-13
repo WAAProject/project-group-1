@@ -11,7 +11,7 @@ public interface CartService {
     CartResponseDTO addItem(Long productId, int quantity);
     Model getCartItems(Model model);
 
-//    Model getCheckOutSummary(Model model, Long sellerId, String coupon);
-//    List<OrderItem> getCartItemsBySeller(Long sellerId);
+    Model getCheckOutSummary(Model model, Long sellerId, String coupon);
+    List<OrderItem> getCartItemsBySeller(Long sellerId);
 
 }
