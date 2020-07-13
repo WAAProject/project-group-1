@@ -5,9 +5,11 @@ import miu.edu.cs545waa.repository.ProductCategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class ProductCategoryServiceImpl implements ProductCategoryService{
 
     @Autowired

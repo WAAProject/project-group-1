@@ -5,10 +5,12 @@ import miu.edu.cs545waa.domain.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface OrderItemRepository extends CrudRepository<OrderItem, Long> {
+@Repository
+public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
 
 //    OrderItem findTopByProduct(Product product);
 
