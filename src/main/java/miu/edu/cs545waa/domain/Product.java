@@ -144,14 +144,6 @@ public class Product {
         this.productImage = productImage;
     }
 
-    public Seller getSeller() {
-        return seller;
-    }
-
-    public void setSeller(Seller seller) {
-        this.seller = seller;
-    }
-
     public List<ProductReview> getProdProductReviewList() {
         return prodProductReviewList;
     }

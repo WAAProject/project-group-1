@@ -28,7 +28,7 @@ public class ProductReviewServiceImpl implements ProductReviewService{
 
     @Override
     public List<ProductReview> getAll() {
-        return productReviewRepo.findAll();
+        return (List<ProductReview>) productReviewRepo.findAll();
     }
 
     @Override
