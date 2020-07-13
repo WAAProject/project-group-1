@@ -53,6 +53,8 @@ public class CartServiceImpl implements CartService {
             response.setMessage(product.getName() + "has been successfully added to the cart.");
             response.setSize(buyer.getOrderItems().size());
 
+            System.out.println(product);
+
             productService.save(product);
             userService.save(buyer);
             return response;

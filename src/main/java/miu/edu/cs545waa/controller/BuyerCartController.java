@@ -26,9 +26,10 @@ public class BuyerCartController {
         return "buyer/cartDetails";
     }
 
-    @PostMapping("/")
-    public @ResponseBody
-    CartResponseDTO addCartItem(@RequestBody CartRequestDTO productInfo) {
+    @PostMapping
+    public @ResponseBody CartResponseDTO addCartItem(@RequestBody CartRequestDTO productInfo) {
+        System.out.println(productInfo);
+        System.out.println(productInfo.getProductId());
         Long productId = Long.valueOf(productInfo.getProductId());
         int quantity = Integer.valueOf(productInfo.getQuantity());
 

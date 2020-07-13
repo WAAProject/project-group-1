@@ -14,7 +14,7 @@ public class Buyer extends User {
 
   //  @OneToMany(fetch = FetchType.LAZY)
   //  private List<CartItem> cartItems = new ArrayList<>();
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY)
