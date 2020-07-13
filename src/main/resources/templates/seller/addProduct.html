@@ -38,7 +38,7 @@
         </div>
         <div class="form-group">
             <label for="category">Category</label>
-            <select th:field="*{category.id}" class="form-control" name="category" id="category">
+            <select th:field="*{productCategory.id}" class="form-control" name="category" id="category">
                 <option value="0" selected disabled>Select a category</option>
                 <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}"></option>
             </select>
@@ -54,7 +54,7 @@
             <div class="col-sm-10">
                 <button type="reset" class="btn btn-outline-warning m-2">Reset</button>
 
-                <button type="submit" class="btn btn-primary">SAVE</button>
+                <button type="submit" class="btn btn-primary" style="background-color: #b1dfbb"><a th:href="@{/seller/addproduct}">SAVE</a></button>
             </div>
         </div>
     </form>

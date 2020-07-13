@@ -21,7 +21,6 @@ import java.util.List;
 
 @Controller
 @SessionAttributes({"user"})
-
 public class SellerController {
 
 
@@ -33,7 +32,7 @@ public class SellerController {
 
     @GetMapping(value = "/sellerIndex")
     public String sellerPage(){
-        return "seller/sellerIndex";
+        return "seller/index";
 
     }
 
