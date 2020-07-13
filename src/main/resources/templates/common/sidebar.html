@@ -21,7 +21,7 @@
                     <ul class="list-unstyled">
                         <li class="list-group-item list-group-item-dark"><a  th:href="@{/}">Show All</a></li>
                                      <li class="list-group-item list-group-item-dark" th:each="category : ${catagories}">
-                                    <a th:text="${category.name}" th:href="@{/product(category=${category.id})}"></a>
+                                    <a th:text="${category.name}" th:href="@{/products(category=${category.id})}"></a>
                                                </li>
                                       </ul>
                 </ul>
