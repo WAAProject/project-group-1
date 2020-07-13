@@ -9,10 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-<<<<<<< HEAD
-=======
 @Repository
->>>>>>> 7f8492dd3db26c2463ff4763bdbe999e28f3a402
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
 
 //    OrderItem findTopByProduct(Product product);
