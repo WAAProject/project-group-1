@@ -14,12 +14,12 @@ public class ProductCategoryServiceImpl implements ProductCategoryService{
     ProductCategoryRepo productCategoryRepo;
 
     @Override
-    public ProductCategory getCategoryById(Long id) {
-        return productCategoryRepo.getOne(id);
+    public ProductCategory getCategoryById(int id) {
+        return productCategoryRepo.findById(id).get();
     }
 
     @Override
     public List<ProductCategory> getAll() {
-        return productCategoryRepo.findAll();
+        return (List<ProductCategory>) productCategoryRepo.findAll();
     }
 }

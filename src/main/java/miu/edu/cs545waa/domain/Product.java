@@ -32,7 +32,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
- //   @NotNull(message = "{Product.Category.NotNull}")
+    @NotNull(message = "{Product.Category.NotNull}")
     private ProductCategory productCategory;
 
     @ManyToOne
@@ -62,7 +62,6 @@ public class Product {
         this.enabled = true;
         this.productCategory = category;
         this.seller = seller;
-//        this.seller.addProduct(this);
     }
 
     public Seller getSeller() {
@@ -153,4 +152,3 @@ public class Product {
         this.prodProductReviewList = prodProductReviewList;
     }
 }
-

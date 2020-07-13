@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin page</title>
+</head>
+<body>
+
+<h2>Approve reviews</h2>
+
+<table>
+        <tr>
+            <th>Buyer's Full Name</th>
+            <th>Buyer's Email</th>
+            <th>Review Comment</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="review : ${productReviews}">
+            <td th:text="${review.buyer.firstName} + ' ' + ${review.buyer.lastName}">Full Name</td>
+            <td th:text="${review.buyer.email}">Email</td>
+            <td th:text="${review.comment}">Comment</td>
+            <td th:text="${review.active} ? 'Decline' : 'Approve'">Action</td>
+        </tr>
+</table>
+</body>
+</html>
