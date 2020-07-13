@@ -13,10 +13,8 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService{
 
-
     @Autowired
     ProductRepo productRepo;
-
 
     @Override
     public List<Product> getAll() {
@@ -26,7 +24,6 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public void save(Product product) {
         productRepo.save(product);
-
     }
 
     @Override

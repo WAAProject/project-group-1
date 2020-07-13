@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{page_layout/layout}"
-      xmlns:th="http://www.thymeleaf.org">
+<!--<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{page_layout/layout}"-->
+<!--      xmlns:th="http://www.thymeleaf.org">-->
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org" >
 
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}"/>
@@ -14,219 +15,237 @@
 <body>
 
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <!-- Navbar content -->
+<!--<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">-->
+<!--    &lt;!&ndash; Navbar content &ndash;&gt;-->
 
-    <!-- Navbar content -->
+<!--    &lt;!&ndash; Navbar content &ndash;&gt;-->
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a href="#" class="navbar-brand">Brand</a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<!--    <nav class="navbar navbar-expand-md navbar-dark bg-dark">-->
+<!--        <a href="#" class="navbar-brand">Brand</a>-->
+<!--        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
 
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav">
-                <a href="#" class="nav-item nav-link active">Home</a>
-                <a href="#" class="nav-item nav-link">About</a>
-                <a href="#" class="nav-item nav-link">Products</a>
-            </div>
-            <form class="form-inline ml-auto">
-                <input type="text" class="form-control mr-sm-2" placeholder="Search">
-                <button type="submit" class="btn btn-outline-light">Search</button>
-            </form>
-        </div>
-    </nav>
-</nav>
+<!--        <div class="collapse navbar-collapse" id="navbarCollapse">-->
+<!--            <div class="navbar-nav">-->
+<!--                <a href="#" class="nav-item nav-link active">Home</a>-->
+<!--                <a href="#" class="nav-item nav-link">About</a>-->
+<!--                <a href="#" class="nav-item nav-link">Products</a>-->
+<!--            </div>-->
+<!--            <form class="form-inline ml-auto">-->
+<!--                <input type="text" class="form-control mr-sm-2" placeholder="Search">-->
+<!--                <button type="submit" class="btn btn-outline-light">Search</button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </nav>-->
+<!--</nav>-->
 
 
 SideBar.....
+<table>
+    <tr th:each="product:${products}">
+        <td th:text="${product.name}">
+        <td> <img class="card-img-top" th:src="${product.imageUrl}" th:alt="${product.name}"></td>
+    </tr>
+</table>
 
-<div class="container" style="background:#86cfda;">
-    <h1>My Products</h1>
-    <!--    <img src="../static/images/drone1.jpg" class="rounded float-left" alt="Drone">-->
-    <!--    <img src="../../static/images/iphone.jpg" class="rounded float-left" alt="iPhone">-->
-    <!--    <img src="../../static/images/htc.jpg" class="rounded float-left" alt="HTC">-->
-    <!--    <img src="../static/images/mobile.jpg" class="rounded float-left" alt="Mobile">-->
-    <div class="row match-to-row">
-        <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail">
-                <img src="../../static/images/mobile.jpg" style="height: 300px; width: 370px;padding: 15px" alt="">
-                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>
-                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>
-            </div>
 
-        </div>
-        <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail">
-                <img src="../../static/images/speaker.jpg" style="height: 300px; width: 370px;padding: 15px" alt="">
-                <!--                <input type="button" value="ADD TO CART"><a th:href=""></a>-->
-                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>
-                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>
-            </div>
 
-        </div>
-        <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail">
-                <img src="../../static/images/onePlus.jpg" style="height: 300px; width: 370px;padding: 15px" alt="">
-                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>
-                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>
-            </div>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail">
-                <img src="../../static/images/monitor.jpg" style="height: 300px; width: 370px;padding: 15px" alt="">
-                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>
-                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>
-            </div>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail">
-                <img src="../../static/images/macGadget.png" style="height: 300px; width: 370px;padding: 15px" alt="">
-                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>
-                <button type="button" class="btn btn-secondary btn-lg"><a th:href="@{../../templates/seller/productDetails.html}"> See Detail</a></button>
-            </div>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail">
-                <img src="../../static/images/lens.jpg" style="height: 300px; width: 370px;padding: 15px" alt="">
-                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>
-                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>
-            </div>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail">
-                <img src="../../static/images/tripod.jpg" style="height: 300px; width: 370px;padding: 15px" alt="">
-                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>
-                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>
-            </div>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail">
-                <img src="../../static/images/blutoothSpeaker.jpg" style="height: 300px; width: 370px;padding: 15px"
-                     alt="">
-                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>
-                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>
-            </div>
-        </div>
-        <div class="col-lg-4 col-sm-6">
-            <div class="thumbnail">
-                <img src="../../static/images/monitor.jpg" style="height: 300px; width: 370px;padding: 15px" alt="">
-                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>
-                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>
-            </div>
-        </div>
+<!--<div class="col"  th:each="product : ${products}" th:if="${product.enabled==true}">-->
+<!--    <img class="card-img-top" th:src="${product.imageUrl}" th:alt="${product.name}">-->
+<!--</div>-->
 
-    </div>
+<!--<div class="container" style="background:#86cfda;">-->
+<!--    <h1>My Products</h1>-->
+<!--    <div class="row match-to-row" th:each="product : ${products}" th:if="${product.enabled==true}">-->
+<!--        <div class="col-lg-4 col-sm-6">-->
+<!--            <div class="thumbnail">-->
+<!--                <img th:src="${product.imageUrl}" style="height: 300px; width: 370px;padding: 15px" alt="${product.name}">-->
+<!--                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>-->
+<!--                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+
+
+<!--        <div class="col-lg-4 col-sm-6">-->
+<!--            <div class="thumbnail">-->
+<!--                <img src="${product.imgUrl}" style="height: 300px; width: 370px;padding: 15px" alt="">-->
+<!--                &lt;!&ndash;                <input type="button" value="ADD TO CART"><a th:href=""></a>&ndash;&gt;-->
+<!--                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>-->
+<!--                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--        <div class="col-lg-4 col-sm-6">-->
+<!--            <div class="thumbnail">-->
+<!--                <img src="../../static/images/onePlus.jpg" style="height: 300px; width: 370px;padding: 15px" alt="">-->
+<!--                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>-->
+<!--                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-lg-4 col-sm-6">-->
+<!--            <div class="thumbnail">-->
+<!--                <img src="../../static/images/monitor.jpg" style="height: 300px; width: 370px;padding: 15px" alt="">-->
+<!--                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>-->
+<!--                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-lg-4 col-sm-6">-->
+<!--            <div class="thumbnail">-->
+<!--                <img src="../../static/images/macGadget.png" style="height: 300px; width: 370px;padding: 15px" alt="">-->
+<!--                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>-->
+<!--                <button type="button" class="btn btn-secondary btn-lg"><a th:href="@{../../templates/seller/productDetails.html}"> See Detail</a></button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-lg-4 col-sm-6">-->
+<!--            <div class="thumbnail">-->
+<!--                <img src="../../static/images/lens.jpg" style="height: 300px; width: 370px;padding: 15px" alt="">-->
+<!--                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>-->
+<!--                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-lg-4 col-sm-6">-->
+<!--            <div class="thumbnail">-->
+<!--                <img src="../../static/images/tripod.jpg" style="height: 300px; width: 370px;padding: 15px" alt="">-->
+<!--                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>-->
+<!--                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-lg-4 col-sm-6">-->
+<!--            <div class="thumbnail">-->
+<!--                <img src="../../static/images/blutoothSpeaker.jpg" style="height: 300px; width: 370px;padding: 15px"-->
+<!--                     alt="">-->
+<!--                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>-->
+<!--                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-lg-4 col-sm-6">-->
+<!--            <div class="thumbnail">-->
+<!--                <img src="../../static/images/monitor.jpg" style="height: 300px; width: 370px;padding: 15px" alt="">-->
+<!--                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>-->
+<!--                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--    </div>-->
+<!--</div>-->
+
+
+
 
 
     <hr style="color: #1c7430;">
-    <footer class="page-footer font-small mdb-color lighten-3 pt-4">
+<!--    <footer class="page-footer font-small mdb-color lighten-3 pt-4">-->
 
 
-        <!-- Footer Elements -->
-        <div class="container">
+<!--        &lt;!&ndash; Footer Elements &ndash;&gt;-->
+<!--        <div class="container">-->
 
-            <!--Grid row-->
-            <div class="row">
+<!--            &lt;!&ndash;Grid row&ndash;&gt;-->
+<!--            <div class="row">-->
 
-                <!--Grid column-->
-                <div class="col-lg-2 col-md-12 mb-4">
+<!--                &lt;!&ndash;Grid column&ndash;&gt;-->
+<!--                <div class="col-lg-2 col-md-12 mb-4">-->
 
-                    <!--Image-->
-                    <div class="view overlay z-depth-1-half">
-                        <img src="../../static/images/monitor.jpg" class="img-fluid"
-                             alt="">
-                        <a href="">
-                            <div class="mask rgba-white-light"></div>
-                        </a>
-                    </div>
+<!--                    &lt;!&ndash;Image&ndash;&gt;-->
+<!--                    <div class="view overlay z-depth-1-half">-->
+<!--                        <img src="../../static/images/monitor.jpg" class="img-fluid"-->
+<!--                             alt="">-->
+<!--                        <a href="">-->
+<!--                            <div class="mask rgba-white-light"></div>-->
+<!--                        </a>-->
+<!--                    </div>-->
 
-                </div>
-                <!--Grid column-->
+<!--                </div>-->
+<!--                &lt;!&ndash;Grid column&ndash;&gt;-->
 
-                <!--Grid column-->
-                <div class="col-lg-2 col-md-6 mb-4">
+<!--                &lt;!&ndash;Grid column&ndash;&gt;-->
+<!--                <div class="col-lg-2 col-md-6 mb-4">-->
 
-                    <!--Image-->
-                    <div class="view overlay z-depth-1-half">
-                        <img src="../../static/images/speaker.jpg" class="img-fluid"
-                             alt="">
-                        <a href="">
-                            <div class="mask rgba-white-light"></div>
-                        </a>
-                    </div>
+<!--                    &lt;!&ndash;Image&ndash;&gt;-->
+<!--                    <div class="view overlay z-depth-1-half">-->
+<!--                        <img src="../../static/images/speaker.jpg" class="img-fluid"-->
+<!--                             alt="">-->
+<!--                        <a href="">-->
+<!--                            <div class="mask rgba-white-light"></div>-->
+<!--                        </a>-->
+<!--                    </div>-->
 
-                </div>
-                <!--Grid column-->
+<!--                </div>-->
+<!--                &lt;!&ndash;Grid column&ndash;&gt;-->
 
-                <!--Grid column-->
-                <div class="col-lg-2 col-md-6 mb-4">
+<!--                &lt;!&ndash;Grid column&ndash;&gt;-->
+<!--                <div class="col-lg-2 col-md-6 mb-4">-->
 
-                    <!--Image-->
-                    <div class="view overlay z-depth-1-half">
-                        <img src="../../static/images/blutoothSpeaker.jpg" class="img-fluid"
-                             alt="">
-                        <a href="">
-                            <div class="mask rgba-white-light"></div>
-                        </a>
-                    </div>
+<!--                    &lt;!&ndash;Image&ndash;&gt;-->
+<!--                    <div class="view overlay z-depth-1-half">-->
+<!--                        <img src="../../static/images/blutoothSpeaker.jpg" class="img-fluid"-->
+<!--                             alt="">-->
+<!--                        <a href="">-->
+<!--                            <div class="mask rgba-white-light"></div>-->
+<!--                        </a>-->
+<!--                    </div>-->
 
-                </div>
-                <!--Grid column-->
+<!--                </div>-->
+<!--                &lt;!&ndash;Grid column&ndash;&gt;-->
 
-                <!--Grid column-->
-                <div class="col-lg-2 col-md-12 mb-4">
+<!--                &lt;!&ndash;Grid column&ndash;&gt;-->
+<!--                <div class="col-lg-2 col-md-12 mb-4">-->
 
-                    <!--Image-->
-                    <div class="view overlay z-depth-1-half">
-                        <img src="../../static/images/drone.jpg" class="img-fluid"
-                             alt="">
-                        <a href="">
-                            <div class="mask rgba-white-light"></div>
-                        </a>
-                    </div>
+<!--                    &lt;!&ndash;Image&ndash;&gt;-->
+<!--                    <div class="view overlay z-depth-1-half">-->
+<!--                        <img src="../../static/images/drone.jpg" class="img-fluid"-->
+<!--                             alt="">-->
+<!--                        <a href="">-->
+<!--                            <div class="mask rgba-white-light"></div>-->
+<!--                        </a>-->
+<!--                    </div>-->
 
-                </div>
-                <!--Grid column-->
+<!--                </div>-->
+<!--                &lt;!&ndash;Grid column&ndash;&gt;-->
 
-                <!--Grid column-->
-                <div class="col-lg-2 col-md-6 mb-4">
+<!--                &lt;!&ndash;Grid column&ndash;&gt;-->
+<!--                <div class="col-lg-2 col-md-6 mb-4">-->
 
-                    <!--Image-->
-                    <div class="view overlay z-depth-1-half">
-                        <img src="../../static/images/iphone.jpg" class="img-fluid"
-                             alt="">
-                        <a href="">
-                            <div class="mask rgba-white-light"></div>
-                        </a>
-                    </div>
+<!--                    &lt;!&ndash;Image&ndash;&gt;-->
+<!--                    <div class="view overlay z-depth-1-half">-->
+<!--                        <img src="../../static/images/iphone.jpg" class="img-fluid"-->
+<!--                             alt="">-->
+<!--                        <a href="">-->
+<!--                            <div class="mask rgba-white-light"></div>-->
+<!--                        </a>-->
+<!--                    </div>-->
 
-                </div>
-                <!--Grid column-->
+<!--                </div>-->
+<!--                &lt;!&ndash;Grid column&ndash;&gt;-->
 
-                <!--Grid column-->
-                <div class="col-lg-2 col-md-6 mb-4">
+<!--                &lt;!&ndash;Grid column&ndash;&gt;-->
+<!--                <div class="col-lg-2 col-md-6 mb-4">-->
 
-                    <!--Image-->
-                    <div class="view overlay z-depth-1-half">
-                        <img src="../../static/images/macGadget.png" class="img-fluid"
-                             alt="">
-                        <a href="">
-                            <div class="mask rgba-white-light"></div>
-                        </a>
-                    </div>
+<!--                    &lt;!&ndash;Image&ndash;&gt;-->
+<!--                    <div class="view overlay z-depth-1-half">-->
+<!--                        <img src="../../static/images/macGadget.png" class="img-fluid"-->
+<!--                             alt="">-->
+<!--                        <a href="">-->
+<!--                            <div class="mask rgba-white-light"></div>-->
+<!--                        </a>-->
+<!--                    </div>-->
 
-                </div>
-                <!--Grid column-->
+<!--                </div>-->
+<!--                &lt;!&ndash;Grid column&ndash;&gt;-->
 
-            </div>
-            <!--Grid row-->
+<!--            </div>-->
+<!--            &lt;!&ndash;Grid row&ndash;&gt;-->
 
-        </div>
+<!--        </div>-->
 
 
-    </footer>
+<!--    </footer>-->
 
 </body>
 </html>

@@ -9,10 +9,10 @@ import java.util.List;
 @Entity
 public class Seller extends User{
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "seller")
     private List<Product>products =new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "seller")
     private List<Order>orders=new ArrayList<>();
 
     public Seller() {}

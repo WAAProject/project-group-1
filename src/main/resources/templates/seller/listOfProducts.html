@@ -32,7 +32,7 @@
 
         <tr th:each="{product:${products}">
             <td><img class="img-thumbnail w-100"
-                     th:attr="src=@{'/' + ${product.imagePath}},title=${product.name},alt=${product.name}"/>
+                     th:attr="src=@{'/' + ${product.imageUrl}},title=${product.name},alt=${product.name}"/>
             </td>
             <td th:text="${product.name}">Name
             </td>

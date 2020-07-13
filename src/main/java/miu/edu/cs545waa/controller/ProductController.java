@@ -28,6 +28,7 @@ import java.util.UUID;
 
 
 @Controller
+@SessionAttributes("user")
 public class ProductController {
     @Autowired
     private ProductService productService;
@@ -37,6 +38,9 @@ public class ProductController {
 
     @Autowired
     private ProductCategoryService productCategoryService;
+
+    @Autowired
+    private OrderItemService orderItemService;
 
     @Autowired
     private UserService userService;
@@ -51,29 +55,35 @@ public class ProductController {
         model.addAttribute("categories", productCategoryService.getAll());
     }
 
-    //
+
     @GetMapping("seller/products")
     public String productList(Model model, String category) {
         if (category == null) {
             model.addAttribute("products", productService.getAll());
         } else {
             model.addAttribute("products", productService.getByCategory(Integer.parseInt(category)));
+            return "index";
         }
-        return "/seller/listOfProducts";//display list with CRUD
+        return "seller/listOfProducts";//display list with CRUD
     }
 
     @GetMapping("seller/addProduct")
     public String addProduct(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
-//        model.addAttribute("files",)
-        return "/seller/addProduct";
+        return "seller/addProduct";
+    }
+
+    @GetMapping("/product/{id}")
+    public String prodById(@PathVariable("id")Long id,Model model){
+        model.addAttribute("prduct",productService.findById(id));
+        return "product/product";
     }
 
     @RequestMapping(value = "/seller/addProduct", method = RequestMethod.POST)
     public String saveProduct(@Valid @ModelAttribute("product") Product product, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "/seller/addProduct";
+            return "seller/addProduct";
         }
         MultipartFile productImage = product.getProductImage();
         String url = new ApplicationHome(Cs545WaaApplication.class).getDir() + "\\static\\images\\";
@@ -82,10 +92,9 @@ public class ProductController {
             if (productImage.getContentType().contains("images/")) {
                 try {
                     imgName = UUID.randomUUID().toString() + "." + productImage.getOriginalFilename();
-                    System.out.println("imgName");
                     productImage.transferTo(new File(url + imgName));
                 } catch (Exception e) {
-                    throw new RuntimeException("Product image cant be saved!!", e);
+                    throw new RuntimeException("Product image can't be saved!!", e);
                 }
             }
         }else {
@@ -121,7 +130,7 @@ public class ProductController {
         @RequestMapping(value = "/seller/product/{id}")
         public String update(@PathVariable(value = "id")Long id,Model model){
         model.addAttribute("product",productService.findById(id));
-        return "/seller/updateProduct";
+        return "seller/updateProduct";
         }
 
         @GetMapping(value = "{/seller/productDetails}")
@@ -133,13 +142,13 @@ public class ProductController {
                 return "productDetails";
             }
             model.addAttribute("products", productService.getBySeller(seller));
-            return "/seller/productList";
+            return "seller/productList";
         }
 
         @PostMapping(value = "{/seller/product/{id}}")
         public String editProduct(@Valid @ModelAttribute("product")Product product,BindingResult result,Model model){
             if (result.hasErrors()) {
-                return "/seller/addProduct";
+                return "seller/addProduct";
             }
             MultipartFile productImage = product.getProductImage();
             String url = new ApplicationHome(Cs545WaaApplication.class).getDir() + "\\static\\images\\";

@@ -7,4 +7,5 @@ import java.util.List;
 public interface ProductCategoryService {
     ProductCategory getCategoryById(Long id);
     List<ProductCategory> getAll();
+    public ProductCategory save(ProductCategory productCategory);
 }

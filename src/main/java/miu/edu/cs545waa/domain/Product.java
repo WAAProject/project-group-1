@@ -18,19 +18,20 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Size(min = 4, max = 50, message = "{Size.Prod.name.valid}")
+   // @Size(min = 4, max = 50, message = "{Size.Prod.name.valid}")
     private String name;
 
-    @NotEmpty(message = "{Prod.Desc.Valid}")
+    //@NotEmpty(message = "{Prod.Desc.Valid}")
     private String description;
 
-    @NotEmpty(message = "{Price.NotEmpty}")
-    @Min(value = 0, message = "{Min.Product.unitPrice.validation}")
+   // @NotEmpty(message = "{Price.NotEmpty}")
+   // @Min(value = 0, message = "{Min.Product.unitPrice.validation}")
     private double price;
 
     private String imageUrl;
 
     @ManyToOne
+    @JoinColumn(name = "category_id")
     @NotNull(message = "{Product.Category.NotNull}")
     private ProductCategory productCategory;
 
@@ -38,7 +39,7 @@ public class Product {
     @JoinColumn(name="seller_id")
     private Seller seller;
 
-    @NotEmpty(message = "{Product.quantity.NotEmpty}")
+   // @NotEmpty(message = "{Product.quantity.NotEmpty}")
     private int quantity;
     private boolean enabled = false;
 
@@ -61,7 +62,6 @@ public class Product {
         this.enabled = true;
         this.productCategory = category;
         this.seller = seller;
-//        this.seller.addProduct(this);
     }
 
     public Seller getSeller() {
@@ -152,4 +152,3 @@ public class Product {
         this.prodProductReviewList = prodProductReviewList;
     }
 }
-

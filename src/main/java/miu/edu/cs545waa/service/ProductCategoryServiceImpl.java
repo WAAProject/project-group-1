@@ -15,11 +15,16 @@ public class ProductCategoryServiceImpl implements ProductCategoryService{
 
     @Override
     public ProductCategory getCategoryById(Long id) {
-        return productCategoryRepo.getOne(id);
+        return productCategoryRepo.findById(id).get();
     }
 
     @Override
     public List<ProductCategory> getAll() {
-        return productCategoryRepo.findAll();
+        return (List<ProductCategory>) productCategoryRepo.findAll();
+    }
+
+    @Override
+    public ProductCategory save(ProductCategory productCategory) {
+        return productCategoryRepo.save(productCategory);
     }
 }
