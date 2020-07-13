@@ -14,7 +14,7 @@
 
 <div class="container" style="background: whitesmoke;">
     <p class="h2 pt-2">Add New Product</p>
-    <form th:action="{@/seller/updateProduct/{id}(id=${product.id})" th:object="${products}" enctype="multipart/form-data" method="post">
+    <form th:action="@{/seller/updateProduct/{id}(id=${product.id})}" th:object="${products}" enctype="multipart/form-data" method="post">
         <div class="form-group">
             <label for="name">Product Name</label>
             <input type="text" class="form-control"  id="name" name="id" th:field="*{name}" placeholder="Enter product name">
