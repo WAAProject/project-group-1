@@ -26,7 +26,7 @@ import javax.validation.Valid;
 import java.io.File;
 import java.util.UUID;
 
-@RequestMapping(value = "/seller")
+//@RequestMapping(value = "/")
 @Controller
 public class ProductController {
     @Autowired
@@ -58,6 +58,7 @@ public class ProductController {
             model.addAttribute("products", productService.getAll());
         } else {
             model.addAttribute("products", productService.getByCategory(Integer.parseInt(category)));
+            return "index";
         }
         return "listOfProducts";//display list with CRUD
     }
