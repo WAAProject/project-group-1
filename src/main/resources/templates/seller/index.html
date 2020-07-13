@@ -42,12 +42,12 @@
 
 
 SideBar.....
-<table>
-    <tr th:each="product:${products}">
-        <td th:text="${product.name}">
-        <td> <img class="card-img-top" th:src="${product.imageUrl}" th:alt="${product.name}"></td>
-    </tr>
-</table>
+<!--<table>-->
+<!--    <tr th:each="product:${products}">-->
+<!--        <td th:text="${product.name}">-->
+<!--        <td> <img class="card-img-top" th:src="${product.imageUrl}" th:alt="${product.name}"></td>-->
+<!--    </tr>-->
+<!--</table>-->
 
 
 
@@ -55,19 +55,19 @@ SideBar.....
 <!--    <img class="card-img-top" th:src="${product.imageUrl}" th:alt="${product.name}">-->
 <!--</div>-->
 
-<!--<div class="container" style="background:#86cfda;">-->
-<!--    <h1>My Products</h1>-->
-<!--    <div class="row match-to-row" th:each="product : ${products}" th:if="${product.enabled==true}">-->
-<!--        <div class="col-lg-4 col-sm-6">-->
-<!--            <div class="thumbnail">-->
-<!--                <img th:src="${product.imageUrl}" style="height: 300px; width: 370px;padding: 15px" alt="${product.name}">-->
-<!--                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>-->
-<!--                <button type="button" class="btn btn-secondary btn-lg">See Detail</button>-->
-<!--            </div>-->
+<div class="container" style="background:#86cfda;">
+    <h1>My Products</h1>
+    <div class="row match-to-row" th:each="product : ${products}" th:if="${product.enabled==true}">
+        <div class="col-lg-4 col-sm-6">
+            <div class="thumbnail">
+                <img th:src="${product.imageUrl}" style="height: 300px; width: 370px;padding: 15px" alt="${product.name}">
+                <button type="button" class="btn btn-primary btn-lg">ADD TO SALE</button>
+                <button type="button" class="btn btn-secondary btn-lg"><a th:href="@{/seller/productDetails}">See Detail</a></button>
+            </div>
 
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+        </div>
+    </div>
+</div>
 
 
 

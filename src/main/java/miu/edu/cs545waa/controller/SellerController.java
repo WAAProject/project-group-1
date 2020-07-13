@@ -1,9 +1,9 @@
 package miu.edu.cs545waa.controller;
 
-import miu.edu.cs545waa.domain.Order;
-import miu.edu.cs545waa.domain.OrderStatus;
-import miu.edu.cs545waa.domain.Seller;
+import miu.edu.cs545waa.domain.*;
 import miu.edu.cs545waa.service.OrderItemService;
+import miu.edu.cs545waa.service.ProductCategoryService;
+import miu.edu.cs545waa.service.ProductService;
 import miu.edu.cs545waa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,11 +27,25 @@ public class SellerController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private ProductCategoryService productCategoryService;
+
 //    @Autowired
 //    private OrderItemService orderItemService;
 
-    @GetMapping(value = "/")
-    public String sellerPage(){
+
+    @GetMapping(value = "/sellerIndex")
+    public String sellerPage(Model model){
+
+        List<Product>products=productService.getAll();
+        model.addAttribute("products",products);
+        List<ProductCategory>categories=productCategoryService.getAll();
+        model.addAttribute("categories",categories);
+
+
         return "seller/index";
     }
 

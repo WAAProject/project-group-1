@@ -31,8 +31,8 @@ public class Product {
     private String imageUrl;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
-    @NotNull(message = "{Product.Category.NotNull}")
+//    @JoinColumn(name = "category_id")
+//    @NotNull(message = "{Product.Category.NotNull}")
     private ProductCategory productCategory;
 
     @ManyToOne
