@@ -1,5 +1,5 @@
 $(function() {
-    $("#addToCart").on("click", addToCart);
+    $("[name = 'addToCart']").on("click", addToCart);
 });
 
 function addToCart() {

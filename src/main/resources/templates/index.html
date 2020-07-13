@@ -28,7 +28,7 @@
                                     </a>
                                     <p id="price" class="card-text" th:text="${'$'+product.price}">0.0</p>
                                     <a sec:authorize="hasRole('ROLE_BUYER')" th:value="${product.id}"
-                                       class="btn btn-primary" id="addToCart">Add To Cart</a>
+                                       class="btn btn-primary" name="addToCart" >Add To Cart</a>
                                 </div>
                             </div>
                             <div class="product-box">

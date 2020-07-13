@@ -85,7 +85,7 @@ public class CartServiceImpl implements CartService {
                 }
             }
         }
-        model.addAttribute("cartItems",cartDTOS);
+        model.addAttribute("itemBySellers",cartDTOS);
         model.addAttribute("grandTotal",0);
         return model;
     }

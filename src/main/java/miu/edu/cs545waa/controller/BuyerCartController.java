@@ -36,9 +36,9 @@ public class BuyerCartController {
         return cartService.addItem(productId, quantity);
     }
 
-    @PostMapping("/remove")
-    public String removeItem(@RequestParam Long itemId) {
-        orderItemService.deleteItemById(itemId);
+    @GetMapping("/remove")
+    public String removeItem(@RequestParam Long id) {
+        orderItemService.deleteItemById(id);
         return "redirect:/cart";
     }
 }

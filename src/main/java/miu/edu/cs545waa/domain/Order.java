@@ -30,7 +30,7 @@ public class Order {
     @ManyToOne(cascade = CascadeType.ALL)
     private Address ShippingAddress;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Payment payment;
 
     @OneToMany
