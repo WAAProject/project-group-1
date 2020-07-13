@@ -21,8 +21,8 @@ import java.util.List;
 
 @Controller
 @SessionAttributes({"user"})
+@RequestMapping("/seller")
 public class SellerController {
-
 
     @Autowired
     private UserService userService;
@@ -36,6 +36,7 @@ public class SellerController {
 //    @Autowired
 //    private OrderItemService orderItemService;
 
+
     @GetMapping(value = "/sellerIndex")
     public String sellerPage(Model model){
 
@@ -44,11 +45,11 @@ public class SellerController {
         List<ProductCategory>categories=productCategoryService.getAll();
         model.addAttribute("categories",categories);
 
-        return "seller/index";
 
+        return "seller/index";
     }
 
-    @RequestMapping(value = "/orders",method = RequestMethod.GET)
+    @GetMapping("/orders")
     public String getOrder(Order order,Model model){
       Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
       Seller seller=(Seller) userService.findByEmail(authentication.getName());

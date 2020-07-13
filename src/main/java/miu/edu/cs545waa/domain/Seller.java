@@ -13,7 +13,7 @@ public class Seller extends User{
     private List<Product>products =new ArrayList<>();
 
     @OneToMany(mappedBy = "seller")
-    private List<Order>orders=new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     public Seller() {}
     public Seller(String firstName,String lastName,String email,String password, boolean enabled) {
@@ -34,5 +34,23 @@ public class Seller extends User{
 
     public void setOrders(List<Order> orders) {
         this.orders = orders;
+    }
+
+    public void addProduct(Product product){
+        product.setSeller(this);
+        products.add(product);
+    }
+
+    public void removeProduct(Product product){
+        product.setSeller(null);
+        products.remove(product);
+    }
+
+    public void addOrder(Order order){
+        orders.add(order);
+    }
+
+    public void removeOrder(Order order){
+        orders.remove(order);
     }
 }
