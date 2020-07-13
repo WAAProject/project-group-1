@@ -26,7 +26,7 @@ import javax.validation.Valid;
 import java.io.File;
 import java.util.UUID;
 
-@RequestMapping(value = "/seller")
+
 @Controller
 public class ProductController {
     @Autowired
@@ -52,28 +52,28 @@ public class ProductController {
     }
 
     //
-    @GetMapping("/products")
+    @GetMapping("seller/products")
     public String productList(Model model, String category) {
         if (category == null) {
             model.addAttribute("products", productService.getAll());
         } else {
             model.addAttribute("products", productService.getByCategory(Integer.parseInt(category)));
         }
-        return "listOfProducts";//display list with CRUD
+        return "/seller/listOfProducts";//display list with CRUD
     }
 
-    @GetMapping("/addProduct")
+    @GetMapping("seller/addProduct")
     public String addProduct(Model model) {
         Product product = new Product();
         model.addAttribute("product", product);
 //        model.addAttribute("files",)
-        return "addProduct";
+        return "/seller/addProduct";
     }
 
-    @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
+    @RequestMapping(value = "/seller/addProduct", method = RequestMethod.POST)
     public String saveProduct(@Valid @ModelAttribute("product") Product product, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "addProduct";
+            return "/seller/addProduct";
         }
         MultipartFile productImage = product.getProductImage();
         String url = new ApplicationHome(Cs545WaaApplication.class).getDir() + "\\static\\images\\";
@@ -96,7 +96,7 @@ public class ProductController {
             product.setSeller(seller);
             product.setImageUrl("images\\" + imgName);
             productService.save(product);
-            return "redirect:/productDetails";
+            return "redirect:/seller/products";
         }
 
         @ExceptionHandler(ImageNotValidException.class)
@@ -108,22 +108,23 @@ public class ProductController {
 
         }
 
-        @RequestMapping(value = "/deleteProduct/{id}")
+        @RequestMapping(value = "/seller/deleteProduct/{id}")
         public String removeProduct (@PathVariable(value = "id") Long id){
             Product product = productService.findById(id);
             if (product == null) {
                 throw new RuntimeException();
             }
             productService.deleteProduct(product);
-            return "redirect:/productDetails";
+            return "redirect:/seller/productDetails";
         }
 
+        @RequestMapping(value = "/seller/product/{id}")
         public String update(@PathVariable(value = "id")Long id,Model model){
         model.addAttribute("product",productService.findById(id));
-        return "updateProduct";
+        return "/seller/updateProduct";
         }
 
-        @GetMapping(value = "{/productDetails}")
+        @GetMapping(value = "{/seller/productDetails}")
         public String prodDetails (@RequestParam(value = "id") Long id, Model model){
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             Seller seller = (Seller) userService.findByEmail(authentication.getName());
@@ -132,9 +133,38 @@ public class ProductController {
                 return "productDetails";
             }
             model.addAttribute("products", productService.getBySeller(seller));
-            return "productList";
+            return "/seller/productList";
         }
 
+        @PostMapping(value = "{/seller/product/{id}}")
+        public String editProduct(@Valid @ModelAttribute("product")Product product,BindingResult result,Model model){
+            if (result.hasErrors()) {
+                return "/seller/addProduct";
+            }
+            MultipartFile productImage = product.getProductImage();
+            String url = new ApplicationHome(Cs545WaaApplication.class).getDir() + "\\static\\images\\";
+            String imgName = "";
+            if (productImage != null && !productImage.isEmpty()) {
+                if (productImage.getContentType().contains("images/")) {
+                    try {
+                        imgName = UUID.randomUUID().toString() + "." + productImage.getOriginalFilename();
+                        System.out.println("imgName");
+                        productImage.transferTo(new File(url + imgName));
+                    } catch (Exception e) {
+                        throw new RuntimeException("Product image cant be saved!!", e);
+                    }
+                }
+            }else {
+                throw new ImageNotValidException();
+            }
+            Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+            Seller seller=(Seller) userService.findByEmail(authentication.getName());
+            product.setSeller(seller);
+            product.setImageUrl("images\\" + imgName);
+            productService.save(product);
+            return "redirect:/seller/products";
+
+        }
 
         @ExceptionHandler(AlreadyOrderedProduct.class)
             public ModelAndView excepHandler(HttpServletRequest request, ImageNotValidException e){
