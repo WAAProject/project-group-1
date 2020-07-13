@@ -4,6 +4,7 @@ import miu.edu.cs545waa.domain.Buyer;
 import miu.edu.cs545waa.domain.Seller;
 import miu.edu.cs545waa.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -12,8 +13,8 @@ import miu.edu.cs545waa.repository.UserRepository;
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Transactional
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -38,16 +39,28 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByType(type);
     }
 
+    public User findById(Long id) {
+        return userRepository.findById(id).get();
+    }
+
     @Override
     public Buyer getAuthenticatedBuyer() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Buyer buyer = (Buyer)this.findByEmail(auth.getName());
-        return buyer;
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            return (Buyer) findByEmail( auth.getName());
+        } else {
+            return null;
+        }
     }
 
     @Override
     public User getAuthenticatedUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        return this.findByEmail(auth.getName());
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            return findByEmail(auth.getName());
+        } else {
+            return null;
+        }
     }
 }
+

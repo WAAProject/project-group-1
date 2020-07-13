@@ -5,6 +5,7 @@ import miu.edu.cs545waa.repository.ProductCategoryRepo;
 import miu.edu.cs545waa.repository.ProductRepo;
 import miu.edu.cs545waa.repository.UserRepository;
 import miu.edu.cs545waa.service.ProductCategoryService;
+import miu.edu.cs545waa.service.ProductReviewService;
 import miu.edu.cs545waa.service.ProductService;
 import miu.edu.cs545waa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,16 @@ public class DataLoader implements ApplicationRunner {
     private final PasswordEncoder passwordEncoder;
     private final ProductCategoryService productCategoryService;
     private final ProductService productService;
+    private final ProductReviewService productReviewService;
 
     @Autowired
-    public DataLoader(UserService userService, ProductCategoryService productCategoryService, ProductService productService) {
+    public DataLoader(UserService userService, ProductCategoryService productCategoryService,
+                      ProductService productService, ProductReviewService productReviewService) {
         this.userService = userService;
         this.passwordEncoder = new BCryptPasswordEncoder();
         this.productCategoryService = productCategoryService;
         this.productService = productService;
+        this.productReviewService = productReviewService;
         }
 
     @Override
@@ -49,6 +53,7 @@ public class DataLoader implements ApplicationRunner {
         userService.save(buyer3);
         userService.save(seller1);
         userService.save(seller2);
+        userService.save(seller3);
 
         // Categories
         ProductCategory category1 = new ProductCategory("Laptop");
@@ -90,6 +95,22 @@ public class DataLoader implements ApplicationRunner {
         productService.save(pro5);
         productService.save(pro6);
         productService.save(pro7);
+
+        // Reviews
+        ProductReview review1 = new ProductReview(5, "Good product!", buyer1);
+        ProductReview review2 = new ProductReview(4, "Bawd product!", buyer2);
+        ProductReview review3 = new ProductReview(4, "awdawd product!", buyer3);
+        ProductReview review4 = new ProductReview(2, "3 rawoduct!", buyer1);
+        ProductReview review5 = new ProductReview(5, "Ad 13 roduct!", buyer2);
+        ProductReview review6 = new ProductReview(4, "adz product!", buyer3);
+        ProductReview review7 = new ProductReview(1, "1  11 product!", buyer1);
+        productReviewService.addReviewToProduct(review1, 6L);
+        productReviewService.addReviewToProduct(review2, 7L);
+        productReviewService.addReviewToProduct(review3, 8L);
+        productReviewService.addReviewToProduct(review4, 9L);
+        productReviewService.addReviewToProduct(review5, 10L);
+        productReviewService.addReviewToProduct(review6, 11L);
+        productReviewService.addReviewToProduct(review7, 8L);
 
     }
 }

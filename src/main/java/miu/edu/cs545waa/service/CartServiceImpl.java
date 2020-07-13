@@ -9,10 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.criteria.Order;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class CartServiceImpl implements CartService {
 
     @Autowired

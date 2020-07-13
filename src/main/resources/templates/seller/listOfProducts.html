@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Product List</title>
+    <meta charset="utf-8">
+    <meta id="_csrf" th:name="_csrf" th:content="${_csrf.token}"/>
+    <meta id="_csrf_header" th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container" layout:fragment="main-content">
+    <h2 align="center">Product Lists:</h2>
+    <button type="button" class="btn btn-primary">ADD PRODUCT</button>
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Status</th>
+            <th colspan="2">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="{product:${products}">
+            <td><img class="img-thumbnail w-100"
+                     th:attr="src=@{'/' + ${product.imageUrl}},title=${product.name},alt=${product.name}"/>
+            </td>
+            <td th:text="${product.name}">Name
+            </td>
+            <td class="align-middle" th:text="${product.category}">
+                Category
+            </td>
+            <td th:text="${'$'+product.price}">Price
+            </td>
+
+            <td th:text="${product.quantity}">Quantity
+            </td>
+            <td class="align-middle" th:text="${product.enabled} ? 'Approved' : 'Pending'"></td>
+            <td>
+                <button type="button" class="btn btn-primary">
+                    <a title="Edit" class="btn btn-sm btn-outline-secondary"
+                       th:href="@{/seller/product/{id}(id=${product.id})}">
+                        <i class="material-icons"> Edit</i></a>
+                </button>
+                <button type="button" class="btn btn-danger">
+                    <a title="Delete" class="btn btn-outline-warning btn-sm"
+                       th:href="@{/seller/deleteProduct/{id}(id=${product.id})}">
+                        <i class="material-icons"> Remove</i></a>
+                </button>
+            </td>
+
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

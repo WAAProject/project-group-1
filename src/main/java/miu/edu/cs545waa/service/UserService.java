@@ -11,6 +11,7 @@ public interface UserService {
     public User findByEmail(String email);
     public List<User> getAll();
     public List<User> findByType(String type);
+    public User findById(Long id);
     public User save(User user);
 
     public Buyer getAuthenticatedBuyer();

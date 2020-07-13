@@ -1,5 +1,6 @@
 package miu.edu.cs545waa.domain;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -61,7 +62,6 @@ public class Product {
         this.enabled = true;
         this.productCategory = category;
         this.seller = seller;
-        this.seller.addProduct(this);
     }
 
     public Seller getSeller() {
@@ -152,19 +152,7 @@ public class Product {
         this.prodProductReviewList = prodProductReviewList;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", productCategory=" + productCategory +
-                ", seller=" + seller +
-                ", quantity=" + quantity +
-                ", enabled=" + enabled +
-                ", prodProductReviewList=" + prodProductReviewList +
-                '}';
+    public void addReview(ProductReview productReview) {
+        this.prodProductReviewList.add(productReview);
     }
 }

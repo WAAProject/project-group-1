@@ -8,23 +8,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/")
 public class IndexController {
- @Autowired
+
+    @Autowired
     ProductService productService;
- @Autowired
+
+    @Autowired
     ProductCategoryService productCategoryService;
-    @GetMapping("/")
+
+    @GetMapping
     public String index( Model model) {
-      List<Product> allproducts=productService.getAll();
-      List<ProductCategory> categories=productCategoryService.getAll();
 
+        List<Product> products = productService.getAll();
+        List<ProductCategory> categories = productCategoryService.getAll();
 
-      model.addAttribute("products", allproducts);
-      model.addAttribute("catagories", categories);
+        model.addAttribute("products", products);
+        model.addAttribute("categories", categories);
+
         return "index";
     }
 

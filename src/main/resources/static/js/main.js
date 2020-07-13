@@ -4,7 +4,4 @@
         e.preventDefault();
         $("#wrapper").toggleClass("active");
     });
-    });
-
-
-
+});
