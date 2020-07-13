@@ -12,11 +12,9 @@ import java.util.List;
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
 
-//    OrderItem findTopByProduct(Product product);
+    OrderItem findTopByProduct(Product product);
 
-//@Query(value ="SELECT DISTINCT i FROM Buyer b " +
-//        "INNER JOIN b.orderItems i " +
-//        "WHERE b.id =:buyerId and i.product.seller.id= :sellerId")
-//List<OrderItem> getItemsBySellerId(Long buyerId, Long sellerId);
-//
+    @Query(value ="SELECT DISTINCT i FROM Buyer b INNER JOIN b.orderItems i WHERE b.id =:buyerId and i.product.seller.id= :sellerId")
+    List<OrderItem> getItemsBySellerId(Long buyerId, Long sellerId);
+
 }

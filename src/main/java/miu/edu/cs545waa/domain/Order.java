@@ -13,6 +13,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
 
     @Enumerated(EnumType.STRING)
@@ -33,9 +34,32 @@ public class Order {
     @OneToOne(cascade = CascadeType.ALL)
     private Payment payment;
 
+    private double sum;
+
     @OneToMany
     @JoinColumn(name = "order_id")
     private List<OrderItem> items = new ArrayList<>();
+
+    public Order(){}
+    public Order(Date orderDate, List<OrderItem> items, Buyer buyer, Seller seller) {
+        this.setBuyer(buyer);
+        this.setSeller(seller);
+        this.orderDate = orderDate;
+        this.status = OrderStatus.New;
+        this.items = items;
+        this.sum = 0.0;
+        for(OrderItem item : this.items){
+            this.sum += item.getPrice();
+        }
+    }
+
+    public double getSum() {
+        return sum;
+    }
+
+    public void setSum(double sum) {
+        this.sum = sum;
+    }
 
     public long getId() {
         return id;

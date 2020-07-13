@@ -2,6 +2,7 @@ package miu.edu.cs545waa.service;
 
 import miu.edu.cs545waa.domain.*;
 import miu.edu.cs545waa.repository.OrderItemRepository;
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -92,32 +93,32 @@ public class CartServiceImpl implements CartService {
         return model;
     }
 
-//    @Override
-//    public Model getCheckOutSummary(Model model, Long sellerId, String coupon) {
-//        List<Item> items = this.getCartItemsBySeller(sellerId);
-//        double subTotal = 0.0;
-//        double grandTotal = 0.0;
-//        for(Item i:items){
-//            subTotal += i.getPrice();
-//        }
-//        grandTotal = subTotal;
-//        if(coupon != null){
-//            if(userService.buyerHasCoupon()){
-//                double discount = subTotal * 0.05;
-//                grandTotal = subTotal - discount;
-//                model.addAttribute("discount",discount);
-//            }
-//        }
-//        model.addAttribute("subTotal",subTotal);
-//        model.addAttribute("grandTotal",grandTotal);
-//        model.addAttribute("items",items);
-//        model.addAttribute("sellerId",sellerId);
-//        return model;
-//    }
-//
-//    @Override
-//    public List<Item> getCartItemsBySeller(Long sellerId) {
-//        Buyer buyer = userService.getAuthenticatedBuyer();
-//        return itemRepository.getItemsBySellerId(buyer.getId(),sellerId);
-//    }
+    @Override
+    public Model getCheckOutSummary(Model model, Long sellerId, String coupon) {
+        List<OrderItem> items = this.getCartItemsBySeller(sellerId);
+        double subTotal = 0.0;
+        double grandTotal = 0.0;
+        for(OrderItem i:items){
+            subTotal += i.getPrice();
+        }
+        grandTotal = subTotal;
+        if(coupon != null){
+            if(userService.buyerHasCoupon()){
+                double discount = subTotal * 0.05;
+                grandTotal = subTotal - discount;
+                model.addAttribute("discount",discount);
+            }
+        }
+        model.addAttribute("subTotal",subTotal);
+        model.addAttribute("grandTotal",grandTotal);
+        model.addAttribute("items",items);
+        model.addAttribute("sellerId",sellerId);
+        return model;
+    }
+
+    @Override
+    public List<OrderItem> getCartItemsBySeller(Long sellerId) {
+        Buyer buyer = userService.getAuthenticatedBuyer();
+        return orderItemRepository.getItemsBySellerId(buyer.getId(), sellerId);
+    }
 }
