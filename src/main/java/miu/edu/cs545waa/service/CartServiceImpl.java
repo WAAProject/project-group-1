@@ -4,6 +4,7 @@ import miu.edu.cs545waa.domain.*;
 import miu.edu.cs545waa.repository.OrderItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -11,6 +12,7 @@ import javax.persistence.criteria.Order;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class CartServiceImpl implements CartService {
 
     @Autowired

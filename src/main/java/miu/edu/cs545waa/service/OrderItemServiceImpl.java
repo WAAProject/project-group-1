@@ -5,7 +5,9 @@ import miu.edu.cs545waa.domain.Product;
 import miu.edu.cs545waa.repository.OrderItemRepository;
 import miu.edu.cs545waa.repository.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class OrderItemServiceImpl implements OrderItemService{
 
     @Autowired

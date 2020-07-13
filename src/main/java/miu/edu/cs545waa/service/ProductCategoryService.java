@@ -5,6 +5,6 @@ import miu.edu.cs545waa.domain.ProductCategory;
 import java.util.List;
 
 public interface ProductCategoryService {
-    ProductCategory getCategoryById(Long id);
+    ProductCategory getCategoryById(int id);
     List<ProductCategory> getAll();
 }
