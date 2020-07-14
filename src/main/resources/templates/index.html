@@ -33,12 +33,12 @@
                     </ul>
                 </div>
                 <div class="card bg-light mb-3">
-                    <div class="card-header bg-success text-white text-uppercase">Latest product</div>
+                    <div class="card-header bg-success text-white text-uppercase">Random product for you</div>
                     <div class="card-body">
-                        <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff" />
-                        <h5 class="card-title">Product title</h5>
-                        <p class="card-text">Default product description.</p>
-                        <p class="bloc_left_price">99.00 $</p>
+                        <img class="img-fluid" th:src="${randomOne.imageUrl}" src="https://dummyimage.com/600x400/55595c/fff" />
+                        <a href="product.html" title="View Product"><h5 class="card-title text-center" th:text="${randomOne.name}" >Product title</h5></a>
+                        <p class="card-text" th:text="${randomOne.description}" >Default product description.</p>
+                        <p class="bloc_left_price" th:text="'$' + ${randomOne.price}">99.00 $</p>
                     </div>
                 </div>
             </div>

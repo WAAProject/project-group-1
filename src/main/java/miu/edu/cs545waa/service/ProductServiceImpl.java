@@ -59,5 +59,10 @@ public class ProductServiceImpl implements ProductService{
         return productCategoryRepo.getOne(id.intValue());
     }
 
+    @Override
+    public Product getRandomOne() {
+        return productRepo.getRandomOne();
+    }
+
 
 }
