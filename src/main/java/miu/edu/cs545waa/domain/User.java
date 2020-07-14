@@ -1,6 +1,10 @@
 package miu.edu.cs545waa.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 // Renaming DTYPE column to USER_TYPE
@@ -14,13 +18,23 @@ public class User {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
+    @Column(name="First_Name")
+    @NotEmpty
+    @NotBlank
     private String firstName;
 
+    @Column(name="Last_Name")
+    @NotEmpty
+    @NotBlank
     private String lastName;
 
+    @Email(message = "{Email.validation}")
+    @NotBlank(message = "{Email.validation}")
     @Column(unique = true)
     private String email;
 
+    @Size(min=5,message = "{Size.validation}")
+    @NotBlank(message = "{Password.validation}")
     private String password;
 
     private boolean enabled;
