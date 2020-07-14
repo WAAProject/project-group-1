@@ -58,6 +58,24 @@ public class ProductController {
         model.addAttribute("categories", productCategoryService.getAll());
     }
 
+    @GetMapping("/product")
+    public String list(Model model, @RequestParam(required = false) String category) {
+        if (category != null) {
+            model.addAttribute("products", productService.getByCategory(Integer.parseInt(category)));
+        } else {
+            model.addAttribute("products", productService.getAll());
+        }
+        List<ProductCategory> categories = productCategoryService.getAll();
+        model.addAttribute("categories", categories);
+        return "index";
+    }
+
+    @GetMapping("/product/{id}")
+    public String getProductById(@PathVariable(value = "id") Long id, Model model) {
+        model.addAttribute("product", productService.findById(id));
+        return "productPage";
+
+    }
 
     @GetMapping(value = "/seller/products")
     public String productList(Model model, String category) {

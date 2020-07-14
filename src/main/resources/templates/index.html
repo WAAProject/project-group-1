@@ -27,8 +27,9 @@
             <div class="col-12 col-sm-3">
                 <div class="card bg-light mb-3">
                     <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
-                    <ul class="list-group category_block" th:each="category : ${categories}">
-                        <li class="list-group-item"><a th:href="${category.id}" th:text="${category.name}">Cras justo odio</a></li>
+                    <ul class="list-group category_block">
+                        <li class="list-group-item"><a th:href="@{/product}">Show All</a></li>
+                        <li th:each="category : ${categories}" class="list-group-item"><a th:href="@{/product(category=${category.id})}" th:text="${category.name}">Cras justo odio</a></li>
                     </ul>
                 </div>
                 <div class="card bg-light mb-3">
