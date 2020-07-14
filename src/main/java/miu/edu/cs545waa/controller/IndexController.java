@@ -2,6 +2,7 @@ package miu.edu.cs545waa.controller;
 
 import miu.edu.cs545waa.domain.Product;
 import miu.edu.cs545waa.domain.ProductCategory;
+import miu.edu.cs545waa.service.CartService;
 import miu.edu.cs545waa.service.ProductCategoryService;
 import miu.edu.cs545waa.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,9 @@ public class IndexController {
     @Autowired
     ProductCategoryService productCategoryService;
 
+    @Autowired
+    CartService cartService;
+
     @GetMapping
     public String index( Model model) {
 
@@ -30,6 +34,7 @@ public class IndexController {
 
         model.addAttribute("products", products);
         model.addAttribute("categories", categories);
+        model.addAttribute("size", cartService.getCartSize());
 
         return "index";
     }

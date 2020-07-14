@@ -127,4 +127,15 @@ public class CartServiceImpl implements CartService {
         Buyer buyer = userService.getAuthenticatedBuyer();
         return orderItemRepository.getItemsBySellerId(buyer.getId(), sellerId);
     }
+
+    @Override
+    public int getCartSize() {
+        Buyer buyer = userService.getAuthenticatedBuyer();
+        if(buyer!=null) {
+            return buyer.getOrderItems().size();
+        } else {
+            return 0;
+        }
+    }
+
 }
