@@ -1,5 +1,6 @@
 package miu.edu.cs545waa.domain;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@DiscriminatorValue("seller")
 public class Seller extends User{
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "seller")

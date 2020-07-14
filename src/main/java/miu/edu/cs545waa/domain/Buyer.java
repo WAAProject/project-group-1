@@ -5,19 +5,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-//@DiscriminatorValue("buyer")
+@DiscriminatorValue("buyer")
 public class Buyer extends User {
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "owner_id")
-    private List<Seller> following = new ArrayList<>();
+    private List<Seller> following = new ArrayList<Seller>();
 
-  //  @OneToMany(fetch = FetchType.LAZY)
-  //  private List<CartItem> cartItems = new ArrayList<>();
+    @JoinColumn(name = "owner_id")
     @OneToMany(cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "buyer")
     private List<Order> orders = new ArrayList<>();
 
     private int coupon = 0;
@@ -72,6 +70,7 @@ public class Buyer extends User {
     public void removeOrderItem(OrderItem item) {
         orderItems.remove(item);
     }
+
     public void addOrderItem(OrderItem item) {
         orderItems.add(item);
     }

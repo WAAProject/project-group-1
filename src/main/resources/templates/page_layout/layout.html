@@ -68,6 +68,14 @@
 
                 <!-- Account -->
                 <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item" sec:authorize="hasAuthority('BUYER')">
+                        <!--                        <a class="nav-link" th:href="@{/logout}"><span class="fas fa-sign-out-alt"></span> Logout</a>-->
+                        <a class="nav-link btn btn-success btn-sm ml-3" href="/cart" >
+                            <i class="fa fa-shopping-cart"></i> Cart
+                            <span class="badge badge-light" name="cartItems">0</span>
+                        </a>
+                    </li>
+
                     <li class="nav-item" sec:authorize="isAnonymous()">
                         <a class="nav-link" th:href="@{/register}"><span class="fas fa-user"></span> Sign Up</a>
                     </li>
@@ -77,12 +85,13 @@
                     <li class="nav-item" sec:authorize="isAuthenticated()">
                         <a class="nav-link" th:href="@{/logout}"><span class="fas fa-sign-out-alt"></span> Logout</a>
                     </li>
+
                 </ul>
 
-                <a class="btn btn-success btn-sm ml-3" href="cart.html">
-                    <i class="fa fa-shopping-cart"></i> Cart
-                    <span class="badge badge-light">3</span>
-                </a>
+<!--                <a class="btn btn-success btn-sm ml-3" href="/cart" sec:authorize="hasAuthority('BUYER')">-->
+<!--                    <i class="fa fa-shopping-cart"></i> Cart-->
+<!--                    <span class="badge badge-light">0</span>-->
+<!--                </a>-->
             </div>
         </nav>
     </header>
@@ -104,6 +113,28 @@
             </div>
         </div>
     </footer>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+<!--            <div class="modal-body" id="exampleModalBody" sec:authorize="isAnonymous()">-->
+<!--                <a href="/login"><button type="button" class="btn btn-primary">Login</button></a>-->
+<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--            </div>-->
+            <div class="modal-footer"  sec:authorize="isAnonymous()">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="/login"><button type="button" class="btn btn-primary">Login</button></a>
+            </div>
+        </div>
+    </div>
 </div>
 <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>-->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>

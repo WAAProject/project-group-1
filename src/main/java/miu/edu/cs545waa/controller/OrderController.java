@@ -1,6 +1,7 @@
 package miu.edu.cs545waa.controller;
 
 import miu.edu.cs545waa.domain.Order;
+import miu.edu.cs545waa.domain.OrderStatus;
 import miu.edu.cs545waa.service.CartService;
 import miu.edu.cs545waa.service.OrderService;
 import miu.edu.cs545waa.service.UserService;
@@ -17,6 +18,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/buyer/order")
 public class OrderController {
+
     @Autowired
     CartService cartService;
 
@@ -29,15 +31,16 @@ public class OrderController {
     @GetMapping("")
     public String getOrdersBySeller(Model model, Order order) {
         List<Order> orders = userService.getOrdersByBuyer();
+        OrderStatus status = orders.get(0).getStatus();
         model.addAttribute("orders", orders);
-        return "order/orders";
+        return "buyer/buyerOrders";
     }
 
     @GetMapping("/checkout")
     public String checkOut(@ModelAttribute("order") Order order, Model model,
                            @RequestParam Long sellerId, @RequestParam(required = false) String coupon) {
         model = cartService.getCheckOutSummary(model, sellerId, coupon);
-        return "order/checkout";
+        return "buyer/checkoutForm";
     }
 
     @PostMapping("/save")
@@ -46,11 +49,12 @@ public class OrderController {
                             RedirectAttributes redAttr) {
         if (bindingResult.hasErrors()) {
             model = cartService.getCheckOutSummary(model, Long.parseLong(sellerId), coupon);
-            return "order/checkout";
+            return "buyer/checkout";
         }
+
         order = orderService.saveOrder(order, sellerId, coupon);
         if (order != null) {
-            redAttr.addFlashAttribute("message", "Thank you! Order and coupon has been added to your account.");
+            redAttr.addFlashAttribute("message", "Order has been successfully added to your account. Thank you for Shopping with us!");
             return "redirect:/buyer/order";
         } else {
             return "order/checkout";
