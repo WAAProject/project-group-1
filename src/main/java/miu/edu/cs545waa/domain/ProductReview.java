@@ -22,9 +22,11 @@ public class ProductReview {
 
     @NotEmpty(message = "{review.NotEmpty}")
     @Size(min=10,message = "{review.min.size}")
+    @Lob
     private String comment;
 
     private boolean isApproved;
+
 
     private LocalDate reviewDate;
 
