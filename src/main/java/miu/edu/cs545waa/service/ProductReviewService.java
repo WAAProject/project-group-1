@@ -9,5 +9,6 @@ public interface ProductReviewService {
     public ProductReview save(ProductReview productReview);
     public ProductReview findById(Long id);
     public List<ProductReview> getAll();
-    public void addReviewToProduct(ProductReview productReview, Long productId);
+    ProductReview saveReviewToProduct(ProductReview productReview, Long productId, Buyer buyer);
+    ProductReview saveReviewToProduct(ProductReview productReview, Long productId);
 }
