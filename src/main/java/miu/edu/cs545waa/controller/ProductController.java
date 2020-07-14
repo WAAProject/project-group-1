@@ -4,6 +4,7 @@ package miu.edu.cs545waa.controller;
 import miu.edu.cs545waa.Cs545WaaApplication;
 import miu.edu.cs545waa.domain.Product;
 import miu.edu.cs545waa.domain.ProductCategory;
+import miu.edu.cs545waa.domain.ProductReview;
 import miu.edu.cs545waa.domain.Seller;
 import miu.edu.cs545waa.exception.AlreadyOrderedProduct;
 import miu.edu.cs545waa.exception.ImageNotValidException;
@@ -75,12 +76,17 @@ public class ProductController {
         Product randomOne = productService.getRandomOne();
         model.addAttribute("randomOne", randomOne);
         model.addAttribute("size", cartService.getCartSize());
+
         return "index";
     }
 
     @GetMapping("/product/{id}")
-    public String getProductById(@PathVariable(value = "id") Long id, Model model) {
+    public String getProductById(@ModelAttribute("review") ProductReview review, @PathVariable(value = "id") Long id,
+                                 Model model, @RequestParam(required = false) String reviewMsg) {
         model.addAttribute("product", productService.findById(id));
+        if(reviewMsg!=null) {
+            model.addAttribute("reviewMsg", reviewMsg);
+        }
         return "product/productDetails";
     }
 

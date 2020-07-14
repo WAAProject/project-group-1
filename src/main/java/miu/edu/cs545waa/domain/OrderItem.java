@@ -13,7 +13,7 @@ public class OrderItem {
     @OneToOne
     private Product product;
 
-    @NotEmpty(message = "{Product.quantity.NotEmpty}")
+//    @NotEmpty(message = "{Product.quantity.NotEmpty}")
     private int quantity;
     private double totalPrice;
 
