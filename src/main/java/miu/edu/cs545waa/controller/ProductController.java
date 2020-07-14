@@ -81,7 +81,7 @@ public class ProductController {
     @GetMapping("/product/{id}")
     public String getProductById(@PathVariable(value = "id") Long id, Model model) {
         model.addAttribute("product", productService.findById(id));
-        return "productPage";
+        return "product/productDetails";
     }
 
     @ExceptionHandler(AlreadyOrderedProduct.class)
