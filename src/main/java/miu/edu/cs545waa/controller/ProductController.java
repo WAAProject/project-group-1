@@ -63,23 +63,6 @@ public class ProductController {
         model.addAttribute("categories", productCategoryService.getAll());
     }
 
-    @GetMapping("/product")
-    public String list(Model model, @RequestParam(required = false) String category) {
-        if (category != null) {
-            model.addAttribute("products", productService.getByCategory(Integer.parseInt(category)));
-        } else {
-            model.addAttribute("products", productService.getAll());
-        }
-        List<ProductCategory> categories = productCategoryService.getAll();
-        model.addAttribute("categories", categories);
-
-        Product randomOne = productService.getRandomOne();
-        model.addAttribute("randomOne", randomOne);
-        model.addAttribute("size", cartService.getCartSize());
-
-        return "index";
-    }
-
     @GetMapping("/product/{id}")
     public String getProductById(@ModelAttribute("review") ProductReview review, @PathVariable(value = "id") Long id,
                                  Model model, @RequestParam(required = false) String reviewMsg) {
