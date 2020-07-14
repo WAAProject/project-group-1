@@ -74,7 +74,7 @@ public class DataLoader implements ApplicationRunner {
                 6,category4,seller2);
         Product pro3=new Product("deskLaptop", "nvisible Lightweight Laptop Stand Portable, Adhesive Laptop Stand Foldable, Compatible with MacBook, Air, Pro, Tablets and Laptops up to 15.6” (Gray)"
         , 500.00,"/images/deskLaptop.jpg",7,category1,seller1);
-        Product pro4=new Product("htc","The next generation of Edge Sense offers more useful features and now even knows which hand you are using, giving you true one-handed freedom for either hand.",
+        Product pro4=new Product("htc1","The next generation of Edge Sense offers more useful features and now even knows which hand you are using, giving you true one-handed freedom for either hand.",
                 700.00,"/images/htc.jpg", 2, category2,seller2);
         Product pro5=new Product("drone","Comes with SanDisk Extreme microSD Card 128GB",
                 900.00, "/images/drone.jpg",1,category3,seller2);

@@ -40,7 +40,7 @@ public class Product {
     @JoinColumn(name="seller_id")
     private Seller seller;
 
-    @NotEmpty(message = "{Product.quantity.NotEmpty}")
+    @NotNull(message = "{Product.quantity.NotEmpty}")
     private int quantity;
     private boolean enabled = false;
 

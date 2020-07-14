@@ -38,7 +38,7 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Products</a>
+                        <a class="nav-link" href="/product">Products</a>
                     </li>
 
                     <!--Admin pages -->
@@ -59,7 +59,7 @@
 
                     <!--Seller pages -->
                     <li class="nav-item" sec:authorize="hasAuthority('SELLER')">
-                        <a class="nav-link" th:href="@{/seller/myproducts}">My products</a>
+                        <a class="nav-link" th:href="@{/seller/products}">My products</a>
                     </li>
                     <li class="nav-item" sec:authorize="hasAuthority('SELLER')">
                         <a class="nav-link" th:href="@{/seller/myorders}">My orders</a>
@@ -72,7 +72,7 @@
                         <!--                        <a class="nav-link" th:href="@{/logout}"><span class="fas fa-sign-out-alt"></span> Logout</a>-->
                         <a class="nav-link btn btn-success btn-sm ml-3" href="/cart" >
                             <i class="fa fa-shopping-cart"></i> Cart
-                            <span class="badge badge-light" name="cartItems">0</span>
+                            <span class="badge badge-light" name="cartItems" th:text="${size}">0</span>
                         </a>
                     </li>
 
