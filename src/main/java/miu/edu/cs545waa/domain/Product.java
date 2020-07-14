@@ -5,10 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,15 +15,16 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank
     @Size(min = 4, max = 50, message = "{Size.validation}")
     private String name;
 
-    @NotEmpty(message = "{Prod.Desc.Valid}")
+    @NotEmpty
     @Lob
     private String description;
 
     @NotNull
-    @Min(value = 0, message = "{Product.Price.validation}")
+    @Min(value = 1, message = "{Product.Price.validation}")
     private double price;
 
     private String imageUrl;
@@ -37,24 +35,28 @@ public class Product {
     private ProductCategory productCategory;
 
     @ManyToOne
-    @JoinColumn(name="seller_id")
+    @JoinColumn(name = "seller_id")
     private Seller seller;
 
-    @NotNull(message = "{Product.quantity.NotEmpty}")
+    @Min(value = 1, message = "{Product.quantity.validation}")
+    @NotNull(message = "{Product.quantity.NotNull}")
     private int quantity;
     private boolean enabled = false;
+
 
     @Transient
     @JsonIgnore
     private MultipartFile productImage;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="product_id")
-    private List<ProductReview> prodProductReviewList =new ArrayList<>();
+    @JoinColumn(name = "product_id")
+    private List<ProductReview> prodProductReviewList = new ArrayList<>();
 
-    public Product(){}
+    public Product() {
+    }
+
     public Product(String name, String description, double price,
-                   String imageUrl, int quantity, ProductCategory category, Seller seller){
+                   String imageUrl, int quantity, ProductCategory category, Seller seller) {
         this.name = name;
         this.description = description;
         this.price = price;
