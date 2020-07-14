@@ -36,7 +36,7 @@
                     <div class="card-header bg-success text-white text-uppercase">Recommended for you</div>
                     <div class="card-body">
                         <img class="img-fluid" th:src="${randomOne.imageUrl}" src="https://dummyimage.com/600x400/55595c/fff" />
-                        <a href="product.html" title="View Product"><h5 class="card-title text-center" th:text="${randomOne.name}" >Product title</h5></a>
+                        <a title="View Product"><h5 class="card-title text-center" th:text="${randomOne.name}" >Product title</h5></a>
                         <p class="card-text" th:text="${randomOne.description}" >Default product description.</p>
                         <p class="bloc_left_price" th:text="'$' + ${randomOne.price}">99.00 $</p>
                     </div>
@@ -48,9 +48,9 @@
                 <div class="row">
                     <div class="col-12 col-md-6 col-lg-4" th:each="product : ${products}" th:if="${product.enabled==true}">
                         <div class="card">
-                            <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" th:src="${product.imageUrl}" alt="Card image cap">
+                            <a th:href="@{/product/{id}(id=${product.id})}"><img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" th:src="${product.imageUrl}" alt="Card image cap"></a>
                             <div class="card-body">
-                                <h4 class="card-title"><a href="product.html" title="View Product" th:text="${product.name}">Product title</a></h4>
+                                <h4 class="card-title"><a th:href="@{/product/{id}(id=${product.id})}" title="View Product" th:text="${product.name}">Product title</a></h4>
                                 <p class="card-text" th:text="${product.description}">Default product description.</p>
                                 <div class="row">
                                     <div class="col">
