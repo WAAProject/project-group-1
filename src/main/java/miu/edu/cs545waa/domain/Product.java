@@ -25,7 +25,7 @@ public class Product {
     @Lob
     private String description;
 
-    @NotEmpty
+    @NotNull
     @Min(value = 0, message = "{Product.Price.validation}")
     private double price;
 

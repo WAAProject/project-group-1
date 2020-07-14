@@ -1,27 +1,74 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{page_layout/layout}">
 <head>
     <meta charset="UTF-8">
     <title>Registration</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link th:href="@{/css/registration.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form th:action="@{/register}" th:object="${user}" method="post">
-    <p><label>First Name: <input type="text" name="firstName" placeholder="First Name"></label></p>
-    <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:errorclass="fieldError">First Name error</p>
-    <p><label>Last Name: <input type="text" name="lastName" placeholder="Last Name"></label></p>
-    <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" th:errorclass="fieldError">Last Name error</p>
-    <p><label>Email: <input type="text" name="email" placeholder="Email"></label></p>
-    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="fieldError">Email error</p>
-    <p><label>Password: <input type="password" name="password" placeholder="Password"></label></p>
-    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:errorclass="fieldError">Password error</p>
+<div layout:fragment="main-content">
 
-    <label for="userType">Choose a user type:</label>
-    <select id="userType" name="userType" required>
-        <option value="buyer">Buyer</option>
-        <option value="seller">Seller</option>
-    </select>
-    <p><input type="submit" value="Register"></p>
-</form>
+    <div class="container">
+        <div class="card bg-light">
+            <article class="card-body mx-auto" style="max-width: 400px;">
+                <h4 class="card-title mt-3 text-center">Create Account</h4>
+                <form th:action="@{/register}" th:object="${user}" method="post">
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input name="firstName" class="form-control" placeholder="First Name" type="text">
+                    </div> <!-- form-group// -->
+                    <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:errorclass="fieldError">First Name error</p>
 
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                        </div>
+                        <input name="lastName" class="form-control" placeholder="Last Name" type="text">
+                    </div> <!-- form-group// -->
+                    <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" th:errorclass="fieldError">Last Name error</p>
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                        </div>
+                        <input name="email" class="form-control" placeholder="Email address" type="email">
+                    </div> <!-- form-group// -->
+                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="fieldError">Email error</p>
+
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                        </div>
+                        <select id="userType" name="userType" class="form-control" required>
+                            <option selected=""> Select account type</option>
+                            <option value="buyer">Buyer</option>
+                            <option value="seller">Seller</option>
+                        </select>
+                    </div> <!-- form-group end.// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input class="form-control" placeholder="Create password" type="password">
+                    </div> <!-- form-group// -->
+                    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:errorclass="fieldError">Password error</p>
+
+                    <div class="form-group">
+                        <button type="submit" value="sda" class="btn btn-primary btn-block"> Create Account  </button>
+                    </div> <!-- form-group// -->
+                    <p class="text-center">Have an account? <a href="">Log In</a> </p>
+                </form>
+            </article>
+        </div>
+
+    </div>
+</div>
 </body>
 </html>

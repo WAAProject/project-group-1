@@ -27,8 +27,6 @@ public class ProductReview {
 
     private boolean isApproved;
 
-
-    @Temporal(TemporalType.TIMESTAMP)
     private LocalDate reviewDate;
 
     public ProductReview(){
