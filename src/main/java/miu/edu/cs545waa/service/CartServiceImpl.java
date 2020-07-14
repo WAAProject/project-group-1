@@ -5,6 +5,8 @@ import miu.edu.cs545waa.repository.OrderItemRepository;
 import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.server.ResponseStatusException;
@@ -34,6 +36,17 @@ public class CartServiceImpl implements CartService {
     public CartResponseDTO addItem(Long productId, int quantity) {
 
         CartResponseDTO response = new CartResponseDTO();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userService.findByEmail(authentication.getName());
+
+        if (user == null) {
+            response.setMessage("Please login first");
+            return response;
+        } else if (!user.getType().equalsIgnoreCase("Buyer")) {
+            response.setMessage("You don't have permission to buy this item");
+            return response;
+        }
+
         Buyer buyer = userService.getAuthenticatedBuyer();
         Product product = productService.findById(productId);
 
