@@ -23,6 +23,7 @@ public class BuyerCartController {
     @GetMapping
     public String showCartItems(Model model) {
         model = cartService.getCartItems(model);
+        model.addAttribute("size", cartService.getCartSize());
         return "buyer/cartDetails";
     }
 
