@@ -67,6 +67,9 @@ public class ProductController {
         }
         List<ProductCategory> categories = productCategoryService.getAll();
         model.addAttribute("categories", categories);
+
+        Product randomOne = productService.getRandomOne();
+        model.addAttribute("randomOne", randomOne);
         return "index";
     }
 

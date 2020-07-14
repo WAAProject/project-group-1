@@ -16,4 +16,7 @@ public interface ProductRepo extends JpaRepository<Product,Long> {
 
     @Query(value="SELECT prod from Product prod where prod.productCategory.id=:catId")
     List<Product>findProductsByProductCategory(Integer catId);
+
+    @Query(nativeQuery=true, value="SELECT *  FROM Product ORDER BY random() LIMIT 1")
+    Product getRandomOne();
 }

@@ -31,6 +31,9 @@ public class IndexController {
         model.addAttribute("products", products);
         model.addAttribute("categories", categories);
 
+        Product randomOne = productService.getRandomOne();
+        model.addAttribute("randomOne", randomOne);
+
         return "index";
     }
 
