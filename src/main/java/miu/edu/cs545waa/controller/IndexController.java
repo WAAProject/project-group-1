@@ -36,6 +36,9 @@ public class IndexController {
         model.addAttribute("categories", categories);
         model.addAttribute("size", cartService.getCartSize());
 
+        Product randomOne = productService.getRandomOne();
+        model.addAttribute("randomOne", randomOne);
+
         return "index";
     }
 

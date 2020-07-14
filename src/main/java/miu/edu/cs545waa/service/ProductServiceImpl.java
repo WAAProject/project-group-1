@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+//@Transactional
 public class ProductServiceImpl implements ProductService{
 
     @Autowired
@@ -57,6 +57,11 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public ProductCategory getCategoryById(Long id) {
         return productCategoryRepo.getOne(id.intValue());
+    }
+
+    @Override
+    public Product getRandomOne() {
+        return productRepo.getRandomOne();
     }
 
 

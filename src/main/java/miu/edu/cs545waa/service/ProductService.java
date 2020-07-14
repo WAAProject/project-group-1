@@ -14,5 +14,6 @@ public interface ProductService {
     void deleteProduct(Product product);
     Product findById(Long id);
     ProductCategory getCategoryById(Long id);
+    public Product getRandomOne();
 
 }

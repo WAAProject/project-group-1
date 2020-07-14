@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional
+//@Transactional
 public class CartServiceImpl implements CartService {
 
     @Autowired
