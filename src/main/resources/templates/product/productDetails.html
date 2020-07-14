@@ -12,6 +12,17 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script rel="script" type="text/javascript" th:src="@{/js/addCart.js}"></script>
+
+    <style>
+        .my-alert{
+            font-size: larger;
+            Color: #28a745;
+        }
+
+        .order-detail {
+            font-size: medium;
+        }
+    </style>
 </head>
 <body>
 <div layout:fragment="main-content">
@@ -22,7 +33,7 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
-                        <li class="breadcrumb-item"><a href="category.html">Product Category</a></li>
+                        <li class="breadcrumb-item"><a th:href="@{/product(category=${product.productCategory.id})}">Product Category</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Products</li>
                     </ol>
                 </nav>
@@ -58,7 +69,7 @@
                                 <label><strong>Seller</strong></label>
                                 <div class="p-3 mb-2 bg-info text-white" style="border-radius: 20px" th:text="${product.getSeller().firstName}">Normal</div>
                             </div>
-                            <div th:value="${product.id}" name="addToCart" class="btn btn-success btn-lg btn-block text-uppercase">
+                            <div sec:authorize="hasAuthority('BUYER')" th:value="${product.id}" name="addToCart" class="btn btn-success btn-lg btn-block text-uppercase">
                                 <i class="fa fa-shopping-cart"></i> Add To Cart
                             </div>
                         </form>
@@ -108,40 +119,41 @@
                 <div class="card border-light mb-3">
                     <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-comment"></i> Reviews</div>
                     <div class="card-body">
-                        <div class="review">
-                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                            <meta itemprop="datePublished" content="01-01-2016">January 01, 2018
+                        <div th:each="review : ${product.prodProductReviewList}">
+                            <div class="review" th:if="${review.isApproved()}">
+                                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                <meta itemprop="datePublished" content="01-01-2016"><span th:text="${review.reviewDate}">January 01, 2018</span>
 
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            <span class="fa fa-star"></span>
-                            by Paul Smith
-                            <p class="blockquote">
-                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                            </p>
-                            <hr>
-                        </div>
-                        <div class="review">
-                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                            <meta itemprop="datePublished" content="01-01-2016">January 01, 2018
-
-                            <span class="fa fa-star" aria-hidden="true"></span>
-                            <span class="fa fa-star" aria-hidden="true"></span>
-                            <span class="fa fa-star" aria-hidden="true"></span>
-                            <span class="fa fa-star" aria-hidden="true"></span>
-                            <span class="fa fa-star" aria-hidden="true"></span>
-                            by Paul Smith
-                            <p class="blockquote">
-                            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                            </p>
-                            <hr>
+                                <span class="fa fa-star" aria-hidden="true"></span>
+                                <span class="fa fa-star" aria-hidden="true"></span>
+                                <span class="fa fa-star" aria-hidden="true"></span>
+                                <span class="fa fa-star" aria-hidden="true"></span>
+                                <span class="fa fa-star" aria-hidden="true"></span>
+                                by <span th:text="${review.buyer.firstName}">Paul Smith</span>
+                                <p class="blockquote">
+                                <p class="mb-0" th:text="${review.comment}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                                </p>
+                                <hr>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <section sec:authorize="hasAuthority('BUYER')" style="padding-left: 16px">
+                <form th:action="@{/product/review/{id}(id=${product.id})}" th:object="${review}" method="post">
+                    <div class="form-group purple-border">
+                        <label for="exampleFormControlTextarea4"><strong>Write Your Review Here</strong></label>
+                        <textarea th:field="*{comment}" class="form-control" id="exampleFormControlTextarea4" rows="4" style="width: 800px"></textarea>
+                        <input type="hidden" th:field="*{rating}" value="0">
+                    </div>
+                    <button type="submit" class="btn btn-info" style="margin-left: 725px; margin-bottom: 35px">Submit</button>
+                </form>
+            </section>
+            <div th:if="${reviewMsg!=null}" class="my-alert"> <!--class="alert alert-success" role="alert"-->
+                <span th:text="${reviewMsg}"></span>
+            </div>
         </div>
+
     </div>
 
 

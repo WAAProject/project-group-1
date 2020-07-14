@@ -104,13 +104,13 @@ public class DataLoader implements ApplicationRunner {
         ProductReview review5 = new ProductReview(5, "Ad 13 roduct!", buyer2);
         ProductReview review6 = new ProductReview(4, "adz product!", buyer3);
         ProductReview review7 = new ProductReview(1, "1  11 product!", buyer1);
-        productReviewService.addReviewToProduct(review1, 6L);
-        productReviewService.addReviewToProduct(review2, 7L);
-        productReviewService.addReviewToProduct(review3, 8L);
-        productReviewService.addReviewToProduct(review4, 9L);
-        productReviewService.addReviewToProduct(review5, 10L);
-        productReviewService.addReviewToProduct(review6, 11L);
-        productReviewService.addReviewToProduct(review7, 8L);
+        productReviewService.saveReviewToProduct(review1, 6L, buyer1);
+//        productReviewService.saveReviewToProduct(review2, 7L);
+//        productReviewService.saveReviewToProduct(review3, 8L);
+//        productReviewService.saveReviewToProduct(review4, 9L);
+//        productReviewService.saveReviewToProduct(review5, 10L);
+//        productReviewService.saveReviewToProduct(review6, 11L);
+//        productReviewService.saveReviewToProduct(review7, 8L);
 
     }
 }
