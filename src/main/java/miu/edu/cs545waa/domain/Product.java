@@ -18,14 +18,14 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Size(min = 4, max = 50, message = "{Size.Prod.name.valid}")
+    @Size(min = 4, max = 50, message = "{Size.validation}")
     private String name;
 
     @NotEmpty(message = "{Prod.Desc.Valid}")
     @Lob
     private String description;
 
-   // @NotEmpty(message = "{Price.NotEmpty}")
+    @NotEmpty
     @Min(value = 0, message = "{Product.Price.validation}")
     private double price;
 
