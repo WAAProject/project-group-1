@@ -1,6 +1,7 @@
 package miu.edu.cs545waa.domain;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,12 +27,15 @@ public class Order {
     private Seller seller;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @Valid
     private Address BillingAddress;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @Valid
     private Address ShippingAddress;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @Valid
     private Payment payment;
 
     private double sum;

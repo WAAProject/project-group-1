@@ -19,19 +19,19 @@ public class Address {
     private String street;
 
     @NotEmpty
-    @Size(min=2,max=50)
+    @Size(min=2,max=50,message = "{size.validation}")
     private String city;
 
     @NotEmpty
-    @Size(min=2,max=50)
+    @Size(min=2,max=50,message = "{size.validation}")
     private String state;
 
     @NotEmpty
-    @Size(min=2,max=50)
+    @Size(min=2,max=50,message = "{size.validation}")
     private String country;
 
     @NotEmpty
-    @Size(min=2,max=50)
+    @Size(min=2,max=50,message = "{size.validation}")
     private String zipCode;
 
     public Address() {
