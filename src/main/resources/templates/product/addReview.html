@@ -14,7 +14,7 @@
 <div class="container" layout:fragment="body-content">
 <div class="container" style="background:#b1dfbb;>
     <p class="h2 pt-2">Add Review</p>
-    < th:action="{@/seller/addProduct}" th:object="${products}" enctype="multipart/form-data" method="post">
+    <form th:action="{@/seller/addProduct}" th:object="${products}" enctype="multipart/form-data" method="post">
 
         <div class="form-group">
             <label for="comment">Write your comments</label>
