@@ -3,8 +3,8 @@
 <head>
     <title>Product List</title>
     <meta charset="utf-8">
-    <meta id="_csrf" th:name="_csrf" th:content="${_csrf.token}"/>
-    <meta id="_csrf_header" th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+<!--    <meta id="_csrf" th:name="_csrf" th:content="${_csrf.token}"/>-->
+<!--    <meta id="_csrf_header" th:name="_csrf_header" th:content="${_csrf.headerName}"/>-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -15,7 +15,7 @@
 
 <div class="container" layout:fragment="main-content">
     <h2 align="center">Product Lists:</h2>
-    <button type="button" class="btn btn-primary">ADD PRODUCT</button>
+    <button type="button" class="btn btn-primary" style="background-color: #86cfda"><a th:href="@{/seller/addProduct}">ADD PRODUCT</a></button>
     <table class="table">
         <thead class="thead-light">
         <tr>
@@ -30,13 +30,17 @@
         </thead>
         <tbody>
 
-        <tr th:each="{product:${products}">
-            <td><img class="img-thumbnail w-100"
-                     th:attr="src=@{'/' + ${product.imageUrl}},title=${product.name},alt=${product.name}"/>
+
+        <tr th:each="product:${products}">
+            <td class="align-middle" style="width: 75px"><img class="img-thumbnail w-100"
+               th:src="${product.imageUrl}" th:alt="${product.name}">
+<!--                  th:attr="src=@{'/'+${product.imageUrl}},title=${product.name}"/>-->
+<!--                     th:src="${product.imageUrl}" alt="${product.name}"/>-->
+<!--                <img th:src="${product.imageUrl}" style="height: 300px; width: 370px;padding: 15px" alt="${product.name}">-->
             </td>
             <td th:text="${product.name}">Name
             </td>
-            <td class="align-middle" th:text="${product.category}">
+            <td class="align-middle" th:text="${product.productCategory}">
                 Category
             </td>
             <td th:text="${'$'+product.price}">Price
@@ -46,10 +50,9 @@
             </td>
             <td class="align-middle" th:text="${product.enabled} ? 'Approved' : 'Pending'"></td>
             <td>
-                <button type="button" class="btn btn-primary">
-                    <a title="Edit" class="btn btn-sm btn-outline-secondary"
-                       th:href="@{/seller/product/{id}(id=${product.id})}">
-                        <i class="material-icons"> Edit</i></a>
+                <button type="button" class="btn btn-primary" style="background-color: #86cfda;padding-right: 30px">
+                    <a title="Edit" th:href="@{/seller/editProduct/{id}(id=${product.id})}">
+                        <i> Edit</i></a>
                 </button>
                 <button type="button" class="btn btn-danger">
                     <a title="Delete" class="btn btn-outline-warning btn-sm"
@@ -57,6 +60,7 @@
                         <i class="material-icons"> Remove</i></a>
                 </button>
             </td>
+        </tr>
 
         </tbody>
     </table>

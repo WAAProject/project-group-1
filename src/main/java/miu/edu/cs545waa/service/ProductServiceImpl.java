@@ -1,8 +1,10 @@
 package miu.edu.cs545waa.service;
 
 import miu.edu.cs545waa.domain.Product;
+import miu.edu.cs545waa.domain.ProductCategory;
 import miu.edu.cs545waa.domain.Seller;
 import miu.edu.cs545waa.exception.NoProductFoundException;
+import miu.edu.cs545waa.repository.ProductCategoryRepo;
 import miu.edu.cs545waa.repository.ProductRepo;
 import miu.edu.cs545waa.repository.ProductReviewRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class ProductServiceImpl implements ProductService{
 
     @Autowired
     ProductRepo productRepo;
+
+    @Autowired
+    ProductCategoryRepo productCategoryRepo;
 
     @Override
     public List<Product> getAll() {
@@ -47,5 +52,11 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Product findById(Long id) {
         return productRepo.findById(id).orElseThrow(()->new NoProductFoundException(id.toString()));
+    }
+
+    @Override
+    public ProductCategory getCategoryById(Long id) {
+        return productCategoryRepo.getOne(id.intValue());
+
     }
 }

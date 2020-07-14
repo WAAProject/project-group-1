@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org" >
 <head>
     <title>Bootstrap Container Example</title>
 
@@ -13,12 +14,13 @@
 
 <!-- Since we are using the class container, the below
     div will not take complete width of it's parent. -->
-<div class="container" style="background: whitesmoke;">
+<div class="container" layout:fragment="main-content" style="background: whitesmoke;">
     <p class="h2 pt-2">Add New Product</p>
-    <form th:action="{@/seller/addProduct}" th:object="${products}" enctype="multipart/form-data" method="post">
+    <form th:action="@{/seller/addProduct}" th:object="${product}" enctype="multipart/form-data" method="post">
         <div class="form-group">
             <label for="name">Product Name</label>
-            <input type="text" class="form-control"  id="name" name="id" th:field="*{name}" placeholder="Enter product name">
+<!--            <input type="text" class="form-control"  id="name" name="name" th:field="*{name}" placeholder="Enter product name">-->
+            <input type="text" id="name" name="name" class="form-control" th:field="*{name}">
             <p th:if="${#fields.hasErrors('name')}"th:errors="*{name}" th:errorclass="fieldError" style="color: red"></p>
         </div>
         <div class="form-group">
@@ -34,15 +36,15 @@
         <div class="form-group">
             <label for="productImage">Upload Image</label>
             <input type="file" class="form-control" id="productImage" th:field="*{productImage}" name="productImage" >
-            <p th:if="${#fields.hasErrors('productImage')}"th:errors="*{name}" th:errorclass="fieldError" style="color: red"></p>
+<!--            <p th:if="${#fields.hasErrors('productImage')}"th:errors="*{productImage}" th:errorclass="fieldError" style="color: red"></p>-->
         </div>
         <div class="form-group">
-            <label for="category">Category</label>
-            <select th:field="*{productCategory.id}" class="form-control" name="category" id="category">
+            <label for="productCategory">Category</label>
+            <select th:field="*{productCategory.id}" class="form-control" name="productCategory" id="productCategory">
                 <option value="0" selected disabled>Select a category</option>
                 <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}"></option>
             </select>
-            <p th:if="${#fields.hasErrors('category')}"th:errors="*{category}" th:errorclass="fieldError" style="color: red"></p>
+            <p th:if="${#fields.hasErrors('productCategory')}"th:errors="*{productCategory}" th:errorclass="fieldError" style="color: red"></p>
         </div>
         <div class="form-group">
             <label for="quantity">Quantity</label>
@@ -54,7 +56,8 @@
             <div class="col-sm-10">
                 <button type="reset" class="btn btn-outline-warning m-2">Reset</button>
 
-                <button type="submit" class="btn btn-primary" style="background-color: #b1dfbb"><a th:href="@{/seller/addproduct}">SAVE</a></button>
+<!--                <button type="submit" class="btn btn-primary" style="background-color: #b1dfbb"><a th:href="@{/seller/addproduct}">SAVE</a></button>-->
+                <button type="submit" class="btn btn-primary" style="background-color: #b1dfbb">SAVE</button>
             </div>
         </div>
     </form>
