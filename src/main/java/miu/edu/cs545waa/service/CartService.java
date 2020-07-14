@@ -14,4 +14,6 @@ public interface CartService {
     Model getCheckOutSummary(Model model, Long sellerId, String coupon);
     List<OrderItem> getCartItemsBySeller(Long sellerId);
 
+    int getCartSize();
+
 }

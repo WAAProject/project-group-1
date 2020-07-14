@@ -33,6 +33,7 @@ import java.util.UUID;
 @Controller
 @SessionAttributes("userName")
 public class ProductController {
+
     @Autowired
     private ProductService productService;
 
@@ -47,6 +48,9 @@ public class ProductController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CartService cartService;
 
     private StorageService storageService;
 
@@ -70,6 +74,7 @@ public class ProductController {
 
         Product randomOne = productService.getRandomOne();
         model.addAttribute("randomOne", randomOne);
+        model.addAttribute("size", cartService.getCartSize());
         return "index";
     }
 
