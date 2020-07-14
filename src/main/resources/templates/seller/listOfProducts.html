@@ -34,8 +34,8 @@
         <tbody>
 
         <tr th:each="product:${products}">
-            <td class="align-middle" style="width: 75px"><img class="img-thumbnail w-100"
-               th:src="${product.imageUrl}" th:alt="${product.name}">
+            <td class="align-middle" style="width: 75px">
+                <img class="img-thumbnail w-100" th:src="${product.imageUrl}" th:alt="${product.name}">
 <!--                  th:attr="src=@{'/'+${product.imageUrl}},title=${product.name}"/>-->
 <!--                     th:src="${product.imageUrl}" alt="${product.name}"/>-->
 <!--                <img th:src="${product.imageUrl}" style="height: 300px; width: 370px;padding: 15px" alt="${product.name}">-->
