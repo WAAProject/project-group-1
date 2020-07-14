@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+//@Transactional
 public class ProductServiceImpl implements ProductService{
 
     @Autowired
