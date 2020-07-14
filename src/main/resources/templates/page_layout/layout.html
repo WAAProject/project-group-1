@@ -78,6 +78,11 @@
                         <a class="nav-link" th:href="@{/logout}"><span class="fas fa-sign-out-alt"></span> Logout</a>
                     </li>
                 </ul>
+
+                <a class="btn btn-success btn-sm ml-3" href="cart.html">
+                    <i class="fa fa-shopping-cart"></i> Cart
+                    <span class="badge badge-light">3</span>
+                </a>
             </div>
         </nav>
     </header>
@@ -86,9 +91,17 @@
         Layout main body.
     </main>
 
-    <footer class="mastfoot mt-auto" th:fragment="footer">
-        <div class="align-content-center">
-            <p>WAA CS545 - Online shop project <a href="https://miu.edu">@MIU</a>, by Group1.</p>
+    <!-- Footer -->
+    <footer class="text-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 copyright mt-3">
+                    <p class="float-left">
+                        <a href="#">Back to top</a>
+                    </p>
+                    <p class="text-right text-muted">CS545 WAA - Group 1</p>
+                </div>
+            </div>
         </div>
     </footer>
 </div>
