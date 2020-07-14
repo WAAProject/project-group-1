@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,6 +8,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <script th:src="@{/js/datePicker.js}"></script>
 </head>
 <body style="Background-color: #e4e3e3">
 <nav class="navbar navbar-default">
@@ -43,44 +45,40 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Product1</td>
-                    <td>X</td>
-                    <td> $200.0</td>
-                </tr>
-                <tr>
-                    <td>Product2</td>
-                    <td>Y</td>
-                    <td> $300.0</td>
+                <tr th:each="item : ${items}">
+                    <td th:text="${item.product.name}">Product name</td>
+                    <td th:text="${item.quantity}">X</td>
+                    <td th:text="${'$' + item.price}"> $470.0</td>
                 </tr>
                 <tr>
                     <td colspan="3" class="text-center">
-                        <b>Grand Total: </b> $500.0
+                        <b>Grand Total:</b> $<span th:text="${#numbers.formatDecimal(grandTotal, 0, 'COMMA', 2, 'POINT')}"></span>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    <form th:action="@{/buyer/order/save}" th:object="${order}" th:method="POST">
     <div class="row">
         <div class="col-md-4" >
             <div class="col-md-11 col-md-offset-1 well">
                 <h3 class="text-center"> <b>Billing Address</b> </h3>
                 <div class="form-group">
                     <label for="street">Street:</label>
-                    <input type="text" class="form-control" id="street">
+                    <input type="text" class="form-control" id="street" th:field = "*{billingAddress.street}">
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="cty">City:</label>
-                            <input type="text" class="form-control" id="cty">
+                            <input type="text" class="form-control" id="cty" th:field = "*{billingAddress.city}">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="State">State:</label>
-                            <input type="text" class="form-control" id="State">
+                            <input type="text" class="form-control" id="State" th:field = "*{billingAddress.state}">
                         </div>
                     </div>
                 </div>
@@ -89,13 +87,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="zip">Zip Code:</label>
-                            <input type="text" class="form-control" id="zip">
+                            <input type="text" class="form-control" id="zip" th:field = "*{billingAddress.zipCode}">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="Country">Country:</label>
-                            <input type="text" class="form-control" id="Country">
+                            <input type="text" class="form-control" id="Country" th:field = "*{billingAddress.country}">
                         </div>
                     </div>
                 </div>
@@ -108,20 +106,20 @@
             <div class="col-md-11 col-md-offset-1 well">
                 <h3 class="text-center"> <b>Shipping Address</b> </h3>
                 <div class="form-group">
-                    <label for="street">Street:</label>
-                    <input type="text" class="form-control" id="street">
+                    <label for="street1">Street:</label>
+                    <input type="text" class="form-control" id="street1" th:field = "*{shippingAddress.street}">
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="cty">City:</label>
-                            <input type="text" class="form-control" id="cty">
+                            <label for="cty1">City:</label>
+                            <input type="text" class="form-control" id="cty1" th:field = "*{shippingAddress.city}">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="State">State:</label>
-                            <input type="text" class="form-control" id="State">
+                            <label for="State1">State:</label>
+                            <input type="text" class="form-control" id="State1" th:field = "*{shippingAddress.state}">
                         </div>
                     </div>
                 </div>
@@ -129,20 +127,18 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="zip">Zip Code:</label>
-                            <input type="text" class="form-control" id="zip">
+                            <label for="zip1">Zip Code:</label>
+                            <input type="text" class="form-control" id="zip1" th:field = "*{shippingAddress.zipCode}">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="Country" class="required">Country:</label>
-                            <input type="text" class="form-control" id="Country">
+                            <label for="Country1" class="required">Country:</label>
+                            <input type="text" class="form-control" id="Country1" th:field = "*{shippingAddress.country}">
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div>
 
         <div class="col-md-4">
@@ -151,25 +147,46 @@
                 <h3 class="text-center"> <b>Payment Details</b> </h3>
                 <div class="form-group">
                     <label for="cardNum">Card Number:</label>
-                    <input type="text" class="form-control" id="cardNum">
+                    <input type="text" class="form-control" id="cardNum" th:field="*{payment.cardNumber}">
                 </div>
+
                 <div class="form-group">
                     <label for="name">Card Owner:</label>
-                    <input type="text" class="form-control" id="name">
+                    <input type="text" class="form-control" id="name" th:field="*{payment.nameOnCard}">
                 </div>
 
                 <div class="form-group">
-                    <label> Expiration Date: </label>
-                    <input class="form-control" placeholder="MM/YY">
+                    <label> Expiration Date (MM/YY): </label>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <select  id="monthpicker" th:field="*{payment.expriyMonth}">
+                            </select>
+                            <!--                        <small class="form-text" th:if="${#fields.hasErrors('payment.expriyMonth')}" th:errors="*{payment.expriyMonth}" th:errorclass="text-danger">Invalid month.</small>-->
+                        </div>
+                        <div class="col-sm-3">
+                            <select id="yearpicker" th:field="*{payment.expriryYear}">
+                            </select>
+                            <!--                        <small class="form-text" th:if="${#fields.hasErrors('payment.expriryYear')}" th:errors="*{payment.expriryYear}" th:errorclass="text-danger">Invalid year.</small>-->
+                        </div>
                     </div>
                 </div>
-            </div>
+<!--                <div class="form-group">-->
+<!--                    <label> Expiration Date: </label>-->
+<!--                    <select class="form-control form-control-sm" id="monthpicker" th:field="*{payment.expriyMonth}">-->
+<!--                    </select>-->
 
+<!--                    <input class="form-control" placeholder="MM/YY">-->
+<!--                    </div>-->
+                </div>
+            </div>
         </div>
-    </div>
+
     <div style="height: 70px; text-align: center; margin-top: 20px;">
-        <button type="button" class="btn btn-primary" style="width: 500px; font-size: large;">Continue to Checkout</button>
+        <a>
+        <button type="submit" class="btn btn-primary" style="width: 500px; font-size: large;">Continue to Checkout</button>
+        </a>
     </div>
+    </form>
 
 </div>
 </body>

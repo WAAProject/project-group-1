@@ -17,6 +17,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/buyer/order")
 public class OrderController {
+
     @Autowired
     CartService cartService;
 
@@ -37,7 +38,7 @@ public class OrderController {
     public String checkOut(@ModelAttribute("order") Order order, Model model,
                            @RequestParam Long sellerId, @RequestParam(required = false) String coupon) {
         model = cartService.getCheckOutSummary(model, sellerId, coupon);
-        return "order/checkout";
+        return "buyer/checkoutForm";
     }
 
     @PostMapping("/save")
@@ -48,6 +49,7 @@ public class OrderController {
             model = cartService.getCheckOutSummary(model, Long.parseLong(sellerId), coupon);
             return "order/checkout";
         }
+
         order = orderService.saveOrder(order, sellerId, coupon);
         if (order != null) {
             redAttr.addFlashAttribute("message", "Thank you! Order and coupon has been added to your account.");
