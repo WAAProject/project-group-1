@@ -20,6 +20,7 @@ function addToCart() {
         $('#exampleModal').modal("show");
         $("#headerCartSize").html(resp.size);
         // alert(resp.message + ". Total items: " + resp.size);
+        $("[name='cartItems']").html(resp.size)
 
     }).fail(function (resp) {
 
