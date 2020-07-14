@@ -86,13 +86,7 @@
                     <li class="nav-item" sec:authorize="isAuthenticated()">
                         <a class="nav-link" th:href="@{/logout}"><span class="fas fa-sign-out-alt"></span> Logout</a>
                     </li>
-
                 </ul>
-
-<!--                <a class="btn btn-success btn-sm ml-3" href="/cart" sec:authorize="hasAuthority('BUYER')">-->
-<!--                    <i class="fa fa-shopping-cart"></i> Cart-->
-<!--                    <span class="badge badge-light">0</span>-->
-<!--                </a>-->
             </div>
         </nav>
     </header>
@@ -102,7 +96,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="text-light">
+    <footer class="text-light fixed-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-12 copyright mt-3">
