@@ -39,34 +39,19 @@ public class SellerController {
     @Autowired
     private ProductCategoryService productCategoryService;
 
-//    @Autowired
-//    private OrderItemService orderItemService;
-
-
-    @GetMapping(value = "/sellerIndex")
-    public String sellerPage(Model model){
-
-        List<Product>products=productService.getAll();
-        model.addAttribute("products",products);
-        List<ProductCategory>categories=productCategoryService.getAll();
-        model.addAttribute("categories",categories);
-
-
-        return "seller/index";
-    }
-
-    @GetMapping(value = "/seller/products")
+    @GetMapping(value = "/products")
     public String productList(Model model, String category) {
-        if (category == null) {
-            model.addAttribute("products", productService.getAll());
-        } else {
-            model.addAttribute("products", productService.getByCategory(Integer.parseInt(category)));
-            return "index";
-        }
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Seller seller = (Seller) userService.findByEmail(authentication.getName());
+
+        List<Product> products = productService.getBySeller(seller);
+        model.addAttribute("products", products);
+
         return "seller/listOfProducts";//display list with CRUD
     }
 
-    @GetMapping(value = "/seller/addProduct")
+    @GetMapping(value = "/addProduct")
     public String addProduct(Model model) {
         Product product = new Product();
         List<Product> products = productService.getAll();
@@ -77,8 +62,7 @@ public class SellerController {
         return "seller/addProduct";
     }
 
-
-    @RequestMapping(value = "/seller/addProduct", method = RequestMethod.POST)
+    @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     public String saveProduct(@Valid @ModelAttribute("product") Product product, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
         System.out.println("im in add controller!!");
         if (result.hasErrors()) {
@@ -114,7 +98,7 @@ public class SellerController {
 
     }
 
-    @PostMapping(value = {"/seller/updateProduct/{id}"})
+    @PostMapping(value = {"/updateProduct/{id}"})
     public String editProduct(@Valid @PathVariable(value = "id", required = false) Long id, @ModelAttribute("product") Product product, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
         System.out.println(id);
 //        ProductCategory cat=productService.getCategoryById(id);
@@ -173,7 +157,7 @@ public class SellerController {
 
     }
 
-    @GetMapping(value = {"/seller/editProduct/{id}"})
+    @GetMapping(value = {"/editProduct/{id}"})
     public String findById(@PathVariable(value = "id") Long id, Model model) {
         Product product = productService.findById(id);
         List<Product> products = productService.getAll();
@@ -185,13 +169,13 @@ public class SellerController {
         return "seller/updateProduct";
     }
 
-    @RequestMapping(value = "/seller/product/{id}")
+    @RequestMapping(value = "/product/{id}")
     public String update(@PathVariable(value = "id") Long id, Model model) {
         model.addAttribute("product", productService.findById(id));
         return "seller/updateProduct";
     }
 
-    @GetMapping(value = {"/seller/productDetails"})
+    @GetMapping(value = {"/productDetails"})
     public String prodDetails(@RequestParam(value = "id") Long id, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Seller seller = (Seller) userService.findByEmail(authentication.getName());
@@ -203,7 +187,7 @@ public class SellerController {
         return "seller/productList";
     }
 
-    @RequestMapping(value = "/seller/deleteProduct/{id}")
+    @RequestMapping(value = "/deleteProduct/{id}")
     public String removeProduct(@PathVariable(value = "id") Long id) {
         Product product = productService.findById(id);
         if (product == null) {
