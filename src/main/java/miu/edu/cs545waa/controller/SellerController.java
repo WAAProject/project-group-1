@@ -21,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -69,29 +70,31 @@ public class SellerController {
             return "seller/addProduct";
         }
         MultipartFile productImage = product.getProductImage();
-        String url = new ApplicationHome(Cs545WaaApplication.class).getDir() + "\\static\\images\\";
-        String imgName = "";
+
         if (productImage != null && !productImage.isEmpty()) {
+            // Checking for image only
             if (productImage.getContentType().contains("image/")) {
-                System.out.println("Image is not null" + productImage.getContentType());
+                System.out.println("Image is not null, content type: " + productImage.getContentType());
                 try {
-                    imgName = UUID.randomUUID().toString() + "." + productImage.getOriginalFilename();
-                    System.out.println(url + imgName);
-                    productImage.transferTo(new File(url + imgName));
-                } catch (Exception e) {
+                    String fileNameAndPath = new ApplicationHome(Cs545WaaApplication.class).getDir() + "/static/images/" + productImage.getOriginalFilename();
+                    productImage.transferTo(new File(fileNameAndPath));
+                    product.setImageUrl("/images/" + productImage.getOriginalFilename());
+                    System.out.println("Saved image!!!");
+                } catch (IOException e) {
+                    e.printStackTrace();
                     throw new RuntimeException("Product image can't be saved!!", e);
                 }
             } else {
                 throw new ImageNotValidException();
             }
-        }else {
+        } else {
             System.out.println("Select Image");
         }
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Seller seller = (Seller) userService.findByEmail(authentication.getName());
         product.setSeller(seller);
-        product.setImageUrl("images\\" + imgName);
+
         productService.save(product);
         redirectAttributes.addFlashAttribute(product);
         return "redirect:/seller/products";
@@ -130,7 +133,6 @@ public class SellerController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Seller seller = (Seller) userService.findByEmail(authentication.getName());
         product.setSeller(seller);
-//        product.setImageUrl("images\\" + imgName);
 
         ProductCategory productCategory = productCategoryService.getCategoryById(product.getProductCategory().getId());
         if (id == null) {
