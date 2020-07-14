@@ -24,11 +24,6 @@ public class AdminController {
     @Autowired
     ProductReviewService productReviewService;
 
-    @GetMapping
-    public String getAdminIndex() {
-        return "admin/index";
-    }
-
     @GetMapping("/accounts")
     public String getAccounts(Model model) {
         List<User> users = userService.getAll();
@@ -50,8 +45,9 @@ public class AdminController {
 
     @GetMapping("/sellers")
     public String getSellerAccounts(Model model) {
-        List<User> sellers = userService.findByType("Seller");
+        List<User> sellers = userService.findByType("seller");
         model.addAttribute("sellers", sellers);
+        System.out.println(sellers);
         return "admin/sellers";
     }
 
