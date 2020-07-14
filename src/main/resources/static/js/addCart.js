@@ -3,7 +3,7 @@ $(function() {
 });
 
 function addToCart() {
-    alert("inside");
+    // alert("inside");
     let productId = $(this).attr("value");
 
     $.ajax("http://localhost:8080/cart",{
@@ -15,7 +15,11 @@ function addToCart() {
 
     }).done(function(resp) {
 
-        alert(resp.message + ". Total items: " + resp.size);
+        $("#exampleModalLabel").html(resp.message);
+        // $("#exampleModalBody").html(resp.message);
+        $('#exampleModal').modal("show");
+        $("#headerCartSize").html(resp.size);
+        // alert(resp.message + ". Total items: " + resp.size);
 
     }).fail(function (resp) {
 

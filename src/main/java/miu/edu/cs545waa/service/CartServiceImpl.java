@@ -40,6 +40,12 @@ public class CartServiceImpl implements CartService {
         if(product == null || product.getQuantity() < quantity){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This Product is Not Available");
         }else{
+
+            if (buyer == null) {
+                response.setMessage("Please login first");
+                return response;
+            }
+
             List<OrderItem> items = buyer.getOrderItems();
             OrderItem item = items.stream()
                     .filter(p -> p.getProduct().getId() == productId)
