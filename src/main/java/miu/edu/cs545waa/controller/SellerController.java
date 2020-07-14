@@ -3,7 +3,10 @@ package miu.edu.cs545waa.controller;
 import miu.edu.cs545waa.Cs545WaaApplication;
 import miu.edu.cs545waa.domain.*;
 import miu.edu.cs545waa.exception.ImageNotValidException;
-import miu.edu.cs545waa.service.*;
+import miu.edu.cs545waa.service.OrderItemService;
+import miu.edu.cs545waa.service.ProductCategoryService;
+import miu.edu.cs545waa.service.ProductService;
+import miu.edu.cs545waa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.system.ApplicationHome;
@@ -32,9 +35,6 @@ public class SellerController {
 
     @Autowired
     private ProductService productService;
-
-    @Autowired
-    private OrderService orderService;
 
     @Autowired
     private ProductCategoryService productCategoryService;
@@ -202,9 +202,9 @@ public class SellerController {
       Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
       Seller seller=(Seller) userService.findByEmail(authentication.getName());
       List<OrderStatus> orderStatusList= Arrays.asList(OrderStatus.values());
-      List<Order>orderList=userService.getOrdersBySeller(seller);
+//      List<Order>orderList=userService.getOrdersBySeller(seller);
         model.addAttribute("orderStatus",orderStatusList);
-        model.addAttribute("orders",orderList);
+//        model.addAttribute("orders",orderList);
 
         return "orders";
 
@@ -212,16 +212,14 @@ public class SellerController {
 
     @RequestMapping(value = "/orders/{id}")
     public String getOrderById(Order order){
-        orderService.updateOrderStatusById(order.getId(),order.getStatus());
-        return "redirect:/seller/orders";
-
+        //
+      return "not yet";
     }
 
-    @GetMapping(value = {"/orderList"})
     public String orderDetails(Model model){
         Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
         Seller seller=(Seller) userService.findByEmail(authentication.getName());
-        model.addAttribute("orders",userService.getOrdersBySeller(seller));
-        return "seller/orderList";
+//        model.addAttribute("orders",userService.getOrdersBySeller());
+        return "orderList";
     }
 }

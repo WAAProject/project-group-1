@@ -2,7 +2,7 @@
 
 <html lang="en" xmlns:layout="http://www.w3.org/1999/xhtml"  xmlns:th="http://www.thymeleaf.org" >
 <head>
-    <title>Bootstrap Container Example</title>
+    <title>Add Product</title>
 
     <!-- Add Bootstrap Links -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -12,9 +12,7 @@
 
 <body>
 
-<!-- Since we are using the class container, the below
-    div will not take complete width of it's parent. -->
-<div class="container" layout:fragment="main-content" style="background: whitesmoke;">
+<div class="container" layout:fragment="main-content" style="background:lightblue;">
     <p class="h2 pt-2">Add New Product</p>
     <form th:action="@{/seller/addProduct}" th:object="${product}" enctype="multipart/form-data" method="post">
         <div class="form-group">
