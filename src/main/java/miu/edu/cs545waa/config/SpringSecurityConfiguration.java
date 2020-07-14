@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import javax.sql.DataSource;
 
@@ -56,6 +58,12 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .passwordParameter("password")
                     .permitAll()
                 .and()
+                .rememberMe()
+                    .tokenRepository(persistentTokenRepository())
+                    .rememberMeCookieName("remember-me-cookie")
+                    .rememberMeParameter("remember-me")
+                    .tokenValiditySeconds(24 * 60 * 60) // expired time = 1 day
+                .and()
                 .logout()
                     .logoutUrl("/logout") //change default /logout url to /perform_logout
                     .logoutSuccessUrl("/login?logout=true")
@@ -67,6 +75,13 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .accessDeniedPage("/denied");
         // enabling /logout path for GET request for now
         http.csrf().disable();
+    }
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        tokenRepository.setDataSource(dataSource);
+        return tokenRepository;
     }
 
         // enable H2 console? Got better solution. Use WebSecurity object's ignoring method.
