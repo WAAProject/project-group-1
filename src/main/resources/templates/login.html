@@ -1,30 +1,68 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{page_layout/layout}">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+<!--    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <link th:href="@{/css/login.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-<div class="container">
-    <img th:src="@{/images/login.jpg}" class="img-responsive center-block" width="300" height="300" alt="Logo"/>
-    <form th:action="@{/login}" method="POST" class="form-signin">
-        <h3 class="form-signin-heading" th:text="Welcome"></h3>
-        <br/>
 
-        <input type="text" id="username" name="username" th:placeholder="Username"
-               class="form-control"/> <br/>
-        <input type="password" th:placeholder="Password"
-               id="password" name="password" class="form-control"/> <br/>
+<div layout:fragment="main-content">
+    <div class="card bg-light">
+        <article class="card-body mx-auto" style="max-width: 400px;">
+            <div class="container loginForm">
 
-        <div align="center">
-            <p style="font-size: 20px; color: #FF1C19;" th:text="${errorMessage}">Email or Password invalid, please verify</p>
+                <h4 class="card-title mt-3 text-center">Login</h4>
+                <form th:action="@{/login}" method="POST" class="form-signin">
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    </div>
+                    <input type="text" name="username"  id="username" class="form-control" placeholder="username or email"/>
+                </div><br />
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-lock icon"></i></span>
+                    </div>
+                    <input type="Password" name="password" id="password" class="form-control" placeholder="password"/>
+                </div><br />
+
+                <div class="checkbox">
+                    <label><input type="checkbox" value=""/> Remember me</label>
+                </div><br />
+
+                <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-off"></span> Login</button>
+
+                <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-remove"></span>Login with Facebook </button><br />
+                <br /> <center><div style="border:1px solid black;height:1px;width:300px;"></div></center><br />
+                <div class="">
+                    <p>Don't have an Account? <a href="/register">Sign Up Here</a></p>
+                    <p>Forgot <a href="#">Password?</a></p>
+                </div>
+
+                <div align="center">
+                    <p style="font-size: 20px; color: #FF1C19;" th:text="${errorMessage}">Email or Password invalid, please verify</p>
+                </div>
+
+                <div align="center">
+                    <p style="font-size: 20px; color: #179bbd;" th:text="${logoutMessage}">You have been successfully logged out.</p>
+                </div>
+
+                <p style="font-size: 20px; color: #17a2b8;" th:text="${registerSuccess}"></p>
+            </form>
+
         </div>
+        </article>
+    </div>
 
-        <p style="font-size: 12px; color: #17a2b8;" th:text="${registerSuccess}"></p>
-
-        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="Login" type="Submit"
-                th:text="Login"></button>
-    </form>
 </div>
 </body>
 </html>

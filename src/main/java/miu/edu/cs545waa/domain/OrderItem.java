@@ -2,6 +2,7 @@ package miu.edu.cs545waa.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class OrderItem {
@@ -13,8 +14,9 @@ public class OrderItem {
     @OneToOne
     private Product product;
 
-    @NotEmpty(message = "{Product.quantity.NotEmpty}")
+    @NotNull(message = "{Product.quantity.NotEmpty}")
     private int quantity;
+
     private double totalPrice;
 
     public OrderItem() {}

@@ -1,44 +1,46 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{page_layout/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>Admin page</title>
+    <title>Manage Accounts</title>
     <link rel="stylesheet" th:href="@{/css/admin.css}" />
+    <link th:href="@{/css/index.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
+<div layout:fragment="main-content">
 
-<h2>Account enable/disable</h2>
+    <div class="table-responsive col-12 admin-table">
+    <table class="table table-hover table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr scope="row" th:each="user : ${users}">
+            <td th:text="${user.getFirstName()}">First Name</td>
+            <td th:text="${user.lastName}">Last Name</td>
+            <td th:text="${user.email}">Email</td>
+            <td th:text="${user.enabled} ? 'Active' : 'Inactive'"></td>
+            <td>
+                <form th:action="@{/admin/accounts/activate/{action}(action=!${user.enabled})}" method="post">
+                    <button name="userId" type="submit" th:value="${user.id}" class="btn btn-secondary" th:if="${user.enabled}">Deactivate</button>
+                    <button name="userId" type="submit" th:value="${user.id}" class="btn btn-primary" th:unless="${user.enabled}">Activate</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
 
-<div class="table-responsive col-12">
-<table class="table table-hover table-striped table-bordered">
-    <thead class="thead-dark">
-    <tr>
-        <th scope="col">First Name</th>
-        <th scope="col">Last Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Status</th>
-        <th scope="col">Action</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr scope="row" th:each="user : ${users}">
-        <td th:text="${user.getFirstName()}">First Name</td>
-        <td th:text="${user.lastName}">Last Name</td>
-        <td th:text="${user.email}">Email</td>
-        <td th:text="${user.enabled} ? 'Active' : 'Inactive'"></td>
-        <td>
-            <form th:action="@{/admin/accounts/activate/{action}(action=!${user.enabled})}" method="post">
-                <button name="userId" type="submit" th:value="${user.id}" class="btn btn-secondary" th:if="${user.enabled}">Deactivate</button>
-                <button name="userId" type="submit" th:value="${user.id}" class="btn btn-primary" th:unless="${user.enabled}">Activate</button>
-            </form>
-        </td>
-    </tr>
-    </tbody>
-</table>
 </div>
-
-
 </body>
 </html>

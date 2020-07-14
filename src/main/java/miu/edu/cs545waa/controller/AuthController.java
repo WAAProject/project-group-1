@@ -30,18 +30,20 @@ public class AuthController {
                             @RequestParam(value = "registerSuccess", required = false) String registerSuccess,
                             Model model) {
         String errorMessage = null;
+        String logoutMessage = null;
         if (error != null) {
-            errorMessage = "Username or Password is incorrect !!";
+            errorMessage = "Username or Password is incorrect!";
+            model.addAttribute("errorMessage", errorMessage);
         }
         if (logout != null) {
-            errorMessage = "You have been successfully logged out !!";
+            logoutMessage = "You have been successfully logged out.";
+            model.addAttribute("logoutMessage", logoutMessage);
         }
 
         if (registerSuccess != null) {
             model.addAttribute("registerSuccess", registerSuccess);
         }
 
-        model.addAttribute("errorMessage", errorMessage);
         return "login";
     }
 
@@ -59,6 +61,7 @@ public class AuthController {
     public String registerNewUser(@ModelAttribute User user, BindingResult bindingResult, Model model, @RequestParam String userType, RedirectAttributes redirectAttributes) {
 
         System.out.println(userType);
+        System.out.println(bindingResult);
 
         if (userService.findByEmail(user.getEmail()) != null) {
             bindingResult.rejectValue("email", "error.user","This email address has been registered already");
