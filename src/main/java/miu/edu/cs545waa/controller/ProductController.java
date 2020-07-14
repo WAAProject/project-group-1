@@ -77,175 +77,6 @@ public class ProductController {
     public String getProductById(@PathVariable(value = "id") Long id, Model model) {
         model.addAttribute("product", productService.findById(id));
         return "productPage";
-
-    }
-
-    @GetMapping(value = "/seller/products")
-    public String productList(Model model, String category) {
-        if (category == null) {
-            model.addAttribute("products", productService.getAll());
-        } else {
-            model.addAttribute("products", productService.getByCategory(Integer.parseInt(category)));
-            return "index";
-        }
-        return "seller/listOfProducts";//display list with CRUD
-    }
-
-    @GetMapping(value = "/seller/addProduct")
-    public String addProduct(Model model) {
-        Product product = new Product();
-        List<Product> products = productService.getAll();
-        List<ProductCategory> categories = productCategoryService.getAll();
-        model.addAttribute("products", products);
-        model.addAttribute("product", product);
-        model.addAttribute("categories", categories);
-        return "seller/addProduct";
-    }
-
-
-    @RequestMapping(value = "/seller/addProduct", method = RequestMethod.POST)
-    public String saveProduct(@Valid @ModelAttribute("product") Product product, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
-        System.out.println("im in add controller!!");
-        if (result.hasErrors()) {
-            return "seller/addProduct";
-        }
-        MultipartFile productImage = product.getProductImage();
-        String url = new ApplicationHome(Cs545WaaApplication.class).getDir() + "\\static\\images\\";
-        String imgName = "";
-        if (productImage != null && !productImage.isEmpty()) {
-            if (productImage.getContentType().contains("image/")) {
-                System.out.println("Image is not null" + productImage.getContentType());
-                try {
-                    imgName = UUID.randomUUID().toString() + "." + productImage.getOriginalFilename();
-                    System.out.println(url + imgName);
-                    productImage.transferTo(new File(url + imgName));
-                } catch (Exception e) {
-                    throw new RuntimeException("Product image can't be saved!!", e);
-                }
-            } else {
-                throw new ImageNotValidException();
-            }
-        }else {
-            System.out.println("Select Image");
-        }
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Seller seller = (Seller) userService.findByEmail(authentication.getName());
-        product.setSeller(seller);
-        product.setImageUrl("images\\" + imgName);
-        productService.save(product);
-        redirectAttributes.addFlashAttribute(product);
-        return "redirect:/seller/products";
-
-    }
-
-
-    @ExceptionHandler(ImageNotValidException.class)
-    public ModelAndView errorHandler(HttpServletRequest request, ImageNotValidException e) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("message", e.getInvlaidMsg());
-        modelAndView.setViewName("exception");
-        return modelAndView;
-
-    }
-
-    @RequestMapping(value = "/seller/deleteProduct/{id}")
-    public String removeProduct(@PathVariable(value = "id") Long id) {
-        Product product = productService.findById(id);
-        if (product == null) {
-            throw new RuntimeException();
-        }
-        productService.deleteProduct(product);
-        return "redirect:/seller/products";
-    }
-
-    @RequestMapping(value = "/seller/product/{id}")
-    public String update(@PathVariable(value = "id") Long id, Model model) {
-        model.addAttribute("product", productService.findById(id));
-        return "seller/updateProduct";
-    }
-
-    @GetMapping(value = {"/seller/productDetails"})
-    public String prodDetails(@RequestParam(value = "id") Long id, Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Seller seller = (Seller) userService.findByEmail(authentication.getName());
-        if (id != null) {
-            model.addAttribute("product", productService.findById(id));
-            return "productDetails";
-        }
-        model.addAttribute("products", productService.getBySeller(seller));
-        return "seller/productList";
-    }
-
-    @GetMapping(value = {"/seller/editProduct/{id}"})
-    public String findById(@PathVariable(value = "id") Long id, Model model) {
-        Product product = productService.findById(id);
-        List<Product> products = productService.getAll();
-        List<ProductCategory> categories = productCategoryService.getAll();
-        model.addAttribute("products", products);
-        model.addAttribute("product", product);
-        model.addAttribute("categories", categories);
-
-        return "seller/updateProduct";
-    }
-
-    @PostMapping(value = {"/seller/updateProduct/{id}"})
-    public String editProduct(@Valid @PathVariable(value = "id", required = false) Long id, @ModelAttribute("product") Product product, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
-        System.out.println(id);
-//        ProductCategory cat=productService.getCategoryById(id);
-        System.out.println(product.getProductCategory().getId());
-
-        ProductCategory cat = productCategoryService.getCategoryById(product.getProductCategory().getId());
-        System.out.println("=====================================" + cat);
-
-        if (result.hasErrors()) {
-            return "seller/updateProduct";
-        }
-
-        MultipartFile productImage = product.getProductImage();
-        String url = new ApplicationHome(Cs545WaaApplication.class).getDir() + "\\static\\images\\";
-        String imgName = "";
-        if (productImage != null && !productImage.isEmpty()) {
-            if (productImage.getContentType().contains("image/")) {
-                try {
-                    imgName = UUID.randomUUID().toString() + "." + productImage.getOriginalFilename();
-                    System.out.println("imgName");
-                    productImage.transferTo(new File(url + imgName));
-                } catch (Exception e) {
-                    throw new RuntimeException("Product image cant be saved!!", e);
-                }
-            } else {
-                throw new ImageNotValidException();
-            }
-        }
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Seller seller = (Seller) userService.findByEmail(authentication.getName());
-        product.setSeller(seller);
-//        product.setImageUrl("images\\" + imgName);
-
-        ProductCategory productCategory = productCategoryService.getCategoryById(product.getProductCategory().getId());
-        if (id == null) {
-            product.setImageUrl("images\\" + imgName);
-            product.setSeller(seller);
-            productService.save(product);
-        } else {
-            Product newProduct = productService.findById(id);
-            newProduct.setName(product.getName());
-            newProduct.setPrice(product.getPrice());
-            newProduct.setDescription(product.getDescription());
-            newProduct.setQuantity(product.getQuantity());
-            if (!productImage.isEmpty() && !imgName.isEmpty()) {
-                newProduct.setImageUrl("images\\" + imgName);
-                newProduct.setProductImage(product.getProductImage());
-            }
-            newProduct.setImageUrl(newProduct.getImageUrl());
-            newProduct.setProductCategory(productCategory);
-            productService.save(newProduct);
-        }
-        redirectAttributes.addFlashAttribute(product);
-
-        return "redirect:/seller/products";
-
     }
 
     @ExceptionHandler(AlreadyOrderedProduct.class)
@@ -254,8 +85,13 @@ public class ProductController {
         modelAndView.addObject("message", e.getInvlaidMsg());
         modelAndView.setViewName("exception");
         return modelAndView;
-
     }
 
-
+    @ExceptionHandler(ImageNotValidException.class)
+    public ModelAndView errorHandler(HttpServletRequest request, ImageNotValidException e) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("message", e.getInvlaidMsg());
+        modelAndView.setViewName("exception");
+        return modelAndView;
+    }
 }
