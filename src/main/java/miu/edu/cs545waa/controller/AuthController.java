@@ -61,6 +61,7 @@ public class AuthController {
     public String registerNewUser(@ModelAttribute User user, BindingResult bindingResult, Model model, @RequestParam String userType, RedirectAttributes redirectAttributes) {
 
         System.out.println(userType);
+        System.out.println(bindingResult);
 
         if (userService.findByEmail(user.getEmail()) != null) {
             bindingResult.rejectValue("email", "error.user","This email address has been registered already");

@@ -1,21 +1,18 @@
 .loginForm{
-    border:2px solid gray;
+    /*border:2px solid gray;*/
     text-align:center;
 
-    height:500px;
-    width:400px;
+    /*height:500px;*/
+    /*width:400px;*/
 }
-/*body{*/
-/*    padding:70px;*/
-/*}*/
 h1{
     margin:auto;
 }
-.loginIcon{
-    height:90px;
-    width:396px;
-    background-color:paleturquoise;
-}
+/*.loginIcon{*/
+    /*height:90px;*/
+    /*width:396px;*/
+    /*background-color: #e9ecef;*/
+/*}*/
 
 footer {
     background: #343a40;

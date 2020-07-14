@@ -20,12 +20,12 @@ public class User {
 
     @Column(name="First_Name")
     @NotEmpty
-    @NotBlank
+    @NotBlank(message = "firstName should not be blank!")
     private String firstName;
 
     @Column(name="Last_Name")
     @NotEmpty
-    @NotBlank
+    @NotBlank(message="Lastname should not be blank!")
     private String lastName;
 
     @Email(message = "{Email.validation}")
