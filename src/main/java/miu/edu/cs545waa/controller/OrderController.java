@@ -47,7 +47,7 @@ public class OrderController {
                             RedirectAttributes redAttr) {
         if (bindingResult.hasErrors()) {
             model = cartService.getCheckOutSummary(model, Long.parseLong(sellerId), coupon);
-            return "order/checkout";
+            return "buyer/checkoutSuccess";
         }
 
         order = orderService.saveOrder(order, sellerId, coupon);
