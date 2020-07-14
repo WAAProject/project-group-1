@@ -1,11 +1,16 @@
 package miu.edu.cs545waa.domain;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SellerInfoDTO {
+    @NotBlank
     private String sellerName;
+    @NotNull
     private Long sellerId;
+    @NotBlank
     private double total;
     private List<OrderItem> items = new ArrayList<>();
 
