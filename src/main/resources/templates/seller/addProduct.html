@@ -36,7 +36,7 @@
         <div class="form-group">
             <label for="productImage">Upload Image</label>
             <input type="file" class="form-control" id="productImage" th:field="*{productImage}" name="productImage" >
-            <p th:if="${#fields.hasErrors('productImage')}"th:errors="*{name}" th:errorclass="fieldError" style="color: red"></p>
+<!--            <p th:if="${#fields.hasErrors('productImage')}"th:errors="*{productImage}" th:errorclass="fieldError" style="color: red"></p>-->
         </div>
         <div class="form-group">
             <label for="productCategory">Category</label>
