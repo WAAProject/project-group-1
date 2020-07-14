@@ -26,7 +26,6 @@ public class ProductReview {
 
     @NotNull
     private LocalDate reviewDate;
-
     public ProductReview(){
 
     }
