@@ -31,7 +31,7 @@ public class OrderController {
     @GetMapping("")
     public String getOrdersBySeller(Model model, Order order) {
         List<Order> orders = userService.getOrdersByBuyer();
-        OrderStatus status = orders.get(0).getStatus();
+//        OrderStatus status = orders.get(0).getStatus();
         model.addAttribute("orders", orders);
         return "buyer/buyerOrders";
     }

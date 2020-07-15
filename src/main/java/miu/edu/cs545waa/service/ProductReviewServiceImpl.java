@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -39,17 +40,33 @@ public class ProductReviewServiceImpl implements ProductReviewService{
     }
 
     @Override
-    public void addReviewToProduct(ProductReview productReview, Long productId) {
+    public ProductReview saveReviewToProduct(ProductReview productReview, Long productId, Buyer buyer) {
         Product product = productService.findById(productId);
-
-        if(product!=null){
-            productReview.setReviewDate(LocalDate.now());
+        if(product != null){
+            productReview.setApproved(false);
+            productReview.setReviewDate(new Date());
+            productReview.setBuyer(buyer);
             product.addReview(productReview);
             productService.save(product);
+            return productReview;
+        }else{
+            throw new NullPointerException("Product is not found.");
         }
-        else{
-            throw new NullPointerException("No product Found!");
-        }
+    }
 
+    @Override
+    public ProductReview saveReviewToProduct(ProductReview productReview, Long productId){
+        Product product = productService.findById(productId);
+        if(product != null){
+            Buyer buyer = userService.getAuthenticatedBuyer();
+            productReview.setApproved(false);
+            productReview.setReviewDate(new Date());
+            productReview.setBuyer(buyer);
+            product.addReview(productReview);
+            productService.save(product);
+            return productReview;
+        }else{
+            throw new NullPointerException("Product is not found.");
+        }
     }
 }
