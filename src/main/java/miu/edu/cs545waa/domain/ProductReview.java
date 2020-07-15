@@ -27,6 +27,17 @@ public class ProductReview {
 
     private boolean isApproved;
 
+    @ManyToOne
+    @JoinColumn(name = "PRODUCT_ID")
+    Product product;
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date reviewDate;

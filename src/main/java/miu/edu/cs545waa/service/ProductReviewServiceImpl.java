@@ -45,6 +45,7 @@ public class ProductReviewServiceImpl implements ProductReviewService{
         if(product != null){
             productReview.setApproved(false);
             productReview.setReviewDate(new Date());
+            productReview.setProduct(product);
             productReview.setBuyer(buyer);
             product.addReview(productReview);
             productService.save(product);

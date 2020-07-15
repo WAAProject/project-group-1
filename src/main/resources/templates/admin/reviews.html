@@ -21,6 +21,8 @@
             <th scope="col">Buyer's Full Name</th>
             <th scope="col">Buyer's Email</th>
             <th scope="col">Review Comment</th>
+            <th scope="col">Reviewed Product Name</th>
+            <th scope="col">Reviewed Product ID</th>
             <th scope="col">Status</th>
             <th scope="col">Action</th>
         </tr>
@@ -30,6 +32,8 @@
             <td th:text="${review.buyer.firstName} + ' ' + ${review.buyer.lastName}">Full Name</td>
             <td th:text="${review.buyer.email}">Email</td>
             <td th:text="${review.comment}">Comment</td>
+            <td th:text="${review.product.name}">Reviewed Product Name</td>
+            <td th:text="${review.product.id}">Reviewed Product ID</td>
             <td th:text="${review.approved}  ? 'Approved' : 'Pending'">Status</td>
             <td>
                 <form th:action="@{/admin/reviews/approve/{action}(action=!${review.approved})}" method="post">
