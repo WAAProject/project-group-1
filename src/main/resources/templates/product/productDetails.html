@@ -139,6 +139,7 @@
                     </div>
                 </div>
             </div>
+
             <section sec:authorize="hasAuthority('BUYER')" style="padding-left: 16px">
                 <form th:action="@{/product/review/{id}(id=${product.id})}" th:object="${review}" method="post">
                     <div class="form-group purple-border">
@@ -153,9 +154,7 @@
                 <span th:text="${reviewMsg}"></span>
             </div>
         </div>
-
     </div>
-
 
 </div>
 </body>

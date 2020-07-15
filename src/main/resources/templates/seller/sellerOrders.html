@@ -61,13 +61,26 @@
         <div class="order-detail">
             <p><strong>Shipping Address: </strong>
                 <span th:text="${order.shippingAddress.street} + ', '+ ${order.shippingAddress.city} + ', ' + ${order.shippingAddress.state} + ', ' + ${order.shippingAddress.country} + ', ' + ${order.shippingAddress.zipCode}"></span></p>
-            <p> <strong>Seller: </strong><span th:text="${order.seller.firstName}"></span> </p>
+            <p> <strong>Buyer: </strong><span th:text="${order.buyer.firstName}"></span> </p>
             <p> <strong>Status: </strong><span th:text="${order.status}"></span> </p>
         </div>
 <!--        <form th:action="@{/buyer/order/cancel}" method="post" th:if="${order.status == order.status.New}">-->
 <!--            <input th:type="hidden" th:name="orderId" th:value="${order.id}">-->
 <!--            <button type="submit" class="btn btn-danger">Cancel order</button>-->
 <!--        </form>-->
+        <form th:action="@{/seller/updateOrderStatus/{id}(id=${order.id})}" th:object="${tempOrder}" method="post">
+            <div class="row justify-content-md-end m-1">
+                <div class="col-md-auto form-group align-middle m-1">
+                    <input type="text" id="id" name="id" th:field="*{id}" disabled th:type="hidden">
+                    <select class="form-control-sm" name="status" id="status">
+                        <option th:each="stat : ${orderStatus}" th:selected="${stat == order.status}" th:value="${stat}" th:text="${stat}"></option>
+                    </select>
+                </div>
+                <div class="col-md-auto form-group align-middle m-1 mt-1">
+                    <button id="btn" type="submit" class="btn btn-outline-primary btn-sm">Update Status</button>
+                </div>
+            </div>
+        </form>
         <hr>
 
     </div>
