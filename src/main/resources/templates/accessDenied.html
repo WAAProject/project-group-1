@@ -1,15 +1,54 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      >
 <head>
-    <meta charset="UTF-8">
-    <title>Access Denied Page</title>
+<!--    layout:decorate="~{page_layout/layout}"-->
+    <title>Access Denied</title>
+    <link th:href="@{/css/403.css}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
 </head>
 <body>
 <body>
-<h2>Sorry, you do not have permission to view this page.</h2>
 
-Click <a th:href="@{/}">here</a>
-to go back to the Homepage.
+<!--Click <a th:href="@{/}">here</a> to go back to the Homepage.-->
+<!--<div layout:fragment="main-content">-->
+
+    <div class="maincontainer">
+        <div class="bat">
+            <img class="wing leftwing"
+                 src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+            <img class="body"
+                 src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-body.png" alt="bat">
+            <img class="wing rightwing"
+                 src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+        </div>
+        <div class="bat">
+            <img class="wing leftwing"
+                 src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+            <img class="body"
+                 src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-body.png" alt="bat">
+            <img class="wing rightwing"
+                 src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+        </div>
+        <div class="bat">
+            <img class="wing leftwing"
+                 src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+            <img class="body"
+                 src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-body.png" alt="bat">
+            <img class="wing rightwing"
+                 src="https://www.blissfullemon.com/wp-content/uploads/2018/09/bat-wing.png">
+        </div>
+        <img class="foregroundimg" src="https://www.blissfullemon.com/wp-content/uploads/2018/09/HauntedHouseForeground.png" alt="haunted house">
+
+    </div>
+    <h1 class="errorcode">ERROR 403</h1>
+    <div class="errortext">This area is forbidden. Click <a href="/">here</a> to go back.</div>
+
+<!--</div>-->
+
 </body>
 </body>
 </html>

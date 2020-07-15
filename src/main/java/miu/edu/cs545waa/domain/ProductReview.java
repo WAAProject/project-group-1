@@ -57,7 +57,6 @@ public class ProductReview {
         this.buyer = buyer;
         this.rating = rating;
         this.comment = comment;
-        this.isApproved = false;
         this.isApproved = isApproved;
     }
 
