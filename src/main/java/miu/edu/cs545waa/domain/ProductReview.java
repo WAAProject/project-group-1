@@ -21,7 +21,7 @@ public class ProductReview {
     private int rating;
 
     @NotEmpty(message = "{review.NotEmpty}")
-    @Size(min=10,message = "{review.min.size}")
+    @Size(min=5,message = "{review.min.size}")
     @Lob
     private String comment;
 
