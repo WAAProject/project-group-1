@@ -3,10 +3,7 @@ package miu.edu.cs545waa.controller;
 import miu.edu.cs545waa.Cs545WaaApplication;
 import miu.edu.cs545waa.domain.*;
 import miu.edu.cs545waa.exception.ImageNotValidException;
-import miu.edu.cs545waa.service.OrderItemService;
-import miu.edu.cs545waa.service.ProductCategoryService;
-import miu.edu.cs545waa.service.ProductService;
-import miu.edu.cs545waa.service.UserService;
+import miu.edu.cs545waa.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.boot.system.ApplicationHome;
@@ -36,6 +33,9 @@ public class SellerController {
 
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private OrderService orderService;
 
     @Autowired
     private ProductCategoryService productCategoryService;
@@ -220,10 +220,26 @@ public class SellerController {
       return "not yet";
     }
 
-    public String orderDetails(Model model){
-        Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
-        Seller seller=(Seller) userService.findByEmail(authentication.getName());
-//        model.addAttribute("orders",userService.getOrdersBySeller());
-        return "orderList";
+    @GetMapping("/orderList")
+    public String orderDetails(Model model, Order order){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        Seller seller = (Seller)userService.findByEmail(auth.getName());
+        List<Order> orders = userService.getOrdersBySeller(seller);
+        List<OrderStatus> orderStatuses = Arrays.asList(OrderStatus.values());
+
+        model.addAttribute("orderStatus",orderStatuses);
+        model.addAttribute("tempOrder",order);
+        model.addAttribute("orders", orders);
+        return "seller/sellerOrders";
+    }
+
+    @PostMapping("/updateOrderStatus/{id}")
+    public String updateStatus(Order order){
+        System.out.println(order.getId());
+        System.out.println(order.getStatus());
+
+        orderService.updateOrderStatusById(order.getId(), order.getStatus());
+
+        return "redirect:/seller/orderList";
     }
 }

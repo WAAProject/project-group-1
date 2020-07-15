@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        .my-alert{
+            font-size: larger;
+            Color: #28a745;
+        }
+
+        .order-detail {
+            font-size: medium;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">WebSiteName</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Page 1</a></li>
+            <li><a href="#">Page 2</a></li>
+            <li><a href="#">Page 3</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <div th:if="${message!=null}" class="my-alert">
+        <span th:text="${message}"></span>
+    </div>
+    <br>
+    <div th:each="order : ${orders}">
+        <table class="table table-bordered">
+            <thead>
+            <tr style="background-color: #86cfda">
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${order.items}">
+                <td class="align-middle" th:text="${item.product.name}"></td>
+                <td class="align-middle" th:text="${item.quantity}"></td>
+                <td class="align-middle" th:text="${item.price}"></td>
+            </tr>
+            <tr th:colspan="3">
+
+            </tr>
+            </tbody>
+        </table>
+        <div class="order-detail">
+            <p><strong>Shipping Address: </strong>
+                <span th:text="${order.shippingAddress.street} + ', '+ ${order.shippingAddress.city} + ', ' + ${order.shippingAddress.state} + ', ' + ${order.shippingAddress.country} + ', ' + ${order.shippingAddress.zipCode}"></span></p>
+            <p> <strong>Buyer: </strong><span th:text="${order.buyer.firstName}"></span> </p>
+            <p> <strong>Status: </strong><span th:text="${order.status}"></span> </p>
+        </div>
+<!--        <form th:action="@{/buyer/order/cancel}" method="post" th:if="${order.status == order.status.New}">-->
+<!--            <input th:type="hidden" th:name="orderId" th:value="${order.id}">-->
+<!--            <button type="submit" class="btn btn-danger">Cancel order</button>-->
+<!--        </form>-->
+        <form th:action="@{/seller/updateOrderStatus/{id}(id=${order.id})}" th:object="${tempOrder}" method="post">
+            <div class="row justify-content-md-end m-1">
+                <div class="col-md-auto form-group align-middle m-1">
+                    <input type="text" id="id" name="id" th:field="*{id}" disabled th:type="hidden">
+                    <select class="form-control-sm" name="status" id="status">
+                        <option th:each="stat : ${orderStatus}" th:selected="${stat == order.status}" th:value="${stat}" th:text="${stat}"></option>
+                    </select>
+                </div>
+                <div class="col-md-auto form-group align-middle m-1 mt-1">
+                    <button id="btn" type="submit" class="btn btn-outline-primary btn-sm">Update Status</button>
+                </div>
+            </div>
+        </form>
+        <hr>
+
+    </div>
+</div>
+</body>
+</html>

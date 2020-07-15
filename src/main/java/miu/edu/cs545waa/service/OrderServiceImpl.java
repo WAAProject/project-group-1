@@ -52,6 +52,7 @@ public class OrderServiceImpl implements OrderService {
             }else{
                 buyer.setCoupon(buyer.getCoupon() + 1);
             }
+
             order.setSeller(seller);
             order.setBuyer(buyer);
             order.setSum(result);
