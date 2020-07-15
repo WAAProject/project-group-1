@@ -59,14 +59,4 @@ public class IndexController {
 
         return "index";
     }
-
-    @GetMapping("/buyer")
-    public String buyer() {
-        return "buyer/index";
-    }
-
-    @GetMapping("/seller")
-    public String seller() {
-        return "seller/index";
-    }
 }

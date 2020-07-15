@@ -98,19 +98,26 @@ public class DataLoader implements ApplicationRunner {
 
         // Reviews
         ProductReview review1 = new ProductReview(5, "Good product!", buyer1);
-        ProductReview review2 = new ProductReview(4, "Bawd product!", buyer2);
-        ProductReview review3 = new ProductReview(4, "awdawd product!", buyer3);
-        ProductReview review4 = new ProductReview(2, "3 rawoduct!", buyer1);
-        ProductReview review5 = new ProductReview(5, "Ad 13 roduct!", buyer2);
-        ProductReview review6 = new ProductReview(4, "adz product!", buyer3);
-        ProductReview review7 = new ProductReview(1, "1  11 product!", buyer1);
+        ProductReview review2 = new ProductReview(4, "Bad product!", buyer2);
+        ProductReview review3 = new ProductReview(4, "I’ve order twice from them and both times I never got my package plus I had to fight with them to get my money back. Still waiting for a return on my last package. I’m just done with them.!", buyer3);
+        ProductReview review4 = new ProductReview(2, "they just suck, always need to download new updates then videos still don't play(streaming)", buyer1);
+        ProductReview review5 = new ProductReview(5, "Always good experiences. Whenever bad their customer services sorts it out :) just wish prime was cheaper", buyer2);
+        ProductReview review6 = new ProductReview(4, "Amazing product!", buyer3);
+        ProductReview review7 = new ProductReview(1, "If you are not Prime member they will sent your item after two weeks, that is terrible, you can buy faster from eBay or Walmart. Even Amazon selling not exist items and you will wait that Amazon shipping.", buyer1);
+        review1.setApproved(true);
+        review2.setApproved(true);
+        review3.setApproved(true);
+        review4.setApproved(true);
+        review5.setApproved(true);
+        review6.setApproved(true);
+        review7.setApproved(true);
         productReviewService.saveReviewToProduct(review1, 6L, buyer1);
-//        productReviewService.saveReviewToProduct(review2, 7L);
-//        productReviewService.saveReviewToProduct(review3, 8L);
-//        productReviewService.saveReviewToProduct(review4, 9L);
-//        productReviewService.saveReviewToProduct(review5, 10L);
-//        productReviewService.saveReviewToProduct(review6, 11L);
-//        productReviewService.saveReviewToProduct(review7, 8L);
+        productReviewService.saveReviewToProduct(review2, 7L, buyer2);
+        productReviewService.saveReviewToProduct(review3, 8L, buyer3);
+        productReviewService.saveReviewToProduct(review4, 9L, buyer1);
+        productReviewService.saveReviewToProduct(review5, 10L, buyer1);
+        productReviewService.saveReviewToProduct(review6, 11L, buyer2);
+        productReviewService.saveReviewToProduct(review7, 8L, buyer3);
 
     }
 }

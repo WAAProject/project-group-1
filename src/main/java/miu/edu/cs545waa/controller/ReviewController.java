@@ -29,10 +29,14 @@ public class ReviewController {
     public String saveReview(@Valid @ModelAttribute("review") ProductReview review, BindingResult bindingResult,
                              @PathVariable(value = "id") Long id, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "product/"+id;
+            System.out.println(bindingResult);
+            return "redirect:/product/"+id;
         }
-        productReviewService.saveReviewToProduct(review,id);
-        redirectAttributes.addAttribute("reviewMsg", "Review successfully added. Will be visible after approval :)");
+
+        System.out.println(id);
+        System.out.println(productReviewService.saveReviewToProduct(review,id));
+
+        redirectAttributes.addFlashAttribute("reviewMsg", "Review successfully added. Will be visible after approval :)");
         return "redirect:/product/"+id;
     }
 }

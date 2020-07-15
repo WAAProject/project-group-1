@@ -43,7 +43,6 @@ public class ProductReviewServiceImpl implements ProductReviewService{
     public ProductReview saveReviewToProduct(ProductReview productReview, Long productId, Buyer buyer) {
         Product product = productService.findById(productId);
         if(product != null){
-            productReview.setApproved(false);
             productReview.setReviewDate(new Date());
             productReview.setProduct(product);
             productReview.setBuyer(buyer);
@@ -62,6 +61,7 @@ public class ProductReviewServiceImpl implements ProductReviewService{
             Buyer buyer = userService.getAuthenticatedBuyer();
             productReview.setApproved(false);
             productReview.setReviewDate(new Date());
+            productReview.setProduct(product);
             productReview.setBuyer(buyer);
             product.addReview(productReview);
             productService.save(product);

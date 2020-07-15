@@ -1,6 +1,7 @@
 package miu.edu.cs545waa.controller;
 
 
+import miu.edu.cs545waa.domain.ProductReview;
 import miu.edu.cs545waa.exception.AlreadyOrderedProduct;
 import miu.edu.cs545waa.exception.ImageNotValidException;
 import miu.edu.cs545waa.service.*;
@@ -47,7 +48,7 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    public String getProductById(@PathVariable(value = "id") Long id, Model model) {
+    public String getProductById(@PathVariable(value = "id") Long id, Model model, @ModelAttribute("review") ProductReview productReview) {
         model.addAttribute("product", productService.findById(id));
         return "product/productDetails";
     }

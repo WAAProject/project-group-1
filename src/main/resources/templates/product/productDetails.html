@@ -58,7 +58,7 @@
             <div class="col-12 col-lg-6 add_to_cart_block">
                 <div class="card bg-light mb-3">
                     <div class="card-body">
-                        <p class="price" th:text="${product.price}">99.00 $</p>
+                        <p class="price" th:text="'$' + ${product.price}">99.00 $</p>
                         <p class="price_discounted">2000 $</p>
                         <form method="get" action="cart.html">
                             <div class="form-group">
