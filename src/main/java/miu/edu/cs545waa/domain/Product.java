@@ -41,16 +41,18 @@ public class Product {
     @Min(value = 1, message = "{Product.quantity.validation}")
     @NotNull(message = "{Product.quantity.NotNull}")
     private int quantity;
-    private boolean enabled = false;
+    private boolean enabled = true;
 
 
     @Transient
     @JsonIgnore
     private MultipartFile productImage;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "product_id")
-    private List<ProductReview> prodProductReviewList = new ArrayList<>();
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "product_id")
+//    private List<ProductReview> prodProductReviewList = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private List<ProductReview> prodProductReviewList;
 
     public Product() {
     }

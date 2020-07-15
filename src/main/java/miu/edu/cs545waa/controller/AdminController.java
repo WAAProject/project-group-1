@@ -1,9 +1,11 @@
 package miu.edu.cs545waa.controller;
 
+import miu.edu.cs545waa.domain.Product;
 import miu.edu.cs545waa.domain.ProductReview;
 import miu.edu.cs545waa.domain.Seller;
 import miu.edu.cs545waa.domain.User;
 import miu.edu.cs545waa.service.ProductReviewService;
+import miu.edu.cs545waa.service.ProductService;
 import miu.edu.cs545waa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,9 @@ public class AdminController {
 
     @Autowired
     ProductReviewService productReviewService;
+
+    @Autowired
+    ProductService productService;
 
     @GetMapping("/accounts")
     public String getAccounts(Model model) {
@@ -79,5 +84,23 @@ public class AdminController {
             productReviewService.save(productReview);
         }
         return "redirect:/admin/reviews";
+    }
+
+    @GetMapping("/products")
+    public String getProducts(Model model) {
+        List<Product> products = productService.getAll();
+        model.addAttribute("products", products);
+        return "admin/products";
+    }
+
+    @PostMapping("/products/approve/{action}")
+    public String updateProduct(@PathVariable("action") boolean action, @RequestParam("productId") Long productId, Model model) {
+        Product product = productService.findById(productId);
+
+        if (productId != null) {
+            product.setEnabled(action);
+            productService.save(product);
+        }
+        return "redirect:/admin/products";
     }
 }

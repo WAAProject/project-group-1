@@ -66,6 +66,8 @@ public class SellerController {
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     public String saveProduct(@Valid @ModelAttribute("product") Product product, BindingResult result, Model model, RedirectAttributes redirectAttributes) {
         System.out.println("im in add controller!!");
+        List<ProductCategory>categories=productCategoryService.getAll();
+        model.addAttribute("categories",categories);
         if (result.hasErrors()) {
             return "seller/addProduct";
         }
