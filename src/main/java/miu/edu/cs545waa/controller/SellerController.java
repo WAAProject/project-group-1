@@ -218,10 +218,11 @@ public class SellerController {
       return "not yet";
     }
 
+    @RequestMapping("/orderList")
     public String orderDetails(Model model){
         Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
         Seller seller=(Seller) userService.findByEmail(authentication.getName());
-//        model.addAttribute("orders",userService.getOrdersBySeller());
-        return "orderList";
+        model.addAttribute("orders",userService.getOrdersBySeller(seller));
+        return "seller/sellerOrders";
     }
 }
