@@ -67,18 +67,23 @@
                 <div class="form-group">
                     <label for="street">Street:</label>
                     <input type="text" class="form-control" id="street" th:field = "*{billingAddress.street}">
+                    <small class="form-text" th:if="${#fields.hasErrors('billingAddress.street')}" th:errors="*{billingAddress.street}" th:errorclass="text-danger">Invalid street.</small>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="cty">City:</label>
                             <input type="text" class="form-control" id="cty" th:field = "*{billingAddress.city}">
+                            <small class="form-text" th:if="${#fields.hasErrors('billingAddress.city')}" th:errors="*{billingAddress.city}" th:errorclass="text-danger">Invalid city.</small>
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="State">State:</label>
                             <input type="text" class="form-control" id="State" th:field = "*{billingAddress.state}">
+                            <small class="form-text" th:if="${#fields.hasErrors('billingAddress.state')}" th:errors="*{billingAddress.state}" th:errorclass="text-danger">Invalid state.</small>
+
                         </div>
                     </div>
                 </div>
@@ -88,12 +93,16 @@
                         <div class="form-group">
                             <label for="zip">Zip Code:</label>
                             <input type="text" class="form-control" id="zip" th:field = "*{billingAddress.zipCode}">
+                            <small class="form-text" th:if="${#fields.hasErrors('billingAddress.zipCode')}"
+                                   th:errors="*{billingAddress.zipCode}" th:errorclass="text-danger">Invalid zipCode.</small>
+
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="Country">Country:</label>
                             <input type="text" class="form-control" id="Country" th:field = "*{billingAddress.country}">
+                            <small class="form-text" th:if="${#fields.hasErrors('billingAddress.country')}" th:errors="*{billingAddress.country}" th:errorclass="text-danger">Invalid country.</small>
                         </div>
                     </div>
                 </div>
@@ -132,14 +141,14 @@
                         <div class="form-group">
                             <label for="zip1">Zip Code:</label>
                             <input type="text" class="form-control" id="zip1" th:field = "*{shippingAddress.zipCode}">
-                            <small class="form-text" th:if="${#fields.hasErrors('shippingAddress.zipCode')}" th:errors="*{shippingAddress.zipCode}" th:errorclass="text-danger">Invalid postal code.</small>
+                            <small class="form-text" th:if="${#fields.hasErrors('shippingAddress.zipCode')}" th:errors="*{shippingAddress.zipCode}" th:errorclass="text-danger">Invalid zipCode.</small>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="Country1" class="required">Country:</label>
                             <input type="text" class="form-control" id="Country1" th:field = "*{shippingAddress.country}">
-                            <small class="form-text" th:if="${#fields.hasErrors('shippingAddress.country')}" th:errors="*{shippingAddress.country}" th:errorclass="text-danger">Invalid postal code.</small>
+                            <small class="form-text" th:if="${#fields.hasErrors('shippingAddress.country')}" th:errors="*{shippingAddress.country}" th:errorclass="text-danger">Invalid country.</small>
                         </div>
                     </div>
                 </div>
