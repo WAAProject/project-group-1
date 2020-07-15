@@ -71,16 +71,16 @@ public class DataLoader implements ApplicationRunner {
         Product pro1=new Product("beats123B","This product is not eligible for promotional offers and coupons. However, you are able to earn and redeem Kohl's Cash and Kohl's Rewards on this product."
        , 123.04,"/images/beats123B.jpg",5,category5, seller1);
         Product pro2=new Product("digitalWatch", "Digital Waterproof Sports Watch Electronic Military LED Sport Running Watch Multifunction Wrist Stopwatch", 20.00,"/images/digitalWatch.jpg",
-                6,category4,seller2);
+                6,category4,seller1);
         Product pro3=new Product("deskLaptop", "nvisible Lightweight Laptop Stand Portable, Adhesive Laptop Stand Foldable, Compatible with MacBook, Air, Pro, Tablets and Laptops up to 15.6” (Gray)"
         , 500.00,"/images/deskLaptop.jpg",7,category1,seller1);
         Product pro4=new Product("htc1","The next generation of Edge Sense offers more useful features and now even knows which hand you are using, giving you true one-handed freedom for either hand.",
-                700.00,"/images/htc.jpg", 2, category2,seller2);
+                700.00,"/images/htc.jpg", 2, category2,seller1);
         Product pro5=new Product("drone","Comes with SanDisk Extreme microSD Card 128GB",
-                900.00, "/images/drone.jpg",1,category3,seller2);
+                900.00, "/images/drone.jpg",1,category3,seller1);
         Product pro6=new Product("Dell Monitor","An accessible 19.5\" monitor made for your daily workflow. Featuring an elegant design, 1600x900 resolution and Dell Display Manager.",
                 89.0,"/images/monitor.jpg",3,category1,seller1);
-        Product pro7=new Product("macGadget","All-New Apple Mac Pro 2020 Desktop", 1500.00,"/images/macGadget.png",10,category1,seller2);
+        Product pro7=new Product("macGadget","All-New Apple Mac Pro 2020 Desktop", 1500.00,"/images/macGadget.png",10,category1,seller1);
         pro1.setEnabled(true);
         pro2.setEnabled(true);
         pro3.setEnabled(true);
