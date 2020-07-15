@@ -11,19 +11,8 @@
     <link th:href="@{/css/registration.css}" rel="stylesheet" type="text/css">
 </head>
 <body>
-<<<<<<< HEAD
-<form th:action="@{/register}" th:object="${user}" method="post">
-    <p><label>First Name: <input type="text" name="firstName" placeholder="First Name"></label></p>
-    <p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" th:errorclass="fieldError" style="color: red">First Name error</p>
-    <p><label>Last Name: <input type="text" name="lastName" placeholder="Last Name"></label></p>
-    <p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" th:errorclass="fieldError" style="color: red">Last Name error</p>
-    <p><label>Email: <input type="text" name="email" placeholder="Email"></label></p>
-    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="fieldError" style="color: red">Email error</p>
-    <p><label>Password: <input type="password" name="password" placeholder="Password"></label></p>
-    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:errorclass="fieldError" style="color: red">Password error</p>
-=======
+
 <div layout:fragment="main-content">
->>>>>>> 9285dde7d8875d6ef1779e56b7b1725a06618d57
 
     <div class="container">
         <div class="card bg-light">
@@ -68,7 +57,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                         </div>
-                        <input class="form-control" placeholder="Create password" type="password">
+                        <input name="password" class="form-control" placeholder="Create password" type="password">
                     </div> <!-- form-group// -->
                     <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:errorclass="fieldError">Password error</p>
 
